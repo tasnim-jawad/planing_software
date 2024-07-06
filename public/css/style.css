@@ -1,0 +1,77 @@
+
+.planing_app{
+    display: grid;
+    grid-template-rows: 40px 1fr;
+    height: 100vh;
+}
+.planing_app .planing_app_topbar{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid red;
+    background-color: rgba(50,52,82,1);
+    padding: 10px 10px 10px 20px ;
+
+}
+.planing_app_topbar .logo_container{
+    height: 16px;
+}
+.logo_container .logo_image{
+    height: 100%;
+    display: block;
+}
+.planing_app .layout_content{
+    display: grid;
+    grid-template-columns: 230px 1fr;
+    height: 100%;
+}
+.planing_app .layout_content .layout_content_left{
+    border: 1px solid red;
+}
+.planing_app .layout_content .layout_content_right{
+    border: 1px solid green;
+}
+
+.side_nave{
+    display: flex;
+    flex-direction: column;
+}
+.side_nave .side_nave_topbar{
+    display: flex;
+    flex-wrap: wrap;
+}
+.side_nave_topbar .profile_heading{
+    width: 70%;
+    display: flex;
+    align-items: center;
+    text-align: left;
+    padding: 4px;
+    min-width: 0;
+    height: 32px;
+    overflow: hidden;
+
+}
+.profile_image_container{
+    width:24px;
+    height: 24px;
+    margin-right: 6px;
+}
+.profile_image_container img{
+    height: 100%;
+    object-fit: cover;
+
+}
+.profile_name{
+    font-size: 14px;
+    font-weight: bold;
+    font-family: sans-serif;
+    margin: 0;
+    text-overflow: ellipsis;
+}
+
+
+
+
+
+
+
