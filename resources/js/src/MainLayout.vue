@@ -42,20 +42,7 @@
                                     </div>
                                 </div>
                                 <ul class="side_nave_lists">
-                                    <li class="side_nave_list_item">
-                                        <div class="list_container">
-                                            <div class="list_identity_icon">
-                                                <a href=""><i class="fa-solid fa-house-user"></i></a>
-                                            </div>
-                                            <div class="list_name">
-                                                <span>Home</span>
-                                                <div class="list_right_icons">
-                                                    <a href=""><i class="fa-solid fa-ellipsis"></i></a>
-                                                    <a href=""><i class="fa-solid fa-plus"></i></a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </li>
+                                    <dropdown-nav></dropdown-nav>
                                     <li class="side_nave_list_item">
                                         <div class="list_container">
                                             <div class="list_identity_icon">
@@ -179,7 +166,7 @@
                         </div>
                     </div>
                     <div class="main_content">
-
+                         <create></create>
                     </div>
                 </div>
             </div>
@@ -189,8 +176,10 @@
 </template>
 
 <script>
+import Create from './pages/user/Create.vue';
+import DropdownNav from './layout/DropdownNav.vue';
 export default {
-
+  components: { DropdownNav, Create },
 }
 </script>
 
