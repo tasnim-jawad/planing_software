@@ -1,15 +1,10 @@
-/**
- * First we will load all of this project's JavaScript dependencies which
- * includes Vue and other libraries. It is a great starting point when
- * building robust, powerful web applications using Vue and Laravel.
- */
-
 import './bootstrap';
 import { createApp } from 'vue';
-
+import { createPinia } from 'pinia'
+import routes from './src/routes/routes';
 const app = createApp({});
 
-import App from './src/MainLayout.vue';
-
+import App from './App.vue';
+const pinia = createPinia()
 app.component('app', App);
-app.mount('#app');
+app.use(routes).use(pinia).mount('#app');

@@ -466,6 +466,7 @@ a{
                         font-size: 12px;
                         line-height: 12px;
                         font-family: system-ui;
+                        flex: 1;
                     }
                     &:hover{
                         background-color: var(--color2);
@@ -484,5 +485,35 @@ a{
 .main_content{
     .vue_main_container{
         padding: 0px 10px;
+    }
+}
+.module_layout_title{
+    padding: 20px 10px;
+    font-size: 20px;
+    font-weight: bold;
+    color: var(--color4);
+}
+.table_topbar{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 10px;
+    background-color: darkslategray;
+    border-radius: 5px 5px 0px 0px;
+    .pages_title{
+        font-size: 16px;
+        color: white;
+        font-weight: 600;
+
+    }
+}
+.form-group{
+    display: grid;
+    grid-template-columns: 230px 1fr;
+    align-items: center;
+    label{
+        margin: 0px;
+        font-size: 20px;
+        padding-left: 10px;
     }
 }
