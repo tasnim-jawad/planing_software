@@ -30,6 +30,7 @@ let routes = {
             path: 'edit/:id',
             name: 'edit-' + setup.route_prefix,
             component: Edit,
+            props: true,
         },
         {
             path: 'import',
