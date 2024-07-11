@@ -46,7 +46,6 @@ export default {
             data: 'createdData',
             setup: 'setup',
         })
-
     },
     methods:{
         ...mapActions(barshik_porikolpona_store, {

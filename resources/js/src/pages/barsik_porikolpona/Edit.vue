@@ -15,7 +15,7 @@
     </div>
 </template>
 <script>
-import { mapActions, storeToRefs } from 'pinia';
+import { mapActions, mapState, storeToRefs } from 'pinia';
 import { barshik_porikolpona_store } from './config/store/store';
 import { onMounted, ref } from 'vue';
 
@@ -26,46 +26,64 @@ export default {
             required: true,
         },
     },
-    setup: function(props) {
-        const createStore = barshik_porikolpona_store();
-        const { setup } = storeToRefs(createStore);
-        const formData = ref({ title: '' });
+    // setup: function(props) {
+    //     const createStore = barshik_porikolpona_store();
+    //     const { setup } = storeToRefs(createStore);
+    //     const formData = ref({ title: '' });
 
-        onMounted(async () => {
-            const previous_data = await createStore.edit_created_data(props.id)
-            console.log(previous_data);
-            if (previous_data) {
-                formData.value = { ...previous_data };
-            }
-        });
+    //     onMounted(async () => {
+    //         const previous_data = await createStore.edit_created_data(props.id)
+    //         console.log(previous_data);
+    //         if (previous_data) {
+    //             formData.value = { ...previous_data };
+    //         }
+    //     });
 
-        // const editable_data = async () => {
-        //     let formData = new FormData(event.target);
-        //     await createStore.submit_create_form(formData);
-        //     event.target.reset();
+    //     const editable_data = async () => {
+    //         let formData = new FormData(event.target);
+    //         await createStore.submit_create_form(formData);
+    //         event.target.reset();
 
-        // };
-        const updateDdata = async (event) => {
-            const formDataObj = new FormData(event.target);
-            const formDataEntries = Object.fromEntries(formDataObj.entries());
-            console.log("edit",formDataEntries);
-            await createStore.update_created_data(props.id ,formDataEntries);
-            event.target.reset();
-        };
+    //     };
+    //     const updateDdata = async (event) => {
+    //         const formDataObj = new FormData(event.target);
+    //         const formDataEntries = Object.fromEntries(formDataObj.entries());
+    //         console.log("edit",formDataEntries);
+    //         await createStore.update_created_data(props.id ,formDataEntries);
+    //         event.target.reset();
+    //     };
 
-        console.log("formdata",formData);
+    //     console.log("formdata",formData);
 
-        return { setup, formData,updateDdata }
-    },
+    //     return { setup, formData,updateDdata }
+    // },
     data: ()=>({
         form_data: {
             title: ''
         }
     }),
+    computed:{
+        ...mapState(barshik_porikolpona_store,{
+            setup: 'setup',
+        }),
+
+
+    },
+    created:async function(){
+        const data = await this.edit_store_data({
+            index: this.id
+        });
+        
+        this.form_data.title = data.title
+        console.log("editable_data");
+        console.log(data.title);
+    },
     methods:{
         ...mapActions(barshik_porikolpona_store, {
-            update_store_data: 'update_created_data'
+            update_store_data: 'update_created_data',
+            edit_store_data: 'edit_created_data',
         }),
+
         update_data: function(){
             this.update_store_data({
                 index: this.id,

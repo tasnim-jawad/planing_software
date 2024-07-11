@@ -12,16 +12,17 @@ export const barshik_porikolpona_store = defineStore('barshik_porikolpona_store'
 
     },
     actions: {
-        async submit_create_form(formData) {
+        async submit_create_form(payload) {
             const formDataObj = {};
-            for (let [key, value] of formData.entries()) {
+            for (let [key, value] of payload.form_data.entries()) {
                 formDataObj[key] = value;
             }
             this.createdData.push(formDataObj);
         },
-        async edit_created_data(index){
-            console.log("edit data",this.createdData[index]);
-            return this.createdData[index];
+        async edit_created_data(payload){
+            console.log(payload);
+            console.log("edit data",this.createdData[payload.index]);
+            return this.createdData[payload.index];
         },
         async update_created_data(payload){
             this.createdData[payload.index] = payload.data;
