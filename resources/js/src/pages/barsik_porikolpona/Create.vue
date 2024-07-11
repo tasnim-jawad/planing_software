@@ -21,8 +21,8 @@
                     </td>
                     <td>{{ (index + 1) * 10 }}</td>
                     <td>
-                        <router-link :to="{ name: 'edit-barsik-porikolpona', params: { id: index } }" class="btn btn-sm btn-success me-2">পরিবর্তন করুন</router-link>
-                        <a @click.prevent="delete_data(index)" class="btn btn-sm btn-success">ডিলিট করুন</a>
+                        <router-link :to="{ name: 'edit-barsik-porikolpona', params: { id: index } }" class="btn btn-sm btn-warning me-2"><i class="fa-solid fa-pen-to-square"></i></router-link>
+                        <a @click.prevent="delete_data(index)" class="btn btn-sm btn-danger"><i class="fa-solid fa-trash"></i></a>
                     </td>
                 </tr>
             </tbody>

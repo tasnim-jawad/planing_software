@@ -10,9 +10,14 @@
 </template>
 <script>
 export default {
-    props: ['label', 'to']
+    props: ['label', 'to'],
+    methods: {
+        navigate() {
+            this.$refs.link.click();
+        }
+    }
 }
 </script>
-<style lang="">
+<style >
 
 </style>

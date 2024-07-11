@@ -506,6 +506,14 @@ a{
         font-weight: 600;
 
     }
+
+}
+.vue_main_container{
+    .table tr td,
+    .table tr th {
+        white-space: nowrap;
+        padding: 10px;
+    }
 }
 .form-group{
     display: grid;

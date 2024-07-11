@@ -66,14 +66,12 @@ export default {
         ...mapState(barshik_porikolpona_store,{
             setup: 'setup',
         }),
-
-
     },
     created:async function(){
         const data = await this.edit_store_data({
             index: this.id
         });
-        
+
         this.form_data.title = data.title
         console.log("editable_data");
         console.log(data.title);
