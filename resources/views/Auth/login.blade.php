@@ -86,12 +86,15 @@
                                             target.classList.remove('d-none');
                                         } else {
                                             localStorage.setItem('token', data.access_token);
-                                            if(data.user.email == "test@example.com"){
-                                                console.log('unit');
+                                            if(data.user.role == 1){
+                                                console.log('super_admin');
                                                 window.location.href = '/';
                                             }else if(data.user.role == 2){
                                                 console.log('admin');
-                                                window.location.href = '/dashboard/admin#';
+                                                window.location.href = '/';
+                                            }else if(data.user.role == 3){
+                                                console.log('user');
+                                                window.location.href = '/';
                                             }
 
                                         }

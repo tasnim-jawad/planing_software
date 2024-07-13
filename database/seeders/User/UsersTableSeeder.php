@@ -56,84 +56,84 @@ class UsersTableSeeder extends Seeder
             'blood_group' => "B+",
         ]);
         User::create([
-            'role' => 4,
+            'role' => 2,
             'full_name' =>"sirajul islam",
             'gender' => "male",
             'telegram_name' => "sirajulIslam",
             'telegram_id' => "333",
             'email' => "sirajulislam@gmail.com",
             'password' => "12345678",
-            'blood_group' => "C+",
+            'blood_group' => "AB+",
         ]);
         User::create([
-            'role' => 4,
+            'role' => 3,
             'full_name' =>"sefatullah masum",
             'gender' => "male",
             'telegram_name' => "sefatullahMasum",
             'telegram_id' => "444",
             'email' => "sefatullahmasum@gmail.com",
             'password' => "12345678",
-            'blood_group' => "D+",
+            'blood_group' => "O+",
         ]);
         User::create([
-            'role' => 5,
+            'role' => 3,
             'full_name' =>"rupom ehsan",
             'gender' => "male",
             'telegram_name' => "rupomEhsan",
             'telegram_id' => "555",
             'email' => "rupomehsan@gmail.com",
             'password' => "12345678",
-            'blood_group' => "E+",
+            'blood_group' => "O-",
         ]);
         User::create([
-            'role' => 5,
+            'role' => 3,
             'full_name' =>"yamin hosen",
             'gender' => "male",
             'telegram_name' => "yaminHosen",
             'telegram_id' => "666",
             'email' => "yaminhosen@gmail.com",
             'password' => "12345678",
-            'blood_group' => "F+",
+            'blood_group' => "B+",
         ]);
         User::create([
-            'role' => 6,
+            'role' => 3,
             'full_name' =>"mahabub alom",
             'gender' => "male",
             'telegram_name' => "mahabubAlom",
             'telegram_id' => "777",
             'email' => "mahabubalom@gmail.com",
             'password' => "12345678",
-            'blood_group' => "G+",
+            'blood_group' => "B-",
         ]);
         User::create([
-            'role' => 6,
+            'role' => 3,
             'full_name' =>"mojammel haque",
             'gender' => "male",
             'telegram_name' => "mojammelHaque",
             'telegram_id' => "888",
             'email' => "mojammelhaque@gmail.com",
             'password' => "12345678",
-            'blood_group' => "H+",
+            'blood_group' => "B+",
         ]);
         User::create([
-            'role' => 6,
+            'role' => 3,
             'full_name' =>"tasnimul hasan",
             'gender' => "male",
             'telegram_name' => "tasnimulHasan",
             'telegram_id' => "999",
             'email' => "tasnimulhasan@gmail.com",
             'password' => "12345678",
-            'blood_group' => "I+",
+            'blood_group' => "AB-",
         ]);
         User::create([
-            'role' => 6,
+            'role' => 3,
             'full_name' =>"almas khan",
             'gender' => "male",
             'telegram_name' => "almasKhan",
             'telegram_id' => "1212",
             'email' => "almaskhan@gmail.com",
             'password' => "12345678",
-            'blood_group' => "J+",
+            'blood_group' => "A-",
         ]);
     }
 }
