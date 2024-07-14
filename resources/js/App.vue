@@ -4,19 +4,34 @@
     </template>
 </template>
 <script>
+import { mapState,mapActions } from 'pinia';
+import { use_auth_store} from './store/auth_store'
 export default {
     data: ()=>({
-        is_auth: true,
     }),
-    created: function(){
-        let token = localStorage.getItem('token')
-        
-        if(!token){
-            window.location.href = '/login'
-        }
+    computed:{
+        ...mapState(use_auth_store,{
+            is_auth: 'is_auth',
+        })
+    },
+    methods:{
+        ...mapActions(use_auth_store, {
+            check_is_auth: 'check_is_auth'
+        }),
+
+    },
+    created:async function(){
+        // let user = await this.check_is_auth();
+        console.log("is_auth",this.is_auth);
+
+        // let token = localStorage.getItem('token')
+
+        // if(!token){
+        //     window.location.href = '/login'
+        // }
         // this.$router.push({name:`Dashboard`})
-        let prevUrl = window.sessionStorage.getItem('prevurl');
-        window.location.hash = prevUrl || "#/";
+        // let prevUrl = window.sessionStorage.getItem('prevurl');
+        // window.location.hash = prevUrl || "#/";
         // console.log(this.user);
     },
 }

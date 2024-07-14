@@ -1,4 +1,5 @@
 import './bootstrap';
+import './plugins/axios_setup.js';
 import { createApp } from 'vue';
 import { createPinia } from 'pinia'
 import routes from './src/routes/routes';
