@@ -55,6 +55,7 @@ class LoginController extends Controller
 
         if ($check_auth_user && Hash::check($request->password, $check_auth_user->password)) {
             auth()->login($check_auth_user);
+            dd(auth()->check(),auth()->user()->id);
             DB::table('oauth_access_tokens')->where("user_id", $check_auth_user->id)->update(['revoked' => 1]);
             $data['access_token'] = $check_auth_user->createToken('accessToken')->accessToken;
             $data['user'] = $check_auth_user;
