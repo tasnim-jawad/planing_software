@@ -4,6 +4,7 @@ import MainLayout from '../layout/MainLayout.vue';
 import Dashboard from '../pages/Dashboard.vue';
 
 import barsik_porikolpona from '../pages/barsik_porikolpona/config/routes';
+import user from '../pages/user/config/routes';
 import Layout from '../pages/barsik_porikolpona/Layout.vue';
 import All from '../pages/barsik_porikolpona/All.vue';
 
@@ -20,6 +21,7 @@ const routes = createRouter({
                     component: Dashboard,
                 },
                 barsik_porikolpona,
+                user,
             ]
         },
     ]

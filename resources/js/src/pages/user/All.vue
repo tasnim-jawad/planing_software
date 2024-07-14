@@ -182,7 +182,7 @@ export default {
         toggle_tr() {
             document.addEventListener("DOMContentLoaded", function () {
                 const icons = document.querySelectorAll(".icon");
-
+                console.log("icon click inside",icons );
                 icons.forEach(function (icon) {
                     icon.addEventListener("click", function () {
                         const row = icon.closest("tr");

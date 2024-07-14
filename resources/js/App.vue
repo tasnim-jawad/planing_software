@@ -8,9 +8,9 @@ export default {
     data: ()=>({
         is_auth: true,
     }),
-    created: function(){
+    created:function(){
         let token = localStorage.getItem('token')
-        
+
         if(!token){
             window.location.href = '/login'
         }

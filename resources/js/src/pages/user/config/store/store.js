@@ -1,12 +1,12 @@
 import { defineStore } from "pinia";
 
 import setup from "../setup";
+import axios from "axios";
 export const user_store = defineStore('user_store', {
     state: () => ({
         setup: setup,
         createdData: [],
         loading: true,
-        test: "test.js",
     }),
     getters: {
 
@@ -31,5 +31,12 @@ export const user_store = defineStore('user_store', {
             this.createdData.splice(payload.index,1);
         },
 
+        async store_in_db(){
+            console.log("click");
+            let response = await axios.post('/api/v1/user/store',this.createdData)
+                    .then(response =>{
+                        console.log(response);
+                    })
+        }
     }
 })

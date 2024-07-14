@@ -32,7 +32,15 @@
                             :to="{name:`create-barsik-porikolpona`}"
                             :label="`create`" />
                     </dropdown-nav>
-
+                    
+                    <dropdown-nav :label="`User`" :icon="`fa-solid fa-users`">
+                        <dropdown-single-item
+                            :to="{name:`all-user`}"
+                            :label="`all`" />
+                        <dropdown-single-item
+                            :to="{name:`create-user`}"
+                            :label="`create`" />
+                    </dropdown-nav>
                 </ul>
 
                 <div class="line_divider"></div>
