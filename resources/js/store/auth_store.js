@@ -28,14 +28,14 @@ export const use_auth_store = defineStore("auth_store", {
         },
         check_is_auth: async function () {
             let that = this;
-            let res = await axios.get("/check_user");
+            let res = await axios.get("/user/check_user");
             if (res.status != 200) {
                 localStorage.removeItem("token");
                 return (location.href = "/login");
             }
             that.auth_info = res.data.user;
             that.is_auth = 1;
-            that.role = res.data.user.roles[0];
+            // that.role = res.data.user.roles[0];
 
             // console.log(res.data);
             // await window.cookieStore.get('AXRF-TOKEN')

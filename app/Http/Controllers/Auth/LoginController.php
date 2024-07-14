@@ -65,8 +65,15 @@ class LoginController extends Controller
         }
     }
 
-    public function check_user(){
-        dd(auth()->check());
+    public function check_user()
+    {
+        if (auth()->check()) {
+            return response()->json([
+                'user' => auth()->user(),
+            ], 200);
+        }
+
+        return response()->json([""]);
     }
 }
 
