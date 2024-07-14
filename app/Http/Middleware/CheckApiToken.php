@@ -18,25 +18,25 @@ class CheckApiToken
     public function handle(Request $request, Closure $next): Response
     {
         // Check if token exists in the request headers
-        $token = $request->header('Authorization') ?: $request->bearerToken();
-        dd( $token );
-        if (!$token) {
-            return redirect()->route('login');
-        }
+        // $token = $request->header('Authorization') ?: $request->bearerToken();
+        // dd( $token );
+        // if (!$token) {
+        //     return redirect()->route('login');
+        // }
 
-        // Extract the token value
-        $token = str_replace('Bearer ', '', $token);
+        // // Extract the token value
+        // $token = str_replace('Bearer ', '', $token);
 
-        // Validate the token
-        $tokenRepository = app(TokenRepository::class);
-        $token = $tokenRepository->findValidToken($request->user(), $token);
+        // // Validate the token
+        // $tokenRepository = app(TokenRepository::class);
+        // $token = $tokenRepository->findValidToken($request->user(), $token);
 
-        if (!$token) {
-            return redirect()->route('login');
-        }
+        // if (!$token) {
+        //     return redirect()->route('login');
+        // }
 
-        // Authenticate the user
-        Auth::setUser($token->user);
+        // // Authenticate the user
+        // Auth::setUser($token->user);
 
         return $next($request);
     }

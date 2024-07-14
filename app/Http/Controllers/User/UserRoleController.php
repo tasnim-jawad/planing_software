@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers\User;
 
-use App\Http\Controllers\Controller;
-use App\Models\User\UserRole;
 use Illuminate\Http\Request;
+use App\Models\User\UserRole;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 
 class UserRoleController extends Controller
@@ -20,7 +20,7 @@ class UserRoleController extends Controller
             $status = request()->status;
         }
         // dd($status);
-        
+
         $query = UserRole::where('status', $status)->orderBy($orderBy, $orderByType);
         // $query = User::latest()->get();
 
@@ -187,3 +187,6 @@ class UserRoleController extends Controller
         ], 200);
     }
 }
+
+
+
