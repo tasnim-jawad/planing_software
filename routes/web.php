@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Middleware\CheckApiToken;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
