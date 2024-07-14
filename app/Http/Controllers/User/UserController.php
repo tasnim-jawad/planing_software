@@ -25,6 +25,7 @@ class UserController extends Controller
     //     dd("success");
 
     // }
+    
     public function all()
     {
         $paginate = (int) request()->paginate ?? 10;
