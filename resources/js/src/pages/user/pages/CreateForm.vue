@@ -11,11 +11,11 @@
             </div>
             <div class="mb-3 form-group">
                 <label for="email" class="form-label  text-dark">Email</label>
-                <input type="text" name="email" class="form-control" id="title" >
+                <input type="email" name="email" class="form-control" id="title" >
             </div>
             <div class="mb-3 form-group">
                 <label for="password" class="form-label  text-dark">Password</label>
-                <input type="Password" name="Password" class="form-control" id="title" >
+                <input type="password" name="password" class="form-control" id="title" >
             </div>
             <button type="submit" class="btn btn-primary">Submit</button>
         </form>

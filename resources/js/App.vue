@@ -21,7 +21,7 @@ export default {
 
     },
     created:async function(){
-        // let user = await this.check_is_auth();
+        let user = await this.check_is_auth();
         console.log("is_auth",this.is_auth);
 
         // let token = localStorage.getItem('token')

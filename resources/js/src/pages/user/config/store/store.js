@@ -33,10 +33,10 @@ export const user_store = defineStore('user_store', {
 
         async store_in_db(){
             console.log("click");
-            let response = await axios.post('/api/v1/user/store',this.createdData)
-                    .then(response =>{
-                        console.log(response);
-                    })
+            let response = await axios.post('/user/store',this.createdData)
+                if(response){
+                    console.log(response);
+                }
         }
     }
 })

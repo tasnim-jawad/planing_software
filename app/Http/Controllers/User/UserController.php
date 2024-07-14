@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers\User;
 
-use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Validator;
 
 class UserController extends Controller
 {
@@ -36,22 +37,28 @@ class UserController extends Controller
         }
         // dd($status);
 
-        $query = UserClass::where('status', $status)->orderBy($orderBy, $orderByType);
+        $query = User::where('status', $status)->orderBy($orderBy, $orderByType);
         // $query = User::latest()->get();
 
         if (request()->has('search_key')) {
             $key = request()->search_key;
             $query->where(function ($q) use ($key) {
                 return $q->where('id', '%' . $key . '%')
-                    ->orWhere('type', '%' . $key . '%')
-                    ->orWhere('user_id', '%' . $key . '%')
-                    ->orWhere('added_type', '%' . $key . '%');
-
+                    ->orWhere('full_name', '%' . $key . '%')
+                    ->orWhere('gender', '%' . $key . '%')
+                    ->orWhere('telegram_name', '%' . $key . '%')
+                    ->orWhere('telegram_id', '%' . $key . '%')
+                    ->orWhere('email', '%' . $key . '%')
+                    ->orWhere('password', '%' . $key . '%')
+                    ->orWhere('blood_group', '%' . $key . '%');
             });
         }
 
         $datas = $query->paginate($paginate);
-        return response()->json($datas);
+        return response()->json([
+            'status' => 'success',
+            'data' => $datas
+        ]);
     }
 
     public function show($id)
@@ -61,7 +68,7 @@ class UserController extends Controller
         if (request()->has('select_all') && request()->select_all) {
             $select = "*";
         }
-        $data = UserClass::where('id', $id)
+        $data = User::where('id', $id)
             ->select($select)
             ->first();
         if ($data) {
@@ -81,8 +88,8 @@ class UserController extends Controller
             'type' => ['required'],
             'user_id' => ['required'],
             'added_type' => ['required'],
-            // 'creator' => ['required'],
-            // 'status' => ['required'],
+            'creator' => ['required'],
+            'status' => ['required'],
         ]);
 
         if ($validator->fails()) {
@@ -92,7 +99,7 @@ class UserController extends Controller
             ], 422);
         }
 
-        $data = new UserClass();
+        $data = new User();
         $data->type = request()->type;
         $data->user_id = request()->user_id;
         $data->added_type = request()->added_type;
@@ -105,7 +112,7 @@ class UserController extends Controller
 
     public function update()
     {
-        $data = UserClass::find(request()->id);
+        $data = User::find(request()->id);
         if (!$data) {
             return response()->json([
                 'err_message' => 'validation error',
@@ -144,7 +151,7 @@ class UserController extends Controller
     public function soft_delete()
     {
         $validator = Validator::make(request()->all(), [
-            'id' => ['required', 'exists:user_classes,id'],
+            'id' => ['required', 'exists:users,id'],
         ]);
 
         if ($validator->fails()) {
@@ -154,7 +161,7 @@ class UserController extends Controller
             ], 422);
         }
 
-        $data = UserClass::find(request()->id);
+        $data = User::find(request()->id);
         $data->status = 0;
         $data->save();
 
@@ -166,7 +173,7 @@ class UserController extends Controller
     public function destroy()
     {
         $validator = Validator::make(request()->all(), [
-            'id' => ['required', 'exists:user_classes,id'],
+            'id' => ['required', 'exists:users,id'],
         ]);
 
         if ($validator->fails()) {
@@ -176,7 +183,7 @@ class UserController extends Controller
             ], 422);
         }
 
-        $data = UserClass::find(request()->id);
+        $data = User::find(request()->id);
         $data->delete();
 
         return response()->json([
@@ -187,7 +194,7 @@ class UserController extends Controller
     public function restore()
     {
         $validator = Validator::make(request()->all(), [
-            'id' => ['required', 'exists:user_classes,id'],
+            'id' => ['required', 'exists:users,id'],
         ]);
 
         if ($validator->fails()) {
@@ -197,7 +204,7 @@ class UserController extends Controller
             ], 422);
         }
 
-        $data = UserClass::find(request()->id);
+        $data = User::find(request()->id);
         $data->status = 1;
         $data->save();
 
