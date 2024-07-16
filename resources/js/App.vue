@@ -22,17 +22,8 @@ export default {
     },
     created:async function(){
         let user = await this.check_is_auth();
-        console.log("is_auth",this.is_auth);
-
-        // let token = localStorage.getItem('token')
-
-        // if(!token){
-        //     window.location.href = '/login'
-        // }
-        // this.$router.push({name:`Dashboard`})
-        // let prevUrl = window.sessionStorage.getItem('prevurl');
-        // window.location.hash = prevUrl || "#/";
-        // console.log(this.user);
+        // console.log("is_auth",this.is_auth);
+        // console.log("user",user);
     },
 }
 </script>

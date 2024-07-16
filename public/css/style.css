@@ -521,7 +521,15 @@ a{
     align-items: center;
     label{
         margin: 0px;
-        font-size: 20px;
+        font-size: 14px;
         padding-left: 10px;
     }
+}
+.input_padding{
+    padding: 2px 5px;
+}
+.submit_button{
+    padding: 6px 15px;
+    font-size: 12px;
+    line-height: 12px;
 }

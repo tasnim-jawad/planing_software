@@ -7,9 +7,9 @@
         <form @submit.prevent="submit_form">
             <div class="mb-3 form-group">
                 <label for="title" class="form-label  text-dark">Title</label>
-                <input type="text" name="title" class="form-control" id="title" >
+                <input type="text" name="title" class="form-control input_padding" id="title" >
             </div>
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <button type="submit" class="btn btn-primary submit_button">Submit</button>
         </form>
     </div>
 </template>

@@ -36,11 +36,6 @@ let routes = {
             path: 'import',
             name: 'import-' + setup.route_prefix,
             component: Import,
-        },
-        {
-            path: 'form',
-            name: 'create-form-' + setup.route_prefix,
-            component: CreateForm,
         }
     ]
 }

@@ -1,40 +1,24 @@
 <template>
     <div class="vue_main_container">
-        <div class="table_topbar">
+        <div class="table_topbar mb-3">
             <h2 class="pages_title">{{ setup.create_page_title }}</h2>
-            <router-link :to="{ name: 'create-form-user' }"  class="btn btn-sm btn-primary">নতুন তৈরি করুন</router-link>
+            <router-link :to="{ name: 'all-user' }"  class="btn btn-sm btn-primary">All User</router-link>
         </div>
-        <table class="table table-striped align-middle">
-            <thead>
-                <tr class="table-dark">
-                    <th>si</th>
-                    <th>Name</th>
-                    <th>password</th>
-                    <th>action</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr v-for="(item,index) in data" :key="index">
-                    <td>{{ index + 1 }}</td>
-                    <td>
-                        {{ item.full_name }}
-                    </td>
-                    <td>
-                        {{ item.email }}
-                    </td>
-                    <td>
-                        <router-link :to="{ name: 'edit-user', params: { id: index } }" class="btn btn-sm btn-warning me-2"><i class="fa-solid fa-pen-to-square"></i></router-link>
-                        <a @click.prevent="delete_data(index)" class="btn btn-sm btn-danger"><i class="fa-solid fa-trash"></i></a>
-                    </td>
-                </tr>
-                <tr v-if="data.length !=0">
-                    <td></td>
-                    <td colspan="3">
-                        <a href="#" @click.prevent="store_data" class="btn btn-primary ">Submit All</a>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
+        <form @submit.prevent="submit_form">
+            <div class="mb-3 form-group">
+                <label for="full_name" class="form-label  text-dark">Full Name</label>
+                <input type="text" name="full_name" class="form-control input_padding " id="full_name" >
+            </div>
+            <div class="mb-3 form-group">
+                <label for="email" class="form-label  text-dark">Email</label>
+                <input type="email" name="email" class="form-control input_padding" id="email" >
+            </div>
+            <div class="mb-3 form-group">
+                <label for="password" class="form-label  text-dark">Password</label>
+                <input type="password" name="password" class="form-control input_padding" id="password" >
+            </div>
+            <button type="submit" class="btn btn-primary submit_button">Submit</button>
+        </form>
     </div>
 </template>
 <script>
@@ -46,22 +30,33 @@ export default {
     }),
     computed:{
         ...mapState(user_store,{
-            data: 'createdData',
             setup: 'setup',
         })
     },
     methods:{
+        // ...mapActions(user_store, {
+        //     delete_store_data: 'delete_created_data',
+        //     store_in_db: 'store_in_db',
+        // }),
+        // delete_data:function(index){
+        //     this.delete_store_data({
+        //         index:index,
+        //     })
+        // },
+        // store_data:function(){
+        //     this.store_in_db()
+        // }
+
         ...mapActions(user_store, {
-            delete_store_data: 'delete_created_data',
-            store_in_db: 'store_in_db',
+            submit_form_store: 'submit_create_form'
         }),
-        delete_data:function(index){
-            this.delete_store_data({
-                index:index,
+        submit_form:async function(event){
+            console.log("submitted");
+            let formData = new FormData(event.target);
+            await this.submit_form_store({
+                form_data:formData,
             })
-        },
-        store_data:function(){
-            this.store_in_db()
+            event.target.reset();
         }
     }
 }
