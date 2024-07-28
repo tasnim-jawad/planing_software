@@ -5,7 +5,6 @@ import axios from "axios";
 export const user_store = defineStore('user_store', {
     state: () => ({
         setup: setup,
-        createdData: [],
         loading: true,
     }),
     getters: {
@@ -17,7 +16,13 @@ export const user_store = defineStore('user_store', {
             for (let [key, value] of payload.form_data.entries()) {
                 formDataObj[key] = value;
             }
-            this.createdData.push(formDataObj);
+            
+            let response = await axios.post('/user/store',formDataObj)
+                if(response){
+                    console.log("submitted in db");
+                    console.log("db responce",response);
+                }
+            // console.log(this.createdData);
         },
         async edit_created_data(payload){
             console.log(payload);
