@@ -22,7 +22,7 @@ let routes = {
             component: Create,
         },
         {
-            path: 'details',
+            path: 'details/:id',
             name: 'details-' + setup.route_prefix,
             component: Details,
         },

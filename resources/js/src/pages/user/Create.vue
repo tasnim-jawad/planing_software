@@ -7,15 +7,27 @@
         <form @submit.prevent="submit_form">
             <div class="mb-3 form-group">
                 <label for="full_name" class="form-label  text-dark">Full Name</label>
-                <input type="text" name="full_name" class="form-control input_padding " id="full_name" >
+                <div>
+                    <input type="text" name="full_name" class="form-control input_padding " id="full_name" >
+                </div>
             </div>
             <div class="mb-3 form-group">
                 <label for="email" class="form-label  text-dark">Email</label>
-                <input type="email" name="email" class="form-control input_padding" id="email" >
+                <div>
+                    <input type="email" name="email" class="form-control input_padding" id="email" >
+                </div>
             </div>
             <div class="mb-3 form-group">
                 <label for="password" class="form-label  text-dark">Password</label>
-                <input type="password" name="password" class="form-control input_padding" id="password" >
+                <div>
+                    <input type="password" name="password" class="form-control input_padding" id="password" >
+                </div>
+            </div>
+            <div class="mb-3 form-group">
+                <label for="password_confirmation" class="form-label  text-dark">Confirm Password</label>
+                <div>
+                    <input type="password" name="password_confirmation" class="form-control input_padding" id="password_confirmation" >
+                </div>
             </div>
             <button type="submit" class="btn btn-primary submit_button">Submit</button>
         </form>
@@ -34,18 +46,6 @@ export default {
         })
     },
     methods:{
-        // ...mapActions(user_store, {
-        //     delete_store_data: 'delete_created_data',
-        //     store_in_db: 'store_in_db',
-        // }),
-        // delete_data:function(index){
-        //     this.delete_store_data({
-        //         index:index,
-        //     })
-        // },
-        // store_data:function(){
-        //     this.store_in_db()
-        // }
 
         ...mapActions(user_store, {
             submit_form_store: 'submit_create_form'

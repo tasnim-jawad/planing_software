@@ -107,6 +107,8 @@ img {
     --color2: rgb(232, 234, 237);
     --color3: rgb(42, 46, 52);
     --color4: rgb(79, 87, 98);
+    --color5: rgba(50, 52, 82, 1);
+    --color6: rgb(95, 85, 238);
 }
 
 .color_1 {
@@ -1438,7 +1440,7 @@ input.form_checkbox:checked::after {
 }
 
 .explore_window .action_bar {
-    background-color: var(--brand_dark);
+    background-color: var(--color5);
     display: grid;
     grid-template-columns: 1fr 300px 1fr;
     justify-content: space-between;
@@ -1493,7 +1495,8 @@ input.form_checkbox:checked::after {
 
 .explore_window .action_bar .control ul li:nth-child(1) a span {
     font-size: 12px;
-    background-color: rgba(15, 113, 170, 0.534);
+    background-color: var(--color6);
+    color: white;
 }
 
 .explore_window .action_bar .control ul li:nth-child(2) a span {
@@ -1893,7 +1896,7 @@ td.col_id {
 }
 
 .table_responsive table thead tr {
-    background-color: var(--brand_dark);
+    background-color: var(--color6);
 }
 
 .table_responsive table thead tr th,

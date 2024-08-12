@@ -6,7 +6,6 @@ export const barshik_porikolpona_store = defineStore('barshik_porikolpona_store'
         setup: setup,
         createdData: [],
         loading: true,
-        test: "test.js",
     }),
     getters: {
 

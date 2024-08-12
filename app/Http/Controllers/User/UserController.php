@@ -5,27 +5,11 @@ namespace App\Http\Controllers\User;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 
 class UserController extends Controller
 {
-    // public function store(){
-    //     // dd(request()->all());
-    //     $user_list = request()->all();
-    //     foreach($user_list as $single_user){
-    //         // dd($single_user);
-    //         $user = new User();
-
-    //         $user->full_name = $single_user['full_name'];
-    //         $user->email = $single_user['email'];
-    //         $user->Password = $single_user['Password'];
-    //         $user->save();
-    //     }
-
-    //     dd("success");
-
-    // }
-    
     public function all()
     {
         $paginate = (int) request()->paginate ?? 10;
@@ -46,12 +30,7 @@ class UserController extends Controller
             $query->where(function ($q) use ($key) {
                 return $q->where('id', '%' . $key . '%')
                     ->orWhere('full_name', '%' . $key . '%')
-                    ->orWhere('gender', '%' . $key . '%')
-                    ->orWhere('telegram_name', '%' . $key . '%')
-                    ->orWhere('telegram_id', '%' . $key . '%')
-                    ->orWhere('email', '%' . $key . '%')
-                    ->orWhere('password', '%' . $key . '%')
-                    ->orWhere('blood_group', '%' . $key . '%');
+                    ->orWhere('email', '%' . $key . '%');
             });
         }
 
@@ -73,7 +52,10 @@ class UserController extends Controller
             ->select($select)
             ->first();
         if ($data) {
-            return response()->json($data, 200);
+            return response()->json([
+                'status' => 'success',
+                'data' => $data,
+            ],200);
         } else {
             return response()->json([
                 'err_message' => 'data not found',
@@ -85,12 +67,11 @@ class UserController extends Controller
     }
     public function store()
     {
+        // dd(request()->all(),auth()->id(),request()->password);
         $validator = Validator::make(request()->all(), [
-            'type' => ['required'],
-            'user_id' => ['required'],
-            'added_type' => ['required'],
-            'creator' => ['required'],
-            'status' => ['required'],
+            'full_name' => ['required'],
+            'email' => ['required'],
+            'password' => ['required','confirmed','min:8'],
         ]);
 
         if ($validator->fails()) {
@@ -101,11 +82,11 @@ class UserController extends Controller
         }
 
         $data = new User();
-        $data->type = request()->type;
-        $data->user_id = request()->user_id;
-        $data->added_type = request()->added_type;
-        $data->creator = request()->creator;
-        $data->status = request()->status;
+        $data->full_name = request()->full_name;
+        $data->email = request()->email;
+        $data->password = Hash::make(request()->password);
+        $data->creator = auth()->id();
+        $data->status = 1;
         $data->save();
 
         return response()->json($data, 200);
@@ -120,13 +101,10 @@ class UserController extends Controller
                 'errors' => ['name' => ['data not found by given id ' . (request()->id ? request()->id : 'null')]],
             ], 422);
         }
-
+        // dd($data, request()->all());
         $validator = Validator::make(request()->all(), [
-            'type' => ['required'],
-            'user_id' => ['required'],
-            'added_type' => ['required'],
-            'creator' => ['required'],
-            'status' => ['required'],
+            'full_name' => ['required'],
+            'email' => ['required'],
         ]);
 
         if ($validator->fails()) {
@@ -136,11 +114,13 @@ class UserController extends Controller
             ], 422);
         }
 
-        $data->type = request()->type;
-        $data->user_id = request()->user_id;
-        $data->added_type = request()->added_type;
-        $data->creator = request()->creator;
-        $data->status = request()->status;
+        $data->full_name = request()->full_name;
+        $data->email = request()->email;
+        if(request()->password != ''){
+            $data->password = Hash::make(request()->password);
+        }
+        $data->creator = auth()->id();
+        $data->status = 1;
         $data->save();
 
         if (request()->hasFile('image')) {

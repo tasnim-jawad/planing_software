@@ -49,9 +49,15 @@ export default {
     },
     methods:{
         ...mapActions(barshik_porikolpona_store, {
-            delete_store_data: 'delete_created_data'
+            delete_store_data: 'delete_created_data',
+            submit_all_data: 'delete_created_data',
         }),
         delete_data:function(index){
+            this.delete_store_data({
+                index:index,
+            })
+        },
+        submit_all:function(index){
             this.delete_store_data({
                 index:index,
             })
