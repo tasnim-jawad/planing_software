@@ -22,6 +22,7 @@ return new class extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password')->nullable();
             $table->string('blood_group', 10)->nullable();
+            $table->string('slug', 255)->nullable();
             $table->bigInteger('creator')->nullable();
             $table->tinyInteger('status')->default(1);
             $table->rememberToken();

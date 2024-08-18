@@ -8,6 +8,8 @@ import user from '../pages/user/config/routes';
 import Layout from '../pages/barsik_porikolpona/Layout.vue';
 import All from '../pages/barsik_porikolpona/All.vue';
 
+import user_management from "../pages/user_management/setup/routes";
+
 // console.log(barsik_porikolpona);
 const routes = createRouter({
     history: createWebHashHistory(),
@@ -22,6 +24,7 @@ const routes = createRouter({
                 },
                 barsik_porikolpona,
                 user,
+                user_management,
             ]
         },
     ]

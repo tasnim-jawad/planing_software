@@ -59,6 +59,7 @@ class LoginController extends Controller
             DB::table('oauth_access_tokens')->where("user_id", $check_auth_user->id)->update(['revoked' => 1]);
             $data['access_token'] = $check_auth_user->createToken('accessToken')->accessToken;
             $data['user'] = $check_auth_user;
+            // dd($data,auth()->check());
             return response()->json($data, 200);
         } else {
             return response()->json(['status' => 'error', 'message' => 'Sorry,user not found'], 404);
@@ -67,13 +68,14 @@ class LoginController extends Controller
 
     public function check_user()
     {
+        // dd("checker check in login controller",auth()->check());
         if (auth()->check()) {
             return response()->json(
                 auth()->user()
             , 200);
         }
 
-        return response()->json([""]);
+        return response()->json([""],403);
     }
 }
 

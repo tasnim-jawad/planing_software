@@ -1883,7 +1883,7 @@ td.col_id {
     vertical-align: middle;
     text-align: center;
     font-size: 14px;
-    color: var(--brand_white);
+    /* color: var(--brand_white); */
     padding: 5px 10px;
     text-wrap: nowrap;
 }
