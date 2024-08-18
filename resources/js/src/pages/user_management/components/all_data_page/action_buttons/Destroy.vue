@@ -29,9 +29,11 @@ export default {
                 this.set_item(this.item);
                 this.set_only_latest_data(true);
 
-                await this.destroy();
+                let res = await this.destroy();
                 await this.get_all();
-                window.s_alert('Permanently deleted.');
+                if(res.data.status == "success"){
+                    window.s_alert('Permanently deleted.');
+                }
 
                 this.set_only_latest_data(false);
             }

@@ -65,7 +65,7 @@
 <script>
 /** plugins */
 import { mapActions, mapWritableState } from 'pinia'
-import { user_store } from './setup/store';
+import { store as data_store  } from './setup/store/index';
 import setup from "./setup";
 
 /** helper and actions */
@@ -92,14 +92,14 @@ export default {
         await this.get_all_data();
     },
     methods: {
-        ...mapActions(user_store,[
+        ...mapActions(data_store,[
             'set_page', // needs in pagination props
             'set_paginate', // needs in pagination props
         ]),
         get_all_data,
     },
     computed: {
-        ...mapWritableState(user_store, {
+        ...mapWritableState(data_store, {
             all: 'all',
             paginate: 'paginate',
         })

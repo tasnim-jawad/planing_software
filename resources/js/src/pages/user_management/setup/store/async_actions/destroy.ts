@@ -9,7 +9,8 @@ async function execute(){
     let url = `${setup.api_host}/${setup.api_version}/${setup.api_end_point}/destroy/${state.item().slug}`;
 
     try {
-        let response = await axios.post(url, {slug: state.item().slug});
+        // let response = await axios.post(url, {slug: state.item().slug});
+        let response = await axios.delete(url, state.item().slug);
         return response;
     } catch (error) {
         return error.response;

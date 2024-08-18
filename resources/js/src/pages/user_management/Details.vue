@@ -1,6 +1,5 @@
 <template>
-    <div>
-        <form @submit.prevent="submitHandler">
+    <div class="container py-2">
             <div class="card">
                 <div class="card-header d-flex justify-content-between">
                     <h5 class="text-capitalize">Details {{ setup.route_prefix }}</h5>
@@ -24,21 +23,21 @@
                                         <th>Name</th>
                                         <th>:</th>
                                         <th>
-                                            {{ user.full_name }}
+                                            {{ item.full_name }}
                                         </th>
                                     </tr>
                                     <tr>
                                         <th>Email</th>
                                         <th>:</th>
                                         <th>
-                                            {{ user.email }}
+                                            {{ item.email }}
                                         </th>
                                     </tr>
                                     <tr>
                                         <th>Slug</th>
                                         <th>:</th>
                                         <th>
-                                            {{ user.slug }}
+                                            {{ item.slug }}
                                         </th>
                                     </tr>
                                     <!-- <tr>
@@ -83,27 +82,48 @@
                     </a>
                 </div>
             </div>
-        </form>
     </div>
 </template>
 
 <script>
 import { mapActions, mapState, mapWritableState } from 'pinia'
-import { user_store } from './setup/store';
+import { store } from './setup/store';
 import setup from "./setup";
 
 export default {
+    // data: () => ({
+    //     setup,
+    // }),
+    // created: async function () {
+    //     let id = this.param_id = this.$route.params.id;
+    //     console.log(id);
+    //     await this.get_data(id);
+    // },
+    // methods: {
+    //     ...mapActions(user_store, {
+    //         details: 'show_user_details',
+    //     }),
+    //     get_data: async function(slug){
+    //         this.item = {};
+    //         await this.details(slug)
+    //     },
+    // },
+    // computed: {
+    //     ...mapWritableState(user_store, {
+    //         user:'user_details',
+    //     }),
+    // },
+
     data: () => ({
         setup,
     }),
     created: async function () {
         let id = this.param_id = this.$route.params.id;
-        console.log(id);
         await this.get_data(id);
     },
     methods: {
-        ...mapActions(user_store, {
-            details: 'show_user_details',
+        ...mapActions(store, {
+            details: 'details',
         }),
         get_data: async function(slug){
             this.item = {};
@@ -111,8 +131,8 @@ export default {
         },
     },
     computed: {
-        ...mapWritableState(user_store, {
-            user:'user_details',
+        ...mapWritableState(store, {
+            item: "item",
         }),
     },
 }

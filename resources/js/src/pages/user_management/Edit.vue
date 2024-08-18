@@ -16,6 +16,7 @@
                 </div>
                 <div class="card-body card_body_fixed_height">
                     <div class="row">
+                        <input type="hidden" name="id" :value="user.id">
                         <div class="form-group mb-2">
                             <label for="full_name">Name</label>
                             <input  type="text" class="form-control"
@@ -53,7 +54,7 @@
 
 <script>
 import { mapActions, mapState } from 'pinia'
-import { user_store } from './setup/store';
+import { store as user_store } from './setup/store';
 import setup from "./setup";
 import form_fields from "./setup/form_fields";
 
@@ -78,25 +79,23 @@ export default {
     },
     methods: {
         ...mapActions(user_store, {
-            details: 'show_user_details',
-            update: 'update_user',
+            details: 'details',
+            update: 'update',
         }),
-
         submitHandler: async function ($event) {
-            console.log("submitted");
-            // console.log("submitted submit_form update_data");
-            let formData = new FormData($event.target);
-            await this.update({
-                form_data:formData,
-                id:this.user.id,
-            })
-
+            let res = await this.update($event)
+            console.log(res);
+            if(res.data.status){
+                window.s_alert("data updated");
+            }else{
+                
+            }
         },
     },
 
     computed: {
         ...mapState(user_store, {
-            user:'user_details',
+            user:'item',
         }),
     },
 }

@@ -1,16 +1,16 @@
 <template lang="">
-    <a v-if="item.status=='active'" href="/deactive" @click.prevent="deactive_data" class="border-warning">
+    <a v-if="item.status== 1" href="/deactive" @click.prevent="deactive_data" class="border-warning">
         <i class="fa fa-ban text-warning"></i>
         Deactive
     </a>
-    <a v-if="item.status=='inactive'" href="/active" @click.prevent="restore_data" class="border-warning">
+    <a v-if="item.status== 0" href="/active" @click.prevent="restore_data" class="border-warning">
         <i class="fa fa-refresh text-warning"></i>
         Restore
     </a>
 </template>
 <script>
 import { mapActions } from 'pinia';
-// import { store } from '../../../setup/store';
+import { store } from '../../../setup/store';
 
 export default {
     props: {
@@ -32,9 +32,11 @@ export default {
                 this.set_item(this.item);
                 this.set_only_latest_data(true);
 
-                await this.deactive();
+                let res = await this.deactive();
                 await this.get_all();
-                window.s_alert('Deactivated');
+                if(res.data.status == "success"){
+                    window.s_alert('Deactivated');
+                }
 
                 this.set_only_latest_data(false);
             }

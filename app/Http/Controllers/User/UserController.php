@@ -142,7 +142,7 @@ class UserController extends Controller
     public function soft_delete()
     {
         $validator = Validator::make(request()->all(), [
-            'id' => ['required', 'exists:users,id'],
+            'slug' => ['required', 'exists:users,slug'],
         ]);
 
         if ($validator->fails()) {
@@ -152,11 +152,12 @@ class UserController extends Controller
             ], 422);
         }
 
-        $data = User::find(request()->id);
+        $data = User::where('slug',request()->slug)->first();
         $data->status = 0;
         $data->save();
 
         return response()->json([
+            'status' => 'success',
             'result' => 'deactivated',
         ], 200);
     }

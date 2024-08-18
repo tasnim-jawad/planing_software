@@ -35,7 +35,7 @@ Route::group(['prefix' => 'v1'], function(){
         Route::get('', [App\Http\Controllers\User\UserController::class,'index']);
         Route::post('store', [App\Http\Controllers\User\UserController::class,'store']);
         Route::post('update/{id}', [App\Http\Controllers\User\UserController::class,'update']);
-        Route::post('soft-delete', [App\Http\Controllers\User\UserController::class,'softDelete']);
+        Route::post('soft-delete', [App\Http\Controllers\User\UserController::class,'soft_delete']);
         Route::delete('destroy/{slug}', [App\Http\Controllers\User\UserController::class,'destroy']);
         Route::post('restore', [App\Http\Controllers\User\UserController::class,'restore']);
         Route::post('import', [App\Http\Controllers\User\UserController::class,'import']);
