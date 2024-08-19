@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Laravel\Passport\Token;
 
 class LoginController extends Controller
 {
@@ -49,17 +50,13 @@ class LoginController extends Controller
             );
         }
 
-        // dd(request()->all());
         $check_auth_user = User::where('email', $request->email)->first();
-        // dd(request()->all(), $check_auth_user );
 
         if ($check_auth_user && Hash::check($request->password, $check_auth_user->password)) {
             auth()->login($check_auth_user);
-            // dd(auth()->check(),auth()->user()->id);
             DB::table('oauth_access_tokens')->where("user_id", $check_auth_user->id)->update(['revoked' => 1]);
             $data['access_token'] = $check_auth_user->createToken('accessToken')->accessToken;
             $data['user'] = $check_auth_user;
-            // dd($data,auth()->check());
             return response()->json($data, 200);
         } else {
             return response()->json(['status' => 'error', 'message' => 'Sorry,user not found'], 404);
@@ -74,8 +71,24 @@ class LoginController extends Controller
                 auth()->user()
             , 200);
         }
-        
+
         return response()->json([""],403);
+    }
+
+    public function logout()
+    {
+        if (auth()->check()) {
+            // DB::table('oauth_access_tokens')->where("user_id", auth()->user()->id)->update(['revoked' => 1]);
+            $token = auth()->user()->token();
+            $token->revoke();
+
+            return response()->json([
+                'status' => 'success',
+                'result' => 'logout Successful'
+            ], 200);
+
+        }
+        return response()->json(['status' => 'error', 'result' => 'User not authenticated'], 401);
     }
 }
 

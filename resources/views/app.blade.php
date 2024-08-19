@@ -21,5 +21,8 @@
     <div id="app">
         <app></app>
     </div>
+    {{-- <form id="logout-form" action="{{ route('auth_logout') }}" method="POST" class="d-none">
+        @csrf
+    </form> --}}
 </body>
 </html>

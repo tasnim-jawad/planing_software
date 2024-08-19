@@ -36,8 +36,17 @@
                             <input  type="password" class="form-control" name="password" id="password">
                         </div>
                         <div class="form-group mb-2">
-                            <label for="password_confirmation">Password</label>
+                            <label for="password_confirmation">Password Confirmation</label>
                             <input  type="password" class="form-control" name="password_confirmation" id="password_confirmation">
+                        </div>
+                        <div class="form-group mb-2">
+                            <label for="role">Role</label>
+                            <select name="role" id="role" class="form-control" v-model="selected_role">
+                                <option value="">--- select role ---</option>
+                                <option value="1">Super Admin</option>
+                                <option value="2">Admin</option>
+                                <option value="3">Department</option>
+                            </select>
                         </div>
                     </div>
                 </div>
@@ -62,10 +71,13 @@ export default {
     data: () => ({
         route_prefix: '',
         param_id: null,
+        selected_role: '',
     }),
     created: async function () {
         let id = this.param_id = this.$route.params.id;
         this.route_prefix = setup.route_prefix;
+        // this.selected_role = this.user.role;
+
         // console.log(this.form_fields);
         // this.reset_fields();
 
@@ -88,7 +100,7 @@ export default {
             if(res.data.status){
                 window.s_alert("data updated");
             }else{
-                
+
             }
         },
     },
@@ -98,5 +110,10 @@ export default {
             user:'item',
         }),
     },
+    watch:{
+        user:function(){
+            this.selected_role = this.user.role;
+        }
+    }
 }
 </script>

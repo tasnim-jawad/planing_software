@@ -12,6 +12,12 @@ export default [
         type: "email",
         value: "",
     },
+    // {
+    //     name: "user_role",
+    //     label: "User Role",
+    //     type: "select",
+    //     value: "",
+    // },
 
     {
         name: "password",

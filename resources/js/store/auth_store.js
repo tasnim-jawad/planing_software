@@ -28,13 +28,29 @@ export const use_auth_store = defineStore("auth_store", {
         },
         check_is_auth: async function () {
             let that = this;
-            let res = await window.axios.get("/user/check_user");
-            if (res.status != 200) {
-                localStorage.removeItem("token");
-                return (location.href = "/login");
+            // let res = await window.axios.get("/user/check_user");
+
+            try {
+                let res = await window.axios.get("/user/check_user");
+                that.auth_info = res.data.user;
+                that.is_auth = 1;
+                
+            } catch (error) {
+                if (error.response && error.response.status === 401) {
+                    location.href = "/login";
+                } else {
+                    console.error('An error occurred:', error);
+                }
             }
-            that.auth_info = res.data.user;
-            that.is_auth = 1;
+            // if (res.status != 200) {
+            //     console.log("dhukeche");
+            //     localStorage.removeItem("token");
+            //     return (location.href = "/login");
+            // }
+            // that.auth_info = res.data.user;
+            // that.is_auth = 1;
+
+
             // that.role = res.data.user.roles[0];
 
             // console.log(res.data);

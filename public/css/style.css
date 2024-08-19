@@ -183,7 +183,36 @@ a{
     border-right: 1px solid var(--color2);
     background-color: rgb(247, 248, 249);
 }
+.profile_button_container{
+    position: relative;
 
+    .profile_dropdown{
+        position: absolute;
+        right: 0;
+        top: 35px;
+        background-color: white;
+        padding: 10px 0px;
+        width: 150px;
+        border-radius: 5px;
+        ul{
+            li{
+                display: flex;
+                justify-content: flex-start;
+                align-items: center;
+                gap: 10px;
+                font-family: system-ui;
+                font-size: 14px;
+                padding: 0px 10px;
+                &:hover {
+                    background-color: var(--color2);
+                    color: #000000;
+                    cursor: pointer;
+                    border-radius: 5px;
+                }
+            }
+        }
+    }
+}
 .planing_app .layout_content .layout_content_right {
 
     /* border: 1px solid green; */

@@ -44,11 +44,11 @@
                         </div>
                     </div>
                     <div class="mx-3" v-if="typeof all == `object`">
-                        <!-- <pagination
+                        <pagination
                             :data="all"
                             :get_data="get_all_data"
                             :set_paginate="set_paginate"
-                            :set_page="set_page" /> -->
+                            :set_page="set_page" />
                     </div>
                     <div class="card-footer py-2">
                         <all-page-footer-actions></all-page-footer-actions>
@@ -82,6 +82,7 @@ import QuickView from './components/canvas/QuickView.vue';
 import QuickViewColumn from './components/all_data_page/QuickViewColumn.vue';
 import FilterData from './components/canvas/FilterData.vue';
 import DropDownEl from './components/dropdown/DropDownEl.vue';
+import Pagination from '../../components/Pagination.vue';
 
 export default {
     data: () => ({
@@ -115,6 +116,7 @@ export default {
         QuickViewColumn,
         FilterData,
         DropDownEl,
+        Pagination,
     },
 }
 </script>

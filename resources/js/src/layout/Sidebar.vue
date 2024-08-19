@@ -33,14 +33,14 @@
                             :label="`create`" />
                     </dropdown-nav>
 
-                    <dropdown-nav :label="`User`" :icon="`fa-solid fa-users`">
+                    <!-- <dropdown-nav :label="`User`" :icon="`fa-solid fa-users`">
                         <dropdown-single-item
                             :to="{name:`all-user`}"
                             :label="`all`" />
                         <dropdown-single-item
                             :to="{name:`create-user`}"
                             :label="`create`" />
-                    </dropdown-nav>
+                    </dropdown-nav> -->
 
                     <dropdown-nav :label="`User_management`" :icon="`fa-solid fa-users`">
                         <dropdown-single-item

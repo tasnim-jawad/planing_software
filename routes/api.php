@@ -17,19 +17,8 @@ Route::group(['prefix' => 'v1','namespace' => 'App\Http\Controllers\Auth', 'midd
     });
 });
 Route::group(['prefix' => 'v1'], function(){
-    // Route::group(['prefix' => '/user'] , function(){
-
-    //     Route::get('/all', [App\Http\Controllers\User\UserController::class,'all']);
-    //     Route::get('/show/{id}', [App\Http\Controllers\User\UserController::class,'show']);
-    //     Route::post('/store', [App\Http\Controllers\User\UserController::class,'store']);
-    //     Route::post('/update', [App\Http\Controllers\User\UserController::class,'update']);
-    //     Route::post('/soft_delete', [App\Http\Controllers\User\UserController::class,'soft_delete']);
-    //     Route::post('/destroy', [App\Http\Controllers\User\UserController::class,'destroy']);
-    //     Route::post('/restore', [App\Http\Controllers\User\UserController::class,'restore']);
-    //     Route::post('/bulk_import', [App\Http\Controllers\User\UserController::class,'bulk_import']);
-
-    // });
     Route::get('user/check_user', [App\Http\Controllers\Auth\LoginController::class,'check_user'])->middleware('auth:api');
+    Route::post('/api-logout', [App\Http\Controllers\Auth\LoginController::class,'logout'])->middleware('auth:api');
 
     Route::group(['prefix' => 'user','middleware' => 'auth:api'], function(){
         Route::get('', [App\Http\Controllers\User\UserController::class,'index']);

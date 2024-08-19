@@ -11,34 +11,79 @@ use Illuminate\Support\Str;
 
 class UserController extends Controller
 {
-    public function all()
-    {
-        $paginate = (int) request()->paginate ?? 10;
-        $orderBy = request()->orderBy ?? 'id';
-        $orderByType = request()->orderByType ?? 'ASC';
+    // public function all()
+    // {
+    //     $paginate = (int) request()->paginate ?? 10;
+    //     $orderBy = request()->orderBy ?? 'id';
+    //     $orderByType = request()->orderByType ?? 'ASC';
 
-        $status = 1;
-        if (request()->has('status')) {
-            $status = request()->status;
-        }
-        // dd($status);
+    //     $status = 1;
+    //     if (request()->has('status')) {
+    //         $status = request()->status;
+    //     }
+    //     // dd($status);
 
-        $query = User::where('status', $status)->orderBy($orderBy, $orderByType);
-        // $query = User::latest()->get();
+    //     $query = User::where('status', $status)->orderBy($orderBy, $orderByType);
+    //     // $query = User::latest()->get();
 
-        if (request()->has('search_key')) {
-            $key = request()->search_key;
-            $query->where(function ($q) use ($key) {
-                return $q->where('id', '%' . $key . '%')
-                    ->orWhere('full_name', '%' . $key . '%')
-                    ->orWhere('email', '%' . $key . '%');
+    //     if (request()->has('search_key')) {
+    //         $key = request()->search_key;
+    //         $query->where(function ($q) use ($key) {
+    //             return $q->where('id', '%' . $key . '%')
+    //                 ->orWhere('full_name', '%' . $key . '%')
+    //                 ->orWhere('email', '%' . $key . '%');
+    //         });
+    //     }
+
+    //     $datas = $query->paginate($paginate);
+    //     return response()->json([
+    //         'status' => 'success',
+    //         'data' => $datas
+    //     ]);
+    // }
+
+    public function index(){
+        // dd('index is called');
+        $pageLimit = request()->input('limit') ?? 10;
+        $orderByColumn = request()->input('sort_by_col');
+        $orderByType = request()->input('sort_type');
+        $status = request()->input('status');
+        $fields = request()->input('fields');
+        $with = [];
+        $condition = [];
+
+        $data = User::query();
+
+        if (request()->has('search') && request()->input('search')) {
+            $searchKey = request()->input('search');
+            $data = $data->where(function ($q) use ($searchKey) {
+                $q->where('full_name', $searchKey);
+                $q->orWhere('email', 'like', '%' . $searchKey . '%');
             });
         }
 
-        $datas = $query->paginate($paginate);
+        if (request()->has('get_all') && (int)request()->input('get_all') === 1) {
+            $data = $data
+                ->with($with)
+                ->select($fields)
+                ->where($condition)
+                ->where('status', $status)
+                ->limit($pageLimit)
+                ->orderBy($orderByColumn, $orderByType)
+                ->get();
+        } else {
+            $data = $data
+                ->with($with)
+                ->select($fields)
+                ->where($condition)
+                ->where('status', $status)
+                ->orderBy($orderByColumn, $orderByType)
+                ->paginate($pageLimit);
+        }
+
         return response()->json([
             'status' => 'success',
-            'data' => $datas
+            'data' => $data
         ]);
     }
 
@@ -71,6 +116,7 @@ class UserController extends Controller
         // dd(request()->all(),auth()->user(),request()->password);
         $validator = Validator::make(request()->all(), [
             'full_name' => ['required'],
+            'role' => ['required'],
             'email' => ['required'],
             'password' => ['required','confirmed','min:8'],
         ]);
@@ -87,6 +133,7 @@ class UserController extends Controller
 
         $data = new User();
         $data->full_name = request()->full_name;
+        $data->role = request()->role;
         $data->email = request()->email;
         $data->password = Hash::make(request()->password);
         $data->slug = $slug;
@@ -109,6 +156,7 @@ class UserController extends Controller
         // dd($data, request()->all());
         $validator = Validator::make(request()->all(), [
             'full_name' => ['required'],
+            'role' => ['required'],
             'email' => ['required'],
             'password' => ['sometimes','nullable','min:8','confirmed'],
         ]);
@@ -121,6 +169,7 @@ class UserController extends Controller
         }
 
         $data->full_name = request()->full_name;
+        $data->role = request()->role;
         $data->email = request()->email;
         if(request()->password != ''){
             $data->password = Hash::make(request()->password);
@@ -201,50 +250,50 @@ class UserController extends Controller
         ], 200);
     }
 
-    public function index(){
-        // dd('index is called');
-        $pageLimit = request()->input('limit') ?? 10;
-        $orderByColumn = request()->input('sort_by_col');
-        $orderByType = request()->input('sort_type');
-        $status = request()->input('status');
-        $fields = request()->input('fields');
-        $with = [];
-        $condition = [];
+    // public function index(){
+    //     // dd('index is called');
+    //     $pageLimit = request()->input('limit') ?? 10;
+    //     $orderByColumn = request()->input('sort_by_col');
+    //     $orderByType = request()->input('sort_type');
+    //     $status = request()->input('status');
+    //     $fields = request()->input('fields');
+    //     $with = [];
+    //     $condition = [];
 
-        $data = User::query();
+    //     $data = User::query();
 
-        if (request()->has('search') && request()->input('search')) {
-            $searchKey = request()->input('search');
-            $data = $data->where(function ($q) use ($searchKey) {
-                $q->where('full_name', $searchKey);
-                $q->orWhere('email', 'like', '%' . $searchKey . '%');
-            });
-        }
+    //     if (request()->has('search') && request()->input('search')) {
+    //         $searchKey = request()->input('search');
+    //         $data = $data->where(function ($q) use ($searchKey) {
+    //             $q->where('full_name', $searchKey);
+    //             $q->orWhere('email', 'like', '%' . $searchKey . '%');
+    //         });
+    //     }
 
-        if (request()->has('get_all') && (int)request()->input('get_all') === 1) {
-            $data = $data
-                ->with($with)
-                ->select($fields)
-                ->where($condition)
-                ->where('status', $status)
-                ->limit($pageLimit)
-                ->orderBy($orderByColumn, $orderByType)
-                ->get();
-        } else {
-            $data = $data
-                ->with($with)
-                ->select($fields)
-                ->where($condition)
-                ->where('status', $status)
-                ->orderBy($orderByColumn, $orderByType)
-                ->paginate($pageLimit);
-        }
+    //     if (request()->has('get_all') && (int)request()->input('get_all') === 1) {
+    //         $data = $data
+    //             ->with($with)
+    //             ->select($fields)
+    //             ->where($condition)
+    //             ->where('status', $status)
+    //             ->limit($pageLimit)
+    //             ->orderBy($orderByColumn, $orderByType)
+    //             ->get();
+    //     } else {
+    //         $data = $data
+    //             ->with($with)
+    //             ->select($fields)
+    //             ->where($condition)
+    //             ->where('status', $status)
+    //             ->orderBy($orderByColumn, $orderByType)
+    //             ->paginate($pageLimit);
+    //     }
 
-        return response()->json([
-            'status' => 'success',
-            'data' => $data
-        ]);
-    }
+    //     return response()->json([
+    //         'status' => 'success',
+    //         'data' => $data
+    //     ]);
+    // }
 }
 
 

@@ -27,6 +27,13 @@
                                         </th>
                                     </tr>
                                     <tr>
+                                        <th>Role</th>
+                                        <th>:</th>
+                                        <th>
+                                            {{ item.role }}
+                                        </th>
+                                    </tr>
+                                    <tr>
                                         <th>Email</th>
                                         <th>:</th>
                                         <th>
