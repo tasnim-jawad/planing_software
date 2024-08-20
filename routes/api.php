@@ -32,4 +32,16 @@ Route::group(['prefix' => 'v1'], function(){
         Route::get('{slug}', [App\Http\Controllers\User\UserController::class,'show']);
     });
 
+    Route::group(['prefix' => 'tasks','middleware' => 'auth:api'], function(){
+        Route::get('', [App\Http\Controllers\User\UserController::class,'index']);
+        Route::post('store', [App\Http\Controllers\User\UserController::class,'store']);
+        Route::post('update/{id}', [App\Http\Controllers\User\UserController::class,'update']);
+        Route::post('soft-delete', [App\Http\Controllers\User\UserController::class,'soft_delete']);
+        Route::delete('destroy/{slug}', [App\Http\Controllers\User\UserController::class,'destroy']);
+        Route::post('restore', [App\Http\Controllers\User\UserController::class,'restore']);
+        Route::post('import', [App\Http\Controllers\User\UserController::class,'import']);
+        Route::post('bulk-action', [App\Http\Controllers\User\UserController::class, 'bulkAction']);
+        Route::get('{slug}', [App\Http\Controllers\User\UserController::class,'show']);
+    });
+
 });
