@@ -20,24 +20,10 @@
                                         </th>
                                     </tr> -->
                                     <tr>
-                                        <th>Name</th>
+                                        <th>Title</th>
                                         <th>:</th>
                                         <th>
-                                            {{ item.full_name }}
-                                        </th>
-                                    </tr>
-                                    <tr>
-                                        <th>Role</th>
-                                        <th>:</th>
-                                        <th>
-                                            {{ item.role }}
-                                        </th>
-                                    </tr>
-                                    <tr>
-                                        <th>Email</th>
-                                        <th>:</th>
-                                        <th>
-                                            {{ item.email }}
+                                            {{ item.title }}
                                         </th>
                                     </tr>
                                     <tr>

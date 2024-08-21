@@ -50,6 +50,14 @@
                             :to="{name:`CreateBrand`}"
                             :label="`create`" />
                     </dropdown-nav>
+                    <dropdown-nav :label="`Task`" :icon="`fa-solid fa-users`">
+                        <dropdown-single-item
+                            :to="{name:`AllTask`}"
+                            :label="`all`" />
+                        <dropdown-single-item
+                            :to="{name:`CreateTask`}"
+                            :label="`create`" />
+                    </dropdown-nav>
                 </ul>
 
                 <div class="line_divider"></div>

@@ -16,11 +16,11 @@ Route::group(['prefix' => 'v1','namespace' => 'App\Http\Controllers\Auth', 'midd
         Route::post('/login', 'LoginController@login');
     });
 });
-Route::group(['prefix' => 'v1'], function(){
-    Route::get('user/check_user', [App\Http\Controllers\Auth\LoginController::class,'check_user'])->middleware('auth:api');
-    Route::post('/api-logout', [App\Http\Controllers\Auth\LoginController::class,'logout'])->middleware('auth:api');
+Route::group(['prefix' => 'v1','middleware' => 'auth:api'], function(){
+    Route::get('user/check_user', [App\Http\Controllers\Auth\LoginController::class,'check_user']);
+    Route::post('/api-logout', [App\Http\Controllers\Auth\LoginController::class,'logout']);
 
-    Route::group(['prefix' => 'user','middleware' => 'auth:api'], function(){
+    Route::group(['prefix' => 'user'], function(){
         Route::get('', [App\Http\Controllers\User\UserController::class,'index']);
         Route::post('store', [App\Http\Controllers\User\UserController::class,'store']);
         Route::post('update/{id}', [App\Http\Controllers\User\UserController::class,'update']);
@@ -32,16 +32,28 @@ Route::group(['prefix' => 'v1'], function(){
         Route::get('{slug}', [App\Http\Controllers\User\UserController::class,'show']);
     });
 
-    Route::group(['prefix' => 'tasks','middleware' => 'auth:api'], function(){
-        Route::get('', [App\Http\Controllers\User\UserController::class,'index']);
-        Route::post('store', [App\Http\Controllers\User\UserController::class,'store']);
-        Route::post('update/{id}', [App\Http\Controllers\User\UserController::class,'update']);
-        Route::post('soft-delete', [App\Http\Controllers\User\UserController::class,'soft_delete']);
-        Route::delete('destroy/{slug}', [App\Http\Controllers\User\UserController::class,'destroy']);
-        Route::post('restore', [App\Http\Controllers\User\UserController::class,'restore']);
-        Route::post('import', [App\Http\Controllers\User\UserController::class,'import']);
-        Route::post('bulk-action', [App\Http\Controllers\User\UserController::class, 'bulkAction']);
-        Route::get('{slug}', [App\Http\Controllers\User\UserController::class,'show']);
+    Route::group(['prefix' => 'tasks'], function(){
+        Route::get('', [App\Http\Controllers\Admin\Task\TaskController::class,'index']);
+        Route::post('store', [App\Http\Controllers\Admin\Task\TaskController::class,'store']);
+        Route::post('update/{id}', [App\Http\Controllers\Admin\Task\TaskController::class,'update']);
+        Route::post('soft-delete', [App\Http\Controllers\Admin\Task\TaskController::class,'soft_delete']);
+        Route::delete('destroy/{slug}', [App\Http\Controllers\Admin\Task\TaskController::class,'destroy']);
+        Route::post('restore', [App\Http\Controllers\Admin\Task\TaskController::class,'restore']);
+        Route::post('import', [App\Http\Controllers\Admin\Task\TaskController::class,'import']);
+        Route::post('bulk-action', [App\Http\Controllers\Admin\Task\TaskController::class, 'bulkAction']);
+        Route::get('{slug}', [App\Http\Controllers\Admin\Task\TaskController::class,'show']);
+    });
+
+    Route::group(['prefix' => 'task-assigns'], function(){
+        Route::get('', [App\Http\Controllers\Admin\Task\TaskAssignController::class,'index']);
+        Route::post('store', [App\Http\Controllers\Admin\Task\TaskAssignController::class,'store']);
+        Route::post('update/{id}', [App\Http\Controllers\Admin\Task\TaskAssignController::class,'update']);
+        Route::post('soft-delete', [App\Http\Controllers\Admin\Task\TaskAssignController::class,'soft_delete']);
+        Route::delete('destroy/{slug}', [App\Http\Controllers\Admin\Task\TaskAssignController::class,'destroy']);
+        Route::post('restore', [App\Http\Controllers\Admin\Task\TaskAssignController::class,'restore']);
+        Route::post('import', [App\Http\Controllers\Admin\Task\TaskAssignController::class,'import']);
+        Route::post('bulk-action', [App\Http\Controllers\Admin\Task\TaskAssignController::class, 'bulkAction']);
+        Route::get('{slug}', [App\Http\Controllers\Admin\Task\TaskAssignController::class,'show']);
     });
 
 });

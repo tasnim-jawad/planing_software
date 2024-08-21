@@ -23,6 +23,7 @@ class UsersTableSeeder extends Seeder
             'email' => "superadmin@gmail.com",
             'password' => "12345678",
             'blood_group' => "K+",
+            'slug' => 1,
         ]);
         User::create([
             'role' => 2,
@@ -33,6 +34,7 @@ class UsersTableSeeder extends Seeder
             'email' => "admin@gmail.com",
             'password' => "12345678",
             'blood_group' => "L+",
+            'slug' => 2,
         ]);
         User::create([
             'role' => 3,
@@ -43,6 +45,7 @@ class UsersTableSeeder extends Seeder
             'email' => "selimuddin@gmail.com",
             'password' => bcrypt('12345678'),
             'blood_group' => "A+",
+            'slug' => 3,
         ]);
 
         User::create([
@@ -54,6 +57,7 @@ class UsersTableSeeder extends Seeder
             'email' => "fokhruddinManik@gmail.com",
             'password' => bcrypt('12345678'),
             'blood_group' => "B+",
+            'slug' => 4,
         ]);
         User::create([
             'role' => 2,
@@ -64,6 +68,7 @@ class UsersTableSeeder extends Seeder
             'email' => "sirajulislam@gmail.com",
             'password' => "12345678",
             'blood_group' => "AB+",
+            'slug' => 5,
         ]);
         User::create([
             'role' => 3,
@@ -74,6 +79,7 @@ class UsersTableSeeder extends Seeder
             'email' => "sefatullahmasum@gmail.com",
             'password' => "12345678",
             'blood_group' => "O+",
+            'slug' => 6,
         ]);
         User::create([
             'role' => 3,
@@ -84,6 +90,7 @@ class UsersTableSeeder extends Seeder
             'email' => "rupomehsan@gmail.com",
             'password' => "12345678",
             'blood_group' => "O-",
+            'slug' => 7,
         ]);
         User::create([
             'role' => 3,
@@ -94,6 +101,7 @@ class UsersTableSeeder extends Seeder
             'email' => "yaminhosen@gmail.com",
             'password' => "12345678",
             'blood_group' => "B+",
+            'slug' => 8,
         ]);
         User::create([
             'role' => 3,
@@ -104,6 +112,7 @@ class UsersTableSeeder extends Seeder
             'email' => "mahabubalom@gmail.com",
             'password' => "12345678",
             'blood_group' => "B-",
+            'slug' => 9,
         ]);
         User::create([
             'role' => 3,
@@ -114,6 +123,7 @@ class UsersTableSeeder extends Seeder
             'email' => "mojammelhaque@gmail.com",
             'password' => "12345678",
             'blood_group' => "B+",
+            'slug' => 10,
         ]);
         User::create([
             'role' => 3,
@@ -124,6 +134,7 @@ class UsersTableSeeder extends Seeder
             'email' => "tasnimulhasan@gmail.com",
             'password' => "12345678",
             'blood_group' => "AB-",
+            'slug' => 11,
         ]);
         User::create([
             'role' => 3,
@@ -134,6 +145,7 @@ class UsersTableSeeder extends Seeder
             'email' => "almaskhan@gmail.com",
             'password' => "12345678",
             'blood_group' => "A-",
+            'slug' => 12,
         ]);
     }
 }

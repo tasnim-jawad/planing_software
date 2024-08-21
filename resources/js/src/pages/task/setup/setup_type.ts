@@ -9,6 +9,7 @@ export default interface RouteConfig {
     api_host: string;
     api_version: string;
     api_end_point: string;
+    api_end_point_2: string;
 
     select_fields: string[];
     sort_by_cols: string[];

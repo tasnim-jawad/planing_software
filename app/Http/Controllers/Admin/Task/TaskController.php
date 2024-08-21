@@ -1,15 +1,15 @@
 <?php
 
-namespace App\Http\Controllers\User;
+namespace App\Http\Controllers\Admin\Task;
 
-use App\Models\User;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Admin\Task\Task;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
 
-class UserController extends Controller
+class TaskController extends Controller
 {
     public function index(){
         // dd('index is called');
@@ -20,13 +20,13 @@ class UserController extends Controller
         $fields = request()->input('fields');
         $with = [];
         $condition = [];
-        $data = User::query();
+        $data = Task::query();
 
         if (request()->has('search') && request()->input('search')) {
             $searchKey = request()->input('search');
             $data = $data->where(function ($q) use ($searchKey) {
-                $q->where('full_name','like', '%' . $searchKey . '%')
-                ->orWhere('email', 'like', '%' . $searchKey . '%');
+                $q->where('title', 'like', '%' . $searchKey . '%');
+                // $q->orWhere('email', 'like', '%' . $searchKey . '%');
             });
         }
 
@@ -62,7 +62,7 @@ class UserController extends Controller
         if (request()->has('select_all') && request()->select_all) {
             $select = "*";
         }
-        $data = User::where('slug', $slug)
+        $data = Task::where('slug', $slug)
             ->select($select)
             ->first();
         if ($data) {
@@ -83,10 +83,7 @@ class UserController extends Controller
     {
         // dd(request()->all(),auth()->user(),request()->password);
         $validator = Validator::make(request()->all(), [
-            'full_name' => ['required'],
-            'role' => ['required'],
-            'email' => ['required'],
-            'password' => ['required','confirmed','min:8'],
+            'title' => ['required']
         ]);
 
         if ($validator->fails()) {
@@ -97,16 +94,13 @@ class UserController extends Controller
         }
 
         $randomNumber = rand(1000, 9999);
-        $slug = Str::slug(request()->full_name) . '-' . $randomNumber;
+        $slug = Str::slug(request()->title) . '-' . $randomNumber;
 
-        $data = new User();
-        $data->full_name = request()->full_name;
-        $data->role = request()->role;
-        $data->email = request()->email;
-        $data->password = Hash::make(request()->password);
+        $data = new Task();
+        $data->title = request()->title;
         $data->slug = $slug;
         $data->creator = auth()->id();
-        $data->status = 1;
+        $data->status = request()->status ?? 1;
         $data->save();
 
         return response()->json($data, 200);
@@ -114,7 +108,7 @@ class UserController extends Controller
 
     public function update()
     {
-        $data = User::find(request()->id);
+        $data = Task::find(request()->id);
         if (!$data) {
             return response()->json([
                 'err_message' => 'validation error',
@@ -123,10 +117,7 @@ class UserController extends Controller
         }
         // dd($data, request()->all());
         $validator = Validator::make(request()->all(), [
-            'full_name' => ['required'],
-            'role' => ['required'],
-            'email' => ['required'],
-            'password' => ['sometimes','nullable','min:8','confirmed'],
+            'title' => ['required']
         ]);
 
         if ($validator->fails()) {
@@ -136,14 +127,9 @@ class UserController extends Controller
             ], 422);
         }
 
-        $data->full_name = request()->full_name;
-        $data->role = request()->role;
-        $data->email = request()->email;
-        if(request()->password != ''){
-            $data->password = Hash::make(request()->password);
-        }
+        $data->title = request()->title;
         $data->creator = auth()->id();
-        $data->status = 1;
+        $data->status = request()->status ?? 1;
         $data->save();
 
         if (request()->hasFile('image')) {
@@ -159,7 +145,7 @@ class UserController extends Controller
     public function soft_delete()
     {
         $validator = Validator::make(request()->all(), [
-            'slug' => ['required', 'exists:users,slug'],
+            'slug' => ['required', 'exists:tasks,slug'],
         ]);
 
         if ($validator->fails()) {
@@ -169,7 +155,7 @@ class UserController extends Controller
             ], 422);
         }
 
-        $data = User::where('slug',request()->slug)->first();
+        $data = Task::where('slug',request()->slug)->first();
         $data->status = 0;
         $data->save();
 
@@ -181,7 +167,7 @@ class UserController extends Controller
 
     public function destroy()
     {
-        $data = User::where('slug',request()->slug)->first();
+        $data = Task::where('slug',request()->slug)->first();
         if (!$data) {
             return response()->json([
                 'err_message' => 'validation error',
@@ -199,7 +185,7 @@ class UserController extends Controller
     public function restore()
     {
         $validator = Validator::make(request()->all(), [
-            'id' => ['required', 'exists:users,id'],
+            'slug' => ['required', 'exists:tasks,slug'],
         ]);
 
         if ($validator->fails()) {
@@ -209,59 +195,14 @@ class UserController extends Controller
             ], 422);
         }
 
-        $data = User::find(request()->id);
+        $data = Task::where('slug',request()->slug)->first();
         $data->status = 1;
         $data->save();
 
         return response()->json([
+            'status' => 'success',
             'result' => 'activated',
         ], 200);
     }
 
-    // public function index(){
-    //     // dd('index is called');
-    //     $pageLimit = request()->input('limit') ?? 10;
-    //     $orderByColumn = request()->input('sort_by_col');
-    //     $orderByType = request()->input('sort_type');
-    //     $status = request()->input('status');
-    //     $fields = request()->input('fields');
-    //     $with = [];
-    //     $condition = [];
-
-    //     $data = User::query();
-
-    //     if (request()->has('search') && request()->input('search')) {
-    //         $searchKey = request()->input('search');
-    //         $data = $data->where(function ($q) use ($searchKey) {
-    //             $q->where('full_name', $searchKey);
-    //             $q->orWhere('email', 'like', '%' . $searchKey . '%');
-    //         });
-    //     }
-
-    //     if (request()->has('get_all') && (int)request()->input('get_all') === 1) {
-    //         $data = $data
-    //             ->with($with)
-    //             ->select($fields)
-    //             ->where($condition)
-    //             ->where('status', $status)
-    //             ->limit($pageLimit)
-    //             ->orderBy($orderByColumn, $orderByType)
-    //             ->get();
-    //     } else {
-    //         $data = $data
-    //             ->with($with)
-    //             ->select($fields)
-    //             ->where($condition)
-    //             ->where('status', $status)
-    //             ->orderBy($orderByColumn, $orderByType)
-    //             ->paginate($pageLimit);
-    //     }
-
-    //     return response()->json([
-    //         'status' => 'success',
-    //         'data' => $data
-    //     ]);
-    // }
 }
-
-

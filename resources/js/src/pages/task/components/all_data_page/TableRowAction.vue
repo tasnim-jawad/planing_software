@@ -14,7 +14,7 @@
             <li>
                 <destroy :item="item"/>
             </li>
-
+            
             <slot />
         </ul>
     </div>

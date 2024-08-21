@@ -29,7 +29,7 @@
                             </div>
                         </template>
                     </div>
-                    <div class="row">
+                    <!-- <div class="row">
                         <div class="form-group mb-2">
                             <label for="role">Role</label>
                             <select name="role" id="role" class="form-control">
@@ -38,9 +38,8 @@
                                 <option value="2">Admin</option>
                                 <option value="3">Department</option>
                             </select>
-                            <!-- <select type="password" class="form-control" name="password" id="password"> -->
                         </div>
-                    </div>
+                    </div> -->
                 </div>
                 <div class="card-footer">
                     <button type="submit" class="btn btn-primary btn-square px-5">

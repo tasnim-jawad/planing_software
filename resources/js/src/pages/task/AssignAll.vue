@@ -23,19 +23,7 @@
                                     <tr v-for="(item) in all?.data" :key="item.id"
                                         :class="`table_rows table_row_${item.id}`">
                                         <td>
-                                            <table-row-action :item="item">
-                                                <li>
-                                                    <router-link
-                                                        :to="{
-                                                            name: `AssignTask`,
-                                                            params: { id: item.slug }
-                                                        }"
-                                                        class="border-secondary">
-                                                        <i class="fa fa-pencil-square-o text-info"></i>
-                                                        Assign
-                                                    </router-link>
-                                                </li>
-                                            </table-row-action>
+                                            <table-row-action :item="item"></table-row-action>
                                         </td>
                                         <td>
                                             <select-single :data="item" />
@@ -77,7 +65,7 @@ import { store as data_store  } from './setup/store/index';
 import setup from "./setup";
 
 /** helper and actions */
-import get_all_data from "./setup/store/async_actions/all";
+import get_all_data from "./setup/store/async_actions/assign_all";
 
 /** components */
 import TableRowAction from './components/all_data_page/TableRowAction.vue';

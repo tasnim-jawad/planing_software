@@ -3,6 +3,8 @@
 namespace Database\Seeders;
 
 use App\Models\User;
+use Database\Seeders\Admin\Task\TaskAssignsTableSeeder;
+use Database\Seeders\Admin\Task\TasksTableSeeder;
 use Database\Seeders\User\UserRolesTableSeeder;
 use Database\Seeders\User\UsersTableSeeder;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
@@ -24,6 +26,8 @@ class DatabaseSeeder extends Seeder
         $this->call([
             UsersTableSeeder::class,
             UserRolesTableSeeder::class,
+            TasksTableSeeder::class,
+            TaskAssignsTableSeeder::class,
         ]);
     }
 }

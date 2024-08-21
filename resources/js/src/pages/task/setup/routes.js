@@ -3,13 +3,14 @@ import All from "../All.vue";
 import Form from "../Form.vue";
 import Details from "../Details.vue";
 import Edit from "../Edit.vue";
+import Assign from "../Assign.vue";
 import Layout from "../Layout.vue";
 
 let route_prefix = setup.route_prefix;
 
 const routes =
 {
-    path: '/brands',
+    path: '/tasks',
     component: Layout,
     children: [
         {
@@ -31,6 +32,11 @@ const routes =
             path: "edit/:id",
             name: "Edit" + route_prefix,
             component: Edit,
+        },
+        {
+            path: "assign/:id",
+            name: "Assign" + route_prefix,
+            component: Assign,
         },
 
     ]

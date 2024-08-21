@@ -1,15 +1,15 @@
 <?php
 
-namespace App\Http\Controllers\User;
+namespace App\Http\Controllers\Admin\Task;
 
-use App\Models\User;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Admin\Task\TaskAssign;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
 
-class UserController extends Controller
+class TaskAssignController extends Controller
 {
     public function index(){
         // dd('index is called');
@@ -20,13 +20,13 @@ class UserController extends Controller
         $fields = request()->input('fields');
         $with = [];
         $condition = [];
-        $data = User::query();
+        $data = TaskAssign::query();
 
         if (request()->has('search') && request()->input('search')) {
             $searchKey = request()->input('search');
             $data = $data->where(function ($q) use ($searchKey) {
-                $q->where('full_name','like', '%' . $searchKey . '%')
-                ->orWhere('email', 'like', '%' . $searchKey . '%');
+                $q->where('task_id', $searchKey);
+                // $q->orWhere('email', 'like', '%' . $searchKey . '%');
             });
         }
 
@@ -62,7 +62,7 @@ class UserController extends Controller
         if (request()->has('select_all') && request()->select_all) {
             $select = "*";
         }
-        $data = User::where('slug', $slug)
+        $data = TaskAssign::where('slug', $slug)
             ->select($select)
             ->first();
         if ($data) {
@@ -81,12 +81,10 @@ class UserController extends Controller
     }
     public function store()
     {
-        // dd(request()->all(),auth()->user(),request()->password);
         $validator = Validator::make(request()->all(), [
-            'full_name' => ['required'],
-            'role' => ['required'],
-            'email' => ['required'],
-            'password' => ['required','confirmed','min:8'],
+            'task_id' => ['required'],
+            'assign_id' => ['required'],
+            'is_completed' => ['required'],
         ]);
 
         if ($validator->fails()) {
@@ -96,25 +94,27 @@ class UserController extends Controller
             ], 422);
         }
 
-        $randomNumber = rand(1000, 9999);
-        $slug = Str::slug(request()->full_name) . '-' . $randomNumber;
+        $randomNumber = rand(10000, 99999);
+        $slug = $randomNumber;
 
-        $data = new User();
-        $data->full_name = request()->full_name;
-        $data->role = request()->role;
-        $data->email = request()->email;
-        $data->password = Hash::make(request()->password);
+        $data = new TaskAssign();
+        $data->task_id = request()->task_id;
+        $data->assign_id = request()->assign_id;
+        $data->is_completed = request()->is_completed;
         $data->slug = $slug;
         $data->creator = auth()->id();
         $data->status = 1;
         $data->save();
 
-        return response()->json($data, 200);
+        return response()->json([
+            'status' => 'success',
+            'data' => $data,
+        ],200);
     }
 
     public function update()
     {
-        $data = User::find(request()->id);
+        $data = TaskAssign::find(request()->id);
         if (!$data) {
             return response()->json([
                 'err_message' => 'validation error',
@@ -123,10 +123,9 @@ class UserController extends Controller
         }
         // dd($data, request()->all());
         $validator = Validator::make(request()->all(), [
-            'full_name' => ['required'],
-            'role' => ['required'],
-            'email' => ['required'],
-            'password' => ['sometimes','nullable','min:8','confirmed'],
+            'task_id' => ['required'],
+            'assign_id' => ['required'],
+            'is_completed' => ['required'],
         ]);
 
         if ($validator->fails()) {
@@ -136,19 +135,13 @@ class UserController extends Controller
             ], 422);
         }
 
-        $data->full_name = request()->full_name;
-        $data->role = request()->role;
-        $data->email = request()->email;
-        if(request()->password != ''){
-            $data->password = Hash::make(request()->password);
-        }
+        $data->task_id = request()->task_id;
+        $data->assign_id = request()->assign_id;
+        $data->is_completed = request()->is_completed;
         $data->creator = auth()->id();
         $data->status = 1;
         $data->save();
 
-        if (request()->hasFile('image')) {
-            //
-        }
         return response()->json([
             'status' => 'success',
             'data' => $data,
@@ -159,7 +152,7 @@ class UserController extends Controller
     public function soft_delete()
     {
         $validator = Validator::make(request()->all(), [
-            'slug' => ['required', 'exists:users,slug'],
+            'slug' => ['required', 'exists:task_assigns,slug'],
         ]);
 
         if ($validator->fails()) {
@@ -169,7 +162,7 @@ class UserController extends Controller
             ], 422);
         }
 
-        $data = User::where('slug',request()->slug)->first();
+        $data = TaskAssign::where('slug',request()->slug)->first();
         $data->status = 0;
         $data->save();
 
@@ -181,7 +174,7 @@ class UserController extends Controller
 
     public function destroy()
     {
-        $data = User::where('slug',request()->slug)->first();
+        $data = TaskAssign::where('slug',request()->slug)->first();
         if (!$data) {
             return response()->json([
                 'err_message' => 'validation error',
@@ -209,7 +202,7 @@ class UserController extends Controller
             ], 422);
         }
 
-        $data = User::find(request()->id);
+        $data = TaskAssign::find(request()->id);
         $data->status = 1;
         $data->save();
 
@@ -218,50 +211,4 @@ class UserController extends Controller
         ], 200);
     }
 
-    // public function index(){
-    //     // dd('index is called');
-    //     $pageLimit = request()->input('limit') ?? 10;
-    //     $orderByColumn = request()->input('sort_by_col');
-    //     $orderByType = request()->input('sort_type');
-    //     $status = request()->input('status');
-    //     $fields = request()->input('fields');
-    //     $with = [];
-    //     $condition = [];
-
-    //     $data = User::query();
-
-    //     if (request()->has('search') && request()->input('search')) {
-    //         $searchKey = request()->input('search');
-    //         $data = $data->where(function ($q) use ($searchKey) {
-    //             $q->where('full_name', $searchKey);
-    //             $q->orWhere('email', 'like', '%' . $searchKey . '%');
-    //         });
-    //     }
-
-    //     if (request()->has('get_all') && (int)request()->input('get_all') === 1) {
-    //         $data = $data
-    //             ->with($with)
-    //             ->select($fields)
-    //             ->where($condition)
-    //             ->where('status', $status)
-    //             ->limit($pageLimit)
-    //             ->orderBy($orderByColumn, $orderByType)
-    //             ->get();
-    //     } else {
-    //         $data = $data
-    //             ->with($with)
-    //             ->select($fields)
-    //             ->where($condition)
-    //             ->where('status', $status)
-    //             ->orderBy($orderByColumn, $orderByType)
-    //             ->paginate($pageLimit);
-    //     }
-
-    //     return response()->json([
-    //         'status' => 'success',
-    //         'data' => $data
-    //     ]);
-    // }
 }
-
-
