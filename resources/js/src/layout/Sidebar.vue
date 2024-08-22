@@ -24,15 +24,6 @@
 
                 <ul class="side_nave_lists">
 
-                    <dropdown-nav :label="`Barsik Porikolpona`" :icon="`fa fa-list`">
-                        <dropdown-single-item
-                            :to="{name:`all-barsik-porikolpona`}"
-                            :label="`all`" />
-                        <dropdown-single-item
-                            :to="{name:`create-barsik-porikolpona`}"
-                            :label="`create`" />
-                    </dropdown-nav>
-
                     <!-- <dropdown-nav :label="`User`" :icon="`fa-solid fa-users`">
                         <dropdown-single-item
                             :to="{name:`all-user`}"
@@ -50,6 +41,16 @@
                             :to="{name:`CreateBrand`}"
                             :label="`create`" />
                     </dropdown-nav>
+
+                    <dropdown-nav :label="`Barsik Porikolpona`" :icon="`fa fa-list`">
+                        <dropdown-single-item
+                            :to="{name:`all-barsik-porikolpona`}"
+                            :label="`all`" />
+                        <dropdown-single-item
+                            :to="{name:`create-barsik-porikolpona`}"
+                            :label="`create`" />
+                    </dropdown-nav>
+
                     <dropdown-nav :label="`Task`" :icon="`fa-solid fa-users`">
                         <dropdown-single-item
                             :to="{name:`AllTask`}"

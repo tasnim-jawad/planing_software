@@ -1,15 +1,14 @@
 <?php
 
-namespace App\Http\Controllers\Admin\Task;
+namespace App\Http\Controllers\Admin\BarshikPorikolpona;
 
 use App\Http\Controllers\Controller;
-use App\Models\Admin\Task\TaskAssign;
+use App\Models\Admin\BarshikPorikolpona\BarshikPorikolpona;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
 
-class TaskAssignController extends Controller
+class BarshikPoricolponaController extends Controller
 {
     public function index(){
         // dd('index is called');
@@ -20,13 +19,13 @@ class TaskAssignController extends Controller
         $fields = request()->input('fields');
         $with = [];
         $condition = [];
-        $data = TaskAssign::query();
+        $data = BarshikPorikolpona::query();
 
         if (request()->has('search') && request()->input('search')) {
             $searchKey = request()->input('search');
             $data = $data->where(function ($q) use ($searchKey) {
-                $q->where('task_id', $searchKey);
-                // $q->orWhere('email', 'like', '%' . $searchKey . '%');
+                $q->where('full_name','like', '%' . $searchKey . '%')
+                ->orWhere('email', 'like', '%' . $searchKey . '%');
             });
         }
 
@@ -62,7 +61,7 @@ class TaskAssignController extends Controller
         if (request()->has('select_all') && request()->select_all) {
             $select = "*";
         }
-        $data = TaskAssign::where('slug', $slug)
+        $data = BarshikPorikolpona::where('slug', $slug)
             ->select($select)
             ->first();
         if ($data) {
@@ -81,10 +80,12 @@ class TaskAssignController extends Controller
     }
     public function store()
     {
+        // dd(request()->all(),auth()->user(),request()->password);
         $validator = Validator::make(request()->all(), [
-            'task_id' => ['required'],
-            'assign_id' => ['required'],
-            'is_completed' => ['required'],
+            'full_name' => ['required'],
+            'role' => ['required'],
+            'email' => ['required'],
+            'password' => ['required','confirmed','min:8'],
         ]);
 
         if ($validator->fails()) {
@@ -94,37 +95,24 @@ class TaskAssignController extends Controller
             ], 422);
         }
 
-        $is_already_assigned = TaskAssign::where('task_id',request()->task_id)
-                                        ->where('assign_id',request()->assign_id)->exists();
+        $randomNumber = rand(1000, 9999);
+        $slug = Str::slug(request()->full_name) . '-' . $randomNumber;
 
-        // if($is_already_assigned){
-        //     return response()->json([
-        //         'err_message' => 'validation error',
-        //         'errors' => ['task_assign' => ['This task is already assigned to this user.']],
-        //     ], 409);
-        // }
+        $data = new BarshikPorikolpona();
+        $data->full_name = request()->full_name;
+        $data->role = request()->role;
+        $data->email = request()->email;
+        $data->slug = $slug;
+        $data->creator = auth()->id();
+        $data->status = 1;
+        $data->save();
 
-        $randomNumber = rand(10000, 99999);
-        $slug = $randomNumber;
-        if(!$is_already_assigned){
-            $data = new TaskAssign();
-            $data->task_id = request()->task_id;
-            $data->assign_id = request()->assign_id;
-            $data->is_completed = request()->is_completed;
-            $data->slug = $slug;
-            $data->creator = auth()->id();
-            $data->status = 1;
-            $data->save();
-        }
-
-        return response()->json([
-            'status' => 'success'
-        ],200);
+        return response()->json($data, 200);
     }
 
     public function update()
     {
-        $data = TaskAssign::find(request()->id);
+        $data = BarshikPorikolpona::find(request()->id);
         if (!$data) {
             return response()->json([
                 'err_message' => 'validation error',
@@ -133,9 +121,10 @@ class TaskAssignController extends Controller
         }
         // dd($data, request()->all());
         $validator = Validator::make(request()->all(), [
-            'task_id' => ['required'],
-            'assign_id' => ['required'],
-            'is_completed' => ['required'],
+            'full_name' => ['required'],
+            'role' => ['required'],
+            'email' => ['required'],
+            'password' => ['sometimes','nullable','min:8','confirmed'],
         ]);
 
         if ($validator->fails()) {
@@ -145,13 +134,16 @@ class TaskAssignController extends Controller
             ], 422);
         }
 
-        $data->task_id = request()->task_id;
-        $data->assign_id = request()->assign_id;
-        $data->is_completed = request()->is_completed;
+        $data->full_name = request()->full_name;
+        $data->role = request()->role;
+        $data->email = request()->email;
         $data->creator = auth()->id();
         $data->status = 1;
         $data->save();
 
+        if (request()->hasFile('image')) {
+            //
+        }
         return response()->json([
             'status' => 'success',
             'data' => $data,
@@ -162,7 +154,7 @@ class TaskAssignController extends Controller
     public function soft_delete()
     {
         $validator = Validator::make(request()->all(), [
-            'slug' => ['required', 'exists:task_assigns,slug'],
+            'slug' => ['required', 'exists:barshik_porikolponas,slug'],
         ]);
 
         if ($validator->fails()) {
@@ -172,7 +164,7 @@ class TaskAssignController extends Controller
             ], 422);
         }
 
-        $data = TaskAssign::where('slug',request()->slug)->first();
+        $data = BarshikPorikolpona::where('slug',request()->slug)->first();
         $data->status = 0;
         $data->save();
 
@@ -184,7 +176,7 @@ class TaskAssignController extends Controller
 
     public function destroy()
     {
-        $data = TaskAssign::where('slug',request()->slug)->first();
+        $data = BarshikPorikolpona::where('slug',request()->slug)->first();
         if (!$data) {
             return response()->json([
                 'err_message' => 'validation error',
@@ -202,7 +194,7 @@ class TaskAssignController extends Controller
     public function restore()
     {
         $validator = Validator::make(request()->all(), [
-            'id' => ['required', 'exists:users,id'],
+            'id' => ['required', 'exists:barshik_porikolponas,id'],
         ]);
 
         if ($validator->fails()) {
@@ -212,13 +204,34 @@ class TaskAssignController extends Controller
             ], 422);
         }
 
-        $data = TaskAssign::find(request()->id);
+        $data = BarshikPorikolpona::find(request()->id);
         $data->status = 1;
         $data->save();
 
         return response()->json([
             'result' => 'activated',
         ], 200);
+    }
+
+    public function import(){
+        // dd(request()->data);
+        foreach (request()->data as $row) {
+            $randomNumber = rand(1000, 9999);
+            $slug = Str::slug($row['title']) . '-' . $randomNumber;
+            BarshikPorikolpona::create([
+                "title" => $row['title'],
+                "slug" =>$slug,
+                "creator" => auth()->id(),
+                "status" =>1,
+
+           ]);
+       }
+
+       return response()->json([
+            'status' => 'success',
+            'result' => 'Item Successfully uploded'
+        ],200);
+
     }
 
 }

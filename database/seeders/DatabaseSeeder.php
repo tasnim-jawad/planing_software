@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\User;
+use Database\Seeders\Admin\BarshikPorikolpona\BarshikPorikolponasTableseeder;
 use Database\Seeders\Admin\Task\TaskAssignsTableSeeder;
 use Database\Seeders\Admin\Task\TasksTableSeeder;
 use Database\Seeders\User\UserRolesTableSeeder;
@@ -28,6 +29,7 @@ class DatabaseSeeder extends Seeder
             UserRolesTableSeeder::class,
             TasksTableSeeder::class,
             TaskAssignsTableSeeder::class,
+            BarshikPorikolponasTableseeder::class,
         ]);
     }
 }

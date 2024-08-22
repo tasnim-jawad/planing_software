@@ -2,7 +2,7 @@
     <div class="vue_main_container">
         <div class="table_topbar">
             <h2 class="pages_title">{{ setup.create_page_title }}</h2>
-            <router-link :to="{ name: 'create-form-barsik-porikolpona' }"  class="btn btn-sm btn-primary">নতুন তৈরি করুন</router-link>
+            <router-link :to="{ name: 'create-form-barsik-porikolpona' }"  class="btn btn-sm btn-primary">Create new row</router-link>
         </div>
         <table class="table table-striped align-middle">
             <thead>
@@ -25,6 +25,12 @@
                         <a @click.prevent="delete_data(index)" class="btn btn-sm btn-danger"><i class="fa-solid fa-trash"></i></a>
                     </td>
                 </tr>
+                <tr v-if="data.length > 0 ">
+                    <td colspan="2">
+                        <button type="submit" @click.prevent="import_data" class="btn btn-primary submit_button">Submit</button>
+                    </td>
+                </tr>
+
             </tbody>
         </table>
     </div>
@@ -50,7 +56,7 @@ export default {
     methods:{
         ...mapActions(barshik_porikolpona_store, {
             delete_store_data: 'delete_created_data',
-            submit_all_data: 'delete_created_data',
+            import: 'import',
         }),
         delete_data:function(index){
             this.delete_store_data({
@@ -61,6 +67,9 @@ export default {
             this.delete_store_data({
                 index:index,
             })
+        },
+        import_data:function(){
+            this.import()
         }
     }
 }

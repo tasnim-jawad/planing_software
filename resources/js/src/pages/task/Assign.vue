@@ -5,6 +5,10 @@
                 <div class="card-header d-flex justify-content-between align-items-center">
                     <h5 class="text-capitalize">{{ param_id ? 'Assign' : 'Create' }} new {{ route_prefix }}</h5>
                     <div>
+                        <router-link v-if="item.slug" class="btn btn-outline-info mr-2 btn-sm me-2"
+                            :to="{ name: `Details${route_prefix}`, params: {id: item.slug} }">
+                            Details {{ route_prefix }}
+                        </router-link>
                         <router-link class="btn btn-outline-warning btn-sm" :to="{ name: `All${route_prefix}` }">
                             All {{ route_prefix }}
                         </router-link>
@@ -111,13 +115,14 @@ export default {
             for (let [key, value] of formData.entries()) {
                 formDataObj[key] = value;
             }
-
-            let res = await axios.post('/task-assigns/store',formDataObj)
-            console.log(res);
-            if(res.data.status == "success"){
-                window.s_alert("data created");
-            }else{
-
+            try {
+                let res = await axios.post('/task-assigns/store',formDataObj)
+                console.log(res);
+                if(res.data.status == "success"){
+                    window.s_alert("data created");
+                }
+            } catch (error) {
+                console.log("error from assign" , error);
             }
         },
 

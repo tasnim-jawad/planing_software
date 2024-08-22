@@ -30,5 +30,19 @@ export const barshik_porikolpona_store = defineStore('barshik_porikolpona_store'
             this.createdData.splice(payload.index,1);
         },
 
+        async import(){
+            console.log(this.createdData);
+
+            let res = await axios.post('/barshik-porikolponas/import',{
+                data:this.createdData
+            })
+
+            if(res.data.status == "success"){
+                window.s_alert(res.data.result);
+            }
+            // console.log(res);
+
+        },
+
     }
 })

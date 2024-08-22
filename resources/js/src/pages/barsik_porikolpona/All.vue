@@ -45,7 +45,7 @@
                                                                 <span>ID</span>
                                                                 <span class="material-symbols-outlined fill icon"><i
                                                                         class="fa-solid fa-arrow-up-z-a"></i></span>
-                                                                <!-- <span class="material-symbols-outlined fill icon"><i class="fa-solid fa-arrow-down-z-a"></i></span> -->
+
                                                             </div>
                                                         </th>
                                                         <th class="col_uid">
@@ -174,6 +174,9 @@
             </div>
         </div>
     </div>
+
+
+
 </template>
 
 <script>
@@ -190,9 +193,115 @@ export default {
                     });
                 });
             });
-        }
+        },
+        // active_row: function(toggle_icon) {
+
+        //     let parent = toggle_icon.target.closest('tr');
+        //     console.log("parent",parent);
+        //     console.log("parent.parentNode",parent.parentNode);
+        //     console.log("this.$el",this.$el);
+
+        //     if (parent) {
+        //         const tableRows = this.$el.querySelectorAll('.table_rows');
+
+        //         tableRows.forEach(row => {
+        //         if (row !== parent) row.classList.remove('active');
+        //         });
+
+        //         // Toggle the 'active' class on the clicked row
+        //         parent.classList.toggle('active');
+        //     }
+
+        //     // if (toggle_icon.target) {
+        //     //     let parent = toggle_icon.target.parentNode;
+        //     //     if (parent && parent.parentNode) {
+        //     //         parent = parent.parentNode;
+        //     //     }
+
+        //     //     const table_rows =
+        //     //         document.querySelectorAll<HTMLElement>('.table_rows');
+        //     //     if (table_rows.length) {
+        //     //         [...table_rows].forEach((i) => {
+        //     //             if (i !== parent) i.classList.remove('active');
+        //     //         });
+        //     //     }
+
+        //     //     if (parent) {
+        //     //         parent.classList.toggle('active');
+        //     //     }
+        //     // }
+        // }
     }
 }
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+//     .explore_window .action_bar {
+//     background-color: var(--color5);
+//     display: grid;
+//     grid-template-columns: 1fr 300px 1fr;
+//     justify-content: space-between;
+//     padding: 5px;
+//     position: relative;
+//     z-index: 9;
+//     align-items: center;
+// }
+
+// .explore_window .action_bar .navigation ul {
+//     display: flex;
+//     width: 100%;
+// }
+
+// .explore_window .action_bar .navigation ul li a {
+//     display: flex;
+// }
+
+// .explore_window .action_bar .navigation ul li.search_li {
+//     flex: 1;
+// }
+
+// .explore_window .action_bar .navigation ul li .search {
+//     width: 100%;
+//     background: var(--brand_color);
+//     height: 30px;
+// }
+
+// .explore_window .action_bar .title {
+//     cursor: move;
+//     text-align: center;
+// }
+
+// .explore_window .action_bar .title.no_move {
+//     cursor: unset;
+// }
+
+// .explore_window .action_bar .control ul {
+//     display: flex;
+//     justify-content: flex-end;
+//     gap: 4px;
+// }
+
+// .explore_window .action_bar .control ul li a span {
+//     font-size: 10px;
+//     height: 20px;
+//     width: 20px;
+//     border-radius: 50%;
+//     text-align: center;
+//     line-height: 20px;
+// }
+
+// .explore_window .action_bar .control ul li:nth-child(1) a span {
+//     font-size: 12px;
+//     background-color: var(--color6);
+//     color: white;
+// }
+
+// .explore_window .action_bar .control ul li:nth-child(2) a span {
+//     background-color: rgba(233, 201, 20, 0.534);
+// }
+
+// .explore_window .action_bar .control ul li:nth-child(3) a span {
+//     font-size: 12px;
+//     background-color: rgba(233, 70, 20, 0.534);
+// }
+</style>
