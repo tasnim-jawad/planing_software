@@ -1,6 +1,18 @@
 <template>
     <div class="vue_main_container">
         <div class="table_topbar">
+
+            <form action="">
+                <div class="d-flex gap-2">
+                    <label class="session_label text-white" for="role">Session</label>
+                    <select name="role" id="role" class="rounded px-2">
+                        <option value="">--- select role ---</option>
+                        <option value="1">2022-2023</option>
+                        <option value="2">2023-2024</option>
+                        <option value="3">2024-2025</option>
+                    </select>
+                </div>
+            </form>
             <h2 class="pages_title">{{ setup.create_page_title }}</h2>
             <router-link :to="{ name: 'create-form-barsik-porikolpona' }"  class="btn btn-sm btn-primary">Create new row</router-link>
         </div>
@@ -27,10 +39,9 @@
                 </tr>
                 <tr v-if="data.length > 0 ">
                     <td colspan="2">
-                        <button type="submit" @click.prevent="import_data" class="btn btn-primary submit_button">Submit</button>
+                        <button type="button" @click.prevent="import_data" class="btn btn-primary submit_button">Submit</button>
                     </td>
                 </tr>
-
             </tbody>
         </table>
     </div>
