@@ -175,7 +175,7 @@ a{
 
 .planing_app .layout_content {
     display: grid;
-    grid-template-columns: 230px 1fr;
+    grid-template-columns: 230px calc(100vw - 230px);
     height: 100%;
 }
 
