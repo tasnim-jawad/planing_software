@@ -42,14 +42,14 @@
                             :label="`create`" />
                     </dropdown-nav>
 
-                    <dropdown-nav :label="`Barsik Porikolpona`" :icon="`fa fa-list`">
+                    <!-- <dropdown-nav :label="`Barsik Porikolpona`" :icon="`fa fa-list`">
                         <dropdown-single-item
                             :to="{name:`AllBarshikPorikolpona`}"
                             :label="`all`" />
                         <dropdown-single-item
                             :to="{name:`CreateBarshikPorikolpona`}"
                             :label="`create`" />
-                    </dropdown-nav>
+                    </dropdown-nav> -->
 
                     <dropdown-nav :label="`Task`" :icon="`fa-solid fa-users`">
                         <dropdown-single-item
@@ -62,19 +62,19 @@
 
                     <dropdown-nav :label="`কেন্দ্রিও বার্ষিক পরিকল্পনা`" :icon="`fa fa-list`">
                         <dropdown-single-item
-                            :to="{name:`AllTask`}"
+                            :to="{name:`AllKendrioBarshikPorikolpona`}"
                             :label="`all`" />
                         <dropdown-single-item
-                            :to="{name:`CreateTask`}"
+                            :to="{name:`CreateKendrioBarshikPorikolpona`}"
                             :label="`create`" />
                     </dropdown-nav>
 
                     <dropdown-nav :label="`বার্ষিক পরিকল্পনা`" :icon="`fa fa-list`">
                         <dropdown-single-item
-                            :to="{name:`AllTask`}"
+                            :to="{name:`AllBarshikPorikolpona`}"
                             :label="`all`" />
                         <dropdown-single-item
-                            :to="{name:`CreateTask`}"
+                            :to="{name:`CreateBarshikPorikolpona`}"
                             :label="`create`" />
                     </dropdown-nav>
 
