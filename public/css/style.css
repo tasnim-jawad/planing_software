@@ -421,14 +421,14 @@ a{
                 align-items: center;
                 flex: 1;
 
-                font-size: 14px;
-                line-height: 14px;
+                font-size: 11px;
+                line-height: 24px;
                 color: rgb(42, 46, 52);
                 margin-left: 10px;
 
                 span {
                     display: block;
-                    width: 90px;
+                    width: 135px;
                     white-space: nowrap;
                     overflow: hidden;
                     text-overflow: ellipsis;
@@ -527,12 +527,13 @@ a{
     justify-content: space-between;
     align-items: center;
     padding: 10px 10px;
-    background-color: darkslategray;
+    background-color: rgba(33, 37, 41, 0.03);
     border-radius: 5px 5px 0px 0px;
+    border: 1px solid rgba(0,0,0,0.17);
     .pages_title{
         font-size: 16px;
-        color: white;
-        font-weight: 600;
+        /* color: white;
+        font-weight: 600; */
 
     }
 
@@ -562,6 +563,17 @@ a{
     font-size: 12px;
     line-height: 12px;
 }
+
+.form_border{
+    border: 1px solid rgba(0,0,0,0.17);
+    padding: 20px 10px;
+    border-radius: 0px 0px 5px 5px;
+    border-top: none;
+}
+.table_border{
+    border: 1px solid rgba(0,0,0,0.17);
+}
+
 
 
 
