@@ -69,6 +69,15 @@
                             :label="`create`" />
                     </dropdown-nav>
 
+                    <dropdown-nav :label="`বিভাগীয় বার্ষিক পরিকল্পনা`" :icon="`fa fa-list`">
+                        <dropdown-single-item
+                            :to="{name:`Allbivagio_barshik_porikolpona`}"
+                            :label="`all`" />
+                        <dropdown-single-item
+                            :to="{name:`Createbivagio_barshik_porikolpona`}"
+                            :label="`create`" />
+                    </dropdown-nav>
+
                     <dropdown-nav :label="`বার্ষিক পরিকল্পনা`" :icon="`fa fa-list`">
                         <dropdown-single-item
                             :to="{name:`AllBarshikPorikolpona`}"
