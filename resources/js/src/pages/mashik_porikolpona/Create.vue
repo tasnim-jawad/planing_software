@@ -16,7 +16,7 @@
                         </div>
                     </form>
                     <h2 class="pages_title">{{ setup.create_page_title }}</h2>
-                    <router-link :to="{ name: 'CreateFormBarshikPorikolpona' }" class="btn btn-outline-warning btn-sm">Create new row </router-link>
+                    <router-link :to="{ name: 'CreateFormmashik_porikolpona' }" class="btn btn-outline-warning btn-sm">Create new row </router-link>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive table_responsive card_body_fixed_height">
@@ -83,11 +83,6 @@
 import { mapActions, mapState } from "pinia";
 import { store as data_store } from "./custom_store/store";
 export default {
-  // setup(){
-  //     const createStore = store();
-  //     const {setup,createdData} = storeToRefs(createStore);
-  //     return {createStore ,setup ,createdData}
-  // }
   data: () => ({}),
   computed: {
     ...mapState(data_store, {
@@ -120,7 +115,6 @@ export default {
       // for (let [key, value] of formData.entries()) {
       //     console.log(`${key}: ${value}`);
       // }
-
       this.import({
         session: formData,
       });

@@ -84,7 +84,7 @@
 </template>
 <script>
 import { mapActions, mapState } from "pinia";
-import { barshik_porikolpona_store } from "./custom_store/store";
+import { store as data_store } from "./custom_store/store";
 export default {
   // setup(){
   //     const createStore = barshik_porikolpona_store();
@@ -93,13 +93,13 @@ export default {
   // }
   data: () => ({}),
   computed: {
-    ...mapState(barshik_porikolpona_store, {
+    ...mapState(data_store, {
       data: "createdData",
       setup: "setup",
     }),
   },
   methods: {
-    ...mapActions(barshik_porikolpona_store, {
+    ...mapActions(data_store, {
       delete_store_data: "delete_created_data",
       import: "import",
     }),

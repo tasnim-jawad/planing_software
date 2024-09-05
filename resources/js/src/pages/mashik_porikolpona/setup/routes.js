@@ -12,7 +12,7 @@ let route_prefix = setup.route_prefix;
 
 const routes =
 {
-    path: '/kendrio-barshik-porikolponas',
+    path: '/mashik-porikolponas',
     component: Layout,
     children: [
         {

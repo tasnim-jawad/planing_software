@@ -66,15 +66,6 @@
                     <span class="input-group-text" id="percentage-addon">%</span>
                 </div>
             </div>
-            <!-- <template v-if="selectedDepartmentsData.length > 0">
-                <div v-for="(data,index) in selectedDepartmentsData" class="mb-3 form-group" :key="index">
-                    <label :for="`rating_dep_${data.id}`">Rating of {{ data.title }}</label>
-                    <select :name="`rating_dep_${data.id}`" :id="`rating_dep_${data.id}`" class="form-control input_padding">
-                        <option value="">--- select rating ---</option>
-                        <option v-for="rating in ratings" :value="rating" :key="rating">{{ rating }}</option>
-                    </select>
-                </div>
-            </template> -->
             <button type="submit" class="btn btn-primary submit_button">Submit</button>
         </form>
     </div>
@@ -84,19 +75,7 @@
 import { mapActions, mapState, storeToRefs } from "pinia";
 import { store } from "./custom_store/store";
 export default {
-    // setup:function(){
-    //     const createStore = store();
-    //     // console.log("setup" , createStore.setup,createStore.setup.create_page_title);
-    //     console.log("createStore",createStore);
-    //     const {setup} = storeToRefs(createStore)
-
-    //     const submitForm = async (event) => {
-    //             let formData = new FormData(event.target);
-    //             await createStore.submit_create_form(formData);
-    //             event.target.reset();
-    //         };
-    //     return {createStore ,setup,submitForm}
-    // },
+    
     data:() => ({
         departments: [
             { id: '1', title: 'বিজ্ঞান' },

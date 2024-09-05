@@ -167,7 +167,7 @@
 <script>
 // import setup from '../config/setup';
 import { mapActions, mapState, storeToRefs } from "pinia";
-import { barshik_porikolpona_store } from "./custom_store/store";
+import { store as data_store } from "./custom_store/store";
 export default {
     data:() => ({
         is_umbrella:'',
@@ -218,7 +218,7 @@ export default {
         submitted: false,
     }),
     computed:{
-        ...mapState(barshik_porikolpona_store,{
+        ...mapState(data_store,{
             setup: 'setup',
         }),
 
@@ -230,7 +230,7 @@ export default {
         // },
     },
     methods:{
-        ...mapActions(barshik_porikolpona_store, {
+        ...mapActions(data_store, {
             submit_form_store: 'submit_create_form'
         }),
         submit_form:async function(event){

@@ -89,19 +89,19 @@
 
                     <dropdown-nav :label="`বার্ষিক কার্যকরী পরিকল্পনা`" :icon="`fa fa-list`">
                         <dropdown-single-item
-                            :to="{name:`AllTask`}"
+                            :to="{name:`Allbarshik_karjokori_porikolpona`}"
                             :label="`all`" />
                         <dropdown-single-item
-                            :to="{name:`CreateTask`}"
+                            :to="{name:`Createbarshik_karjokori_porikolpona`}"
                             :label="`create`" />
                     </dropdown-nav>
 
                     <dropdown-nav :label="`মাসিক পরিকল্পনা`" :icon="`fa fa-list`">
                         <dropdown-single-item
-                            :to="{name:`AllTask`}"
+                            :to="{name:`Allmashik_porikolpona`}"
                             :label="`all`" />
                         <dropdown-single-item
-                            :to="{name:`CreateTask`}"
+                            :to="{name:`Createmashik_porikolpona`}"
                             :label="`create`" />
                     </dropdown-nav>
 
@@ -116,10 +116,10 @@
 
                     <dropdown-nav :label="`পরিকল্পনা বাস্তবায়নের মাসিক রিপোর্ট`" :icon="`fa fa-list`">
                         <dropdown-single-item
-                            :to="{name:`AllTask`}"
+                            :to="{name:`Allporikolpona_bastobayoner_mashik_report`}"
                             :label="`all`" />
                         <dropdown-single-item
-                            :to="{name:`CreateTask`}"
+                            :to="{name:`Createporikolpona_bastobayoner_mashik_report`}"
                             :label="`create`" />
                     </dropdown-nav>
 

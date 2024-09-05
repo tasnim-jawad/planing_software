@@ -16,7 +16,7 @@
                         </div>
                     </form>
                     <h2 class="pages_title">{{ setup.create_page_title }}</h2>
-                    <router-link :to="{ name: 'CreateFormBarshikPorikolpona' }" class="btn btn-outline-warning btn-sm">Create new row </router-link>
+                    <router-link :to="{ name: 'CreateFormKendrioBarshikPorikolpona' }" class="btn btn-outline-warning btn-sm">Create new row </router-link>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive table_responsive card_body_fixed_height">

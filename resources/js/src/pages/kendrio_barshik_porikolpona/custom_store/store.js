@@ -1,7 +1,7 @@
 import { defineStore } from "pinia";
 
 import setup from "../setup";
-export const store = defineStore('custom_kendrio_barshik_porikolpona_store', {
+export const store = defineStore(`custom_${setup.store_prefix}`, {
     state: () => ({
         setup: setup,
         createdData: [],
