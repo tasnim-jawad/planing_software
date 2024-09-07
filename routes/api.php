@@ -20,7 +20,7 @@ Route::group(['prefix' => 'v1','middleware' => 'auth:api'], function(){
     Route::get('user/check_user', [App\Http\Controllers\Auth\LoginController::class,'check_user']);
     Route::post('/api-logout', [App\Http\Controllers\Auth\LoginController::class,'logout']);
 
-    Route::group(['prefix' => 'user'], function(){
+    Route::group(['prefix' => 'users'], function(){
         Route::get('', [App\Http\Controllers\User\UserController::class,'index']);
         Route::post('store', [App\Http\Controllers\User\UserController::class,'store']);
         Route::post('update/{id}', [App\Http\Controllers\User\UserController::class,'update']);
@@ -114,8 +114,64 @@ Route::group(['prefix' => 'v1','middleware' => 'auth:api'], function(){
         Route::post('bulk-action', [App\Http\Controllers\Admin\BarshikPorikolpona\BarshikPoricolponaController::class, 'bulkAction']);
         Route::get('{slug}', [App\Http\Controllers\Admin\BarshikPorikolpona\BarshikPoricolponaController::class,'show']);
     });
+    Route::group(['prefix' => 'mashik-karjokori-porikolponas'], function(){
+        Route::get('', [App\Http\Controllers\Admin\BarshikPorikolpona\BarshikPoricolponaController::class,'index']);
+        Route::post('store', [App\Http\Controllers\Admin\BarshikPorikolpona\BarshikPoricolponaController::class,'store']);
+        Route::post('update/{id}', [App\Http\Controllers\Admin\BarshikPorikolpona\BarshikPoricolponaController::class,'update']);
+        Route::post('soft-delete', [App\Http\Controllers\Admin\BarshikPorikolpona\BarshikPoricolponaController::class,'soft_delete']);
+        Route::delete('destroy/{slug}', [App\Http\Controllers\Admin\BarshikPorikolpona\BarshikPoricolponaController::class,'destroy']);
+        Route::post('restore', [App\Http\Controllers\Admin\BarshikPorikolpona\BarshikPoricolponaController::class,'restore']);
+        Route::post('import', [App\Http\Controllers\Admin\BarshikPorikolpona\BarshikPoricolponaController::class,'import']);
+        Route::post('bulk-action', [App\Http\Controllers\Admin\BarshikPorikolpona\BarshikPoricolponaController::class, 'bulkAction']);
+        Route::get('{slug}', [App\Http\Controllers\Admin\BarshikPorikolpona\BarshikPoricolponaController::class,'show']);
+    });
 
     Route::group(['prefix' => 'porikolpona-bastobayoner-mashik-reports'], function(){
+        Route::get('', [App\Http\Controllers\Admin\BarshikPorikolpona\BarshikPoricolponaController::class,'index']);
+        Route::post('store', [App\Http\Controllers\Admin\BarshikPorikolpona\BarshikPoricolponaController::class,'store']);
+        Route::post('update/{id}', [App\Http\Controllers\Admin\BarshikPorikolpona\BarshikPoricolponaController::class,'update']);
+        Route::post('soft-delete', [App\Http\Controllers\Admin\BarshikPorikolpona\BarshikPoricolponaController::class,'soft_delete']);
+        Route::delete('destroy/{slug}', [App\Http\Controllers\Admin\BarshikPorikolpona\BarshikPoricolponaController::class,'destroy']);
+        Route::post('restore', [App\Http\Controllers\Admin\BarshikPorikolpona\BarshikPoricolponaController::class,'restore']);
+        Route::post('import', [App\Http\Controllers\Admin\BarshikPorikolpona\BarshikPoricolponaController::class,'import']);
+        Route::post('bulk-action', [App\Http\Controllers\Admin\BarshikPorikolpona\BarshikPoricolponaController::class, 'bulkAction']);
+        Route::get('{slug}', [App\Http\Controllers\Admin\BarshikPorikolpona\BarshikPoricolponaController::class,'show']);
+    });
+
+    Route::group(['prefix' => 'karjokori-porikolpona-bastobayoner-mashik-reports'], function(){
+        Route::get('', [App\Http\Controllers\Admin\BarshikPorikolpona\BarshikPoricolponaController::class,'index']);
+        Route::post('store', [App\Http\Controllers\Admin\BarshikPorikolpona\BarshikPoricolponaController::class,'store']);
+        Route::post('update/{id}', [App\Http\Controllers\Admin\BarshikPorikolpona\BarshikPoricolponaController::class,'update']);
+        Route::post('soft-delete', [App\Http\Controllers\Admin\BarshikPorikolpona\BarshikPoricolponaController::class,'soft_delete']);
+        Route::delete('destroy/{slug}', [App\Http\Controllers\Admin\BarshikPorikolpona\BarshikPoricolponaController::class,'destroy']);
+        Route::post('restore', [App\Http\Controllers\Admin\BarshikPorikolpona\BarshikPoricolponaController::class,'restore']);
+        Route::post('import', [App\Http\Controllers\Admin\BarshikPorikolpona\BarshikPoricolponaController::class,'import']);
+        Route::post('bulk-action', [App\Http\Controllers\Admin\BarshikPorikolpona\BarshikPoricolponaController::class, 'bulkAction']);
+        Route::get('{slug}', [App\Http\Controllers\Admin\BarshikPorikolpona\BarshikPoricolponaController::class,'show']);
+    });
+    Route::group(['prefix' => 'kendrer-porikolpona-bastobayoner-reports'], function(){
+        Route::get('', [App\Http\Controllers\Admin\BarshikPorikolpona\BarshikPoricolponaController::class,'index']);
+        Route::post('store', [App\Http\Controllers\Admin\BarshikPorikolpona\BarshikPoricolponaController::class,'store']);
+        Route::post('update/{id}', [App\Http\Controllers\Admin\BarshikPorikolpona\BarshikPoricolponaController::class,'update']);
+        Route::post('soft-delete', [App\Http\Controllers\Admin\BarshikPorikolpona\BarshikPoricolponaController::class,'soft_delete']);
+        Route::delete('destroy/{slug}', [App\Http\Controllers\Admin\BarshikPorikolpona\BarshikPoricolponaController::class,'destroy']);
+        Route::post('restore', [App\Http\Controllers\Admin\BarshikPorikolpona\BarshikPoricolponaController::class,'restore']);
+        Route::post('import', [App\Http\Controllers\Admin\BarshikPorikolpona\BarshikPoricolponaController::class,'import']);
+        Route::post('bulk-action', [App\Http\Controllers\Admin\BarshikPorikolpona\BarshikPoricolponaController::class, 'bulkAction']);
+        Route::get('{slug}', [App\Http\Controllers\Admin\BarshikPorikolpona\BarshikPoricolponaController::class,'show']);
+    });
+    Route::group(['prefix' => 'bivager-porikolpona-bastobayoner-reports'], function(){
+        Route::get('', [App\Http\Controllers\Admin\BarshikPorikolpona\BarshikPoricolponaController::class,'index']);
+        Route::post('store', [App\Http\Controllers\Admin\BarshikPorikolpona\BarshikPoricolponaController::class,'store']);
+        Route::post('update/{id}', [App\Http\Controllers\Admin\BarshikPorikolpona\BarshikPoricolponaController::class,'update']);
+        Route::post('soft-delete', [App\Http\Controllers\Admin\BarshikPorikolpona\BarshikPoricolponaController::class,'soft_delete']);
+        Route::delete('destroy/{slug}', [App\Http\Controllers\Admin\BarshikPorikolpona\BarshikPoricolponaController::class,'destroy']);
+        Route::post('restore', [App\Http\Controllers\Admin\BarshikPorikolpona\BarshikPoricolponaController::class,'restore']);
+        Route::post('import', [App\Http\Controllers\Admin\BarshikPorikolpona\BarshikPoricolponaController::class,'import']);
+        Route::post('bulk-action', [App\Http\Controllers\Admin\BarshikPorikolpona\BarshikPoricolponaController::class, 'bulkAction']);
+        Route::get('{slug}', [App\Http\Controllers\Admin\BarshikPorikolpona\BarshikPoricolponaController::class,'show']);
+    });
+    Route::group(['prefix' => 'archive'], function(){
         Route::get('', [App\Http\Controllers\Admin\BarshikPorikolpona\BarshikPoricolponaController::class,'index']);
         Route::post('store', [App\Http\Controllers\Admin\BarshikPorikolpona\BarshikPoricolponaController::class,'store']);
         Route::post('update/{id}', [App\Http\Controllers\Admin\BarshikPorikolpona\BarshikPoricolponaController::class,'update']);

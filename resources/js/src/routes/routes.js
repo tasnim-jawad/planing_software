@@ -12,7 +12,13 @@ import kendrio_barshik_porikolpona from '../pages/kendrio_barshik_porikolpona/se
 import bivagio_barshik_porikolpona from '../pages/bivagio_barshik_porikolpona/setup/routes';
 import barshik_karjokori_porikolpona from '../pages/barshik_karjokori_porikolpona/setup/routes';
 import mashik_porikolpona from '../pages/mashik_porikolpona/setup/routes';
+import mashik_karjokori_porikolpona from '../pages/mashik_karjokori_porikolpona/setup/routes';
 import porikolpona_bastobayoner_mashik_report from '../pages/porikolpona_bastobayoner_mashik_report/setup/routes';
+import karjokori_porikolpona_bastobayoner_mashik_report from '../pages/karjokori_porikolpona_bastobayoner_mashik_report/setup/routes';
+import porikolpona_bastobayoner_troimashik_shanmashik_barshik_report from '../pages/porikolpona_bastobayoner_troimashik_shanmashik_barshik_report/setup/routes';
+import kendrer_porikolpona_bastobayoner_report from '../pages/kendrer_porikolpona_bastobayoner_report/setup/routes';
+import bivager_porikolpona_bastobayoner_report from '../pages/bivager_porikolpona_bastobayoner_report/setup/routes';
+import archive from '../pages/archive/setup/routes';
 
 // console.log(barsik_porikolpona);
 const routes = createRouter({
@@ -34,7 +40,13 @@ const routes = createRouter({
                 bivagio_barshik_porikolpona,
                 barshik_karjokori_porikolpona,
                 mashik_porikolpona,
+                mashik_karjokori_porikolpona,
                 porikolpona_bastobayoner_mashik_report,
+                karjokori_porikolpona_bastobayoner_mashik_report,
+                porikolpona_bastobayoner_troimashik_shanmashik_barshik_report,
+                kendrer_porikolpona_bastobayoner_report,
+                bivager_porikolpona_bastobayoner_report,
+                archive,
             ]
         },
     ]

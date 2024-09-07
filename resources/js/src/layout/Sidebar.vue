@@ -35,10 +35,10 @@
 
                     <dropdown-nav :label="`User_management`" :icon="`fa-solid fa-users`">
                         <dropdown-single-item
-                            :to="{name:`AllBrand`}"
+                            :to="{name:`Alluser`}"
                             :label="`all`" />
                         <dropdown-single-item
-                            :to="{name:`CreateBrand`}"
+                            :to="{name:`Createuser`}"
                             :label="`create`" />
                     </dropdown-nav>
 
@@ -107,10 +107,10 @@
 
                     <dropdown-nav :label="`মাসিক কার্যকরী পরিকল্পনা`" :icon="`fa fa-list`">
                         <dropdown-single-item
-                            :to="{name:`AllTask`}"
+                            :to="{name:`Allmashik_karjokori_porikolpona`}"
                             :label="`all`" />
                         <dropdown-single-item
-                            :to="{name:`CreateTask`}"
+                            :to="{name:`Createmashik_karjokori_porikolpona`}"
                             :label="`create`" />
                     </dropdown-nav>
 
@@ -125,37 +125,46 @@
 
                     <dropdown-nav :label="`কার্যকরী পরিকল্পনা বাস্তবায়নের মাসিক রিপোর্ট`" :icon="`fa fa-list`">
                         <dropdown-single-item
-                            :to="{name:`AllTask`}"
+                            :to="{name:`Allkarjokori_porikolpona_bastobayoner_mashik_report`}"
                             :label="`all`" />
                         <dropdown-single-item
-                            :to="{name:`CreateTask`}"
+                            :to="{name:`Createkarjokori_porikolpona_bastobayoner_mashik_report`}"
                             :label="`create`" />
                     </dropdown-nav>
 
                     <dropdown-nav :label="`পরিকল্পনা বাস্তবায়নের ত্রৈমাসিক/ষাণ্মাসিক/বার্ষিক রিপোর্ট`" :icon="`fa fa-list`">
                         <dropdown-single-item
-                            :to="{name:`AllTask`}"
+                            :to="{name:`Allporikolpona_bastobayoner_troimashik_shanmashik_barshik_report`}"
                             :label="`all`" />
                         <dropdown-single-item
-                            :to="{name:`CreateTask`}"
+                            :to="{name:`Createporikolpona_bastobayoner_troimashik_shanmashik_barshik_report`}"
                             :label="`create`" />
                     </dropdown-nav>
 
                     <dropdown-nav :label="`কেন্দ্রিও পরিকল্পনা বাস্তবায়নের রিপোর্ট`" :icon="`fa fa-list`">
                         <dropdown-single-item
-                            :to="{name:`AllTask`}"
+                            :to="{name:`Allkendrer_porikolpona_bastobayoner_report`}"
                             :label="`all`" />
                         <dropdown-single-item
-                            :to="{name:`CreateTask`}"
+                            :to="{name:`Createkendrer_porikolpona_bastobayoner_report`}"
+                            :label="`create`" />
+                    </dropdown-nav>
+
+                    <dropdown-nav :label="`বিভাগের পরিকল্পনা বাস্তবায়নের রিপোর্ট`" :icon="`fa fa-list`">
+                        <dropdown-single-item
+                            :to="{name:`Allbivager_porikolpona_bastobayoner_report`}"
+                            :label="`all`" />
+                        <dropdown-single-item
+                            :to="{name:`Createbivager_porikolpona_bastobayoner_report`}"
                             :label="`create`" />
                     </dropdown-nav>
 
                     <dropdown-nav :label="`আর্কাইভ (পর্যালোচনা)`" :icon="`fa fa-list`">
                         <dropdown-single-item
-                            :to="{name:`AllTask`}"
+                            :to="{name:`Allarchive`}"
                             :label="`all`" />
                         <dropdown-single-item
-                            :to="{name:`CreateTask`}"
+                            :to="{name:`Createarchive`}"
                             :label="`create`" />
                     </dropdown-nav>
 

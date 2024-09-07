@@ -104,6 +104,8 @@ export default {
             all: 'all',
             paginate: 'paginate',
         })
+
+        
     },
     components: {
         TableRowAction,

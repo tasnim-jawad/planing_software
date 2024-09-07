@@ -1,21 +1,21 @@
 import app_config from '../../../app_config';
 import setup_type from './setup_type';
 
-const prefix: string = 'Brand';
+const prefix: string = 'user';
 const setup: setup_type = {
     prefix,
     permission: [`admin`,`super_admin`],
 
     api_host: app_config.api_host,
     api_version: app_config.api_version,
-    api_end_point: 'user',
+    api_end_point: 'users',
 
-    module_name: 'brands',
-    route_prefix: `Brand`,
-    store_prefix: 'brands',
+    module_name: 'user',
+    route_prefix: `user`,
+    store_prefix: 'user',
 
-    select_fields: ['id', 'full_name', 'email', 'slug','created_at', 'status'],
-    sort_by_cols: ['id', 'full_name', 'email', 'slug','created_at', 'status'],
+    select_fields: ['id','full_name', 'email','slug','created_at', 'status'],
+    sort_by_cols: ['id', 'slug','created_at', 'status'],
 
     layout_title: prefix + ' Management',
     page_title: `${prefix} Management`,
