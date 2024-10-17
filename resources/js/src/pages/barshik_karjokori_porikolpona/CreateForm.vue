@@ -2,7 +2,7 @@
     <div class="vue_main_container pb-5 mt-3">
         <div class="table_topbar">
             <h2 class="pages_title">{{ setup.create_page_title }}</h2>
-            <router-link :to="{ name: 'Createbarshik_karjokori_porikolpona' }"  class="btn btn-outline-warning btn-sm">Go Back</router-link>
+            <router-link :to="{ name: `Create${setup.route_prefix}` }"  class="btn btn-outline-warning btn-sm">Go Back</router-link>
         </div>
         <form @submit.prevent="submit_form" class="form_border">
             <!-- <div class="mb-3 form-group">
@@ -125,7 +125,7 @@
 <script>
 // import setup from '../config/setup';
 import { mapActions, mapState, storeToRefs } from "pinia";
-import { barshik_porikolpona_store } from "./custom_store/store";
+import { store as data_store } from "./custom_store/store";
 import MultiSelect from "../../components/MultiSelect.vue";
 export default {
     components: {
@@ -193,12 +193,12 @@ export default {
         row_data:[]
     }),
     computed:{
-        ...mapState(barshik_porikolpona_store,{
+        ...mapState(data_store,{
             setup: 'setup',
         }),
     },
     methods:{
-        ...mapActions(barshik_porikolpona_store, {
+        ...mapActions(data_store, {
             submit_form_store: 'submit_create_form'
         }),
         submit_form:async function(event){

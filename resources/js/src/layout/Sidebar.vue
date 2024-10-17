@@ -51,14 +51,14 @@
                             :label="`create`" />
                     </dropdown-nav> -->
 
-                    <dropdown-nav :label="`Task`" :icon="`fa-solid fa-users`">
+                    <!-- <dropdown-nav :label="`Task`" :icon="`fa-solid fa-users`">
                         <dropdown-single-item
                             :to="{name:`AllTask`}"
                             :label="`all`" />
                         <dropdown-single-item
                             :to="{name:`CreateTask`}"
                             :label="`create`" />
-                    </dropdown-nav>
+                    </dropdown-nav> -->
 
                     <dropdown-nav :label="`কেন্দ্রিও বার্ষিক পরিকল্পনা`" :icon="`fa fa-list`">
                         <dropdown-single-item

@@ -2,7 +2,7 @@
     <div class="vue_main_container pb-5 mt-3">
         <div class="table_topbar">
             <h2 class="pages_title">{{ setup.create_page_title }}</h2>
-            <router-link :to="{ name: 'CreateBarshikPorikolpona' }"  class="btn btn-outline-warning btn-sm">Go Back</router-link>
+            <router-link :to="{ name: 'CreateKendrioBarshikPorikolpona' }"  class="btn btn-outline-warning btn-sm">Go Back</router-link>
         </div>
         <form @submit.prevent="submit_form" class="form_border">
             <div class="mb-3 form-group">
@@ -15,12 +15,6 @@
                     <option value="দফা ৪ঃ ইসলামী শিক্ষা আন্দোলন ও ছাত্র সমস্যার সমাধান">দফা ৪ঃ ইসলামী শিক্ষা আন্দোলন ও ছাত্র সমস্যার সমাধান</option>
                     <option value="দফা ৫ঃ ইসলামী সমাজ বিনির্মাণ">দফা ৫ঃ ইসলামী সমাজ বিনির্মাণ</option>
                 </select>
-            </div>
-            <div class="mb-3 form-group">
-                <label for="target_expectation">
-                    অর্জিতব্য টার্গেট
-                </label>
-                <input type="text" name="target_expectation" class="form-control input_padding" id="target_expectation" >
             </div>
             <div class="mb-3 form-group">
                 <label for="action_plan" class="form-label  text-dark">
@@ -56,6 +50,10 @@
                     </div>
                 </div>
             </div>
+            <div class="mb-3 form-group" v-for="(department,index) in selectedDepartmentsData" :key="index">
+                <label for="">{{ department.title }} বিভাগের রেটিং</label>
+                <input type="text" :name="'rating_' + department.id" :id="'rating_' + department.id" class="form-control input_padding" >
+            </div>
 
             <div class="mb-3 form-group">
                 <label for="unimplemented_plan" class="form-label  text-dark">
@@ -66,6 +64,12 @@
                     <span class="input-group-text" id="percentage-addon">%</span>
                 </div>
             </div>
+            <div class="mb-3 form-group">
+                <label for="action_plan" class="form-label  text-dark">
+                    Suggestion
+                </label>
+                <textarea name="suggestion" class="form-control input_padding" id="suggestion" placeholder="Write your suggestion here..."></textarea>
+            </div>
             <button type="submit" class="btn btn-primary submit_button">Submit</button>
         </form>
     </div>
@@ -75,7 +79,7 @@
 import { mapActions, mapState, storeToRefs } from "pinia";
 import { store } from "./custom_store/store";
 export default {
-    
+
     data:() => ({
         departments: [
             { id: '1', title: 'বিজ্ঞান' },
@@ -95,6 +99,7 @@ export default {
         selectedDepartmentsData: [],
         isDropdownOpen: false,
         submitted: false,
+
     }),
     computed:{
         ...mapState(store,{
@@ -124,7 +129,7 @@ export default {
                 department:this.selectedDepartments,
             })
             event.target.reset();
-            this.$router.push(`/barshik-porikolponas/create`);
+            this.$router.push(`/kendrio-barshik-porikolponas/create`);
         },
         toggleDropdown() {
             this.isDropdownOpen = !this.isDropdownOpen;
@@ -135,7 +140,8 @@ export default {
                 const option = this.departments.find((dep) => dep.title === selectedId);
                 return option ? { id: option.id, title: option.title } : null;
             }).filter(item => item !== null);
-        }
+        },
+
     },
     watch: {
         // Close dropdown if the user clicks outside
@@ -144,13 +150,9 @@ export default {
                 this.isDropdownOpen = false;
             }
             this.updateSelectedDepartmentsData();
-
         },
 
-
     }
-
-
 }
 </script>
 <style>

@@ -16,7 +16,7 @@
                         </div>
                     </form>
                     <h2 class="pages_title">{{ setup.create_page_title }}</h2>
-                    <router-link :to="{ name: 'CreateFormbarshik_karjokori_porikolpona' }" class="btn btn-outline-warning btn-sm">Create new row </router-link>
+                    <router-link :to="{ name: `CreateForm${setup.route_prefix}` }" class="btn btn-outline-warning btn-sm">Create new row </router-link>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive table_responsive card_body_fixed_height">
@@ -84,22 +84,17 @@
 </template>
 <script>
 import { mapActions, mapState } from "pinia";
-import { barshik_porikolpona_store } from "./custom_store/store";
+import { store as data_store } from "./custom_store/store";
 export default {
-  // setup(){
-  //     const createStore = barshik_porikolpona_store();
-  //     const {setup,createdData} = storeToRefs(createStore);
-  //     return {createStore ,setup ,createdData}
-  // }
   data: () => ({}),
   computed: {
-    ...mapState(barshik_porikolpona_store, {
+    ...mapState(data_store, {
       data: "createdData",
       setup: "setup",
     }),
   },
   methods: {
-    ...mapActions(barshik_porikolpona_store, {
+    ...mapActions(data_store, {
       delete_store_data: "delete_created_data",
       import: "import",
     }),

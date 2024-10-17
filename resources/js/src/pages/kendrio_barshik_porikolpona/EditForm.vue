@@ -2,7 +2,7 @@
     <div class="vue_main_container">
         <div class="table_topbar ">
             <h2 class="pages_title">{{ setup.edit_page_title }}</h2>
-            <router-link :to="{ name: 'CreateBarshikPorikolpona' }"  class="btn btn-outline-warning btn-sm">Go Back</router-link>
+            <router-link :to="{ name: 'CreateKendrioBarshikPorikolpona' }"  class="btn btn-outline-warning btn-sm">Go Back</router-link>
         </div>
         <form @submit.prevent="update_data" v-if="all_data !== null" class="form_border">
             <div class="mb-3 form-group">
@@ -15,12 +15,6 @@
                     <option value="দফা ৪ঃ ইসলামী শিক্ষা আন্দোলন ও ছাত্র সমস্যার সমাধান">দফা ৪ঃ ইসলামী শিক্ষা আন্দোলন ও ছাত্র সমস্যার সমাধান</option>
                     <option value="দফা ৫ঃ ইসলামী সমাজ বিনির্মাণ">দফা ৫ঃ ইসলামী সমাজ বিনির্মাণ</option>
                 </select>
-            </div>
-            <div class="mb-3 form-group">
-                <label for="target_expectation">
-                    অর্জিতব্য টার্গেট
-                </label>
-                <input type="text" name="target_expectation" class="form-control input_padding" id="target_expectation" v-model="all_data.target_expectation">
             </div>
             <div class="mb-3 form-group">
                 <label for="action_plan" class="form-label  text-dark">
@@ -55,6 +49,11 @@
                         </label>
                     </div>
                 </div>
+            </div>
+
+            <div class="mb-3 form-group" v-for="(department,index) in selectedDepartmentsData" :key="index">
+                <label for="">{{ department.title }} বিভাগের রেটিং</label>
+                <input type="text" :name="'rating_' + department.id" :id="'rating_' + department.id" class="form-control input_padding" >
             </div>
             <div class="mb-3 form-group">
                 <label for="unimplemented_plan" class="form-label  text-dark">
@@ -171,7 +170,7 @@ export default {
                 data: formData,
                 department:this.selectedDepartments,
             });
-            this.$router.push(`/barshik-porikolponas/create`);
+            this.$router.push(`/Kendrio-barshik-porikolponas/create`);
         },
         toggleDropdown() {
             this.isDropdownOpen = !this.isDropdownOpen;

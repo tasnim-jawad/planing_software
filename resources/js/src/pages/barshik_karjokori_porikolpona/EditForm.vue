@@ -71,7 +71,7 @@
 </template>
 <script>
 import { mapActions, mapState, storeToRefs } from 'pinia';
-import { barshik_porikolpona_store } from './custom_store/store';
+import { store as data_store } from "./custom_store/store";
 import { onMounted, ref } from 'vue';
 
 export default {
@@ -136,7 +136,7 @@ export default {
         isDropdownOpen: false,
     }),
     computed:{
-        ...mapState(barshik_porikolpona_store,{
+        ...mapState(data_store,{
             setup: 'setup',
         }),
     },
@@ -152,7 +152,7 @@ export default {
         console.log(this.all_data);
     },
     methods:{
-        ...mapActions(barshik_porikolpona_store, {
+        ...mapActions(data_store, {
             update_store_data: 'update_created_data',
             edit_store_data: 'edit_created_data',
         }),

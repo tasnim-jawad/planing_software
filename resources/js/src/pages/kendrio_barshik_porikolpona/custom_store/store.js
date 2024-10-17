@@ -18,6 +18,9 @@ export const store = defineStore(`custom_${setup.store_prefix}`, {
             }
             formDataObj['department'] = payload.department;
             this.createdData.push(formDataObj);
+            console.log("createdData",this.createdData);
+            console.log("formDataObj",formDataObj);
+
         },
         async edit_created_data(payload){
             return this.createdData[payload.index];
