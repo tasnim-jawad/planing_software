@@ -60,14 +60,52 @@
                             :label="`create`" />
                     </dropdown-nav> -->
 
-                    <dropdown-nav :label="`কেন্দ্রিও বার্ষিক পরিকল্পনা`" :icon="`fa fa-list`">
+                    <!-- <dropdown-nav :label="`কেন্দ্রিও বার্ষিক পরিকল্পনা`" :icon="`fa fa-list`">
                         <dropdown-single-item
                             :to="{name:`AllKendrioBarshikPorikolpona`}"
                             :label="`all`" />
                         <dropdown-single-item
                             :to="{name:`CreateKendrioBarshikPorikolpona`}"
                             :label="`create`" />
+                    </dropdown-nav> -->
+
+                    <dropdown-nav :label="`বিভাগীয় সেকশন `" :icon="`fa fa-list`">
+                        <dropdown-single-item
+                            :to="{name:`Allbivag_section`}"
+                            :label="`all`" />
+                        <dropdown-single-item
+                            :to="{name:`Createbivag_section`}"
+                            :label="`create`" />
                     </dropdown-nav>
+
+                    <dropdown-nav :label="`বিভাগীয় সাবসেকশন `" :icon="`fa fa-list`">
+                        <dropdown-single-item
+                            :to="{name:`Allbivag_sub_section`}"
+                            :label="`all`" />
+                        <dropdown-single-item
+                            :to="{name:`Createbivag_sub_section`}"
+                            :label="`create`" />
+                    </dropdown-nav>
+
+                    <dropdown-nav :label="`পরিকল্পনার ধরন `" :icon="`fa fa-list`">
+                        <dropdown-single-item
+                            :to="{name:`Allporikolponar_dhoron`}"
+                            :label="`all`" />
+                        <dropdown-single-item
+                            :to="{name:`Createporikolponar_dhoron`}"
+                            :label="`create`" />
+                    </dropdown-nav>
+
+                    <dropdown-nav :label="`বাজেট`" :icon="`fa fa-list`">
+                        <dropdown-single-item
+                            :to="{name:`Allbudget`}"
+                            :label="`all`" />
+                        <dropdown-single-item
+                            :to="{name:`Createbudget`}"
+                            :label="`create`" />
+                    </dropdown-nav>
+
+                    <div class="border"></div>
 
                     <dropdown-nav :label="`বিভাগীয় বার্ষিক পরিকল্পনা`" :icon="`fa fa-list`">
                         <dropdown-single-item
@@ -96,113 +134,122 @@
                             :label="`create`" />
                     </dropdown-nav>
 
-                    <dropdown-nav :label="`মাসিক পরিকল্পনা`" :icon="`fa fa-list`">
+                    <dropdown-nav :label="`কার্যকরী পরিকল্পনা`" :icon="`fa fa-list`">
+                        <dropdown-single-item
+                            :to="{name:`Allkarjokori_porikolpona`}"
+                            :label="`all`" />
+                        <dropdown-single-item
+                            :to="{name:`Createkarjokori_porikolpona`}"
+                            :label="`create`" />
+                    </dropdown-nav>
+
+                    <!-- <dropdown-nav :label="`মাসিক পরিকল্পনা`" :icon="`fa fa-list`">
                         <dropdown-single-item
                             :to="{name:`Allmashik_porikolpona`}"
                             :label="`all`" />
                         <dropdown-single-item
                             :to="{name:`Createmashik_porikolpona`}"
                             :label="`create`" />
-                    </dropdown-nav>
+                    </dropdown-nav> -->
 
-                    <dropdown-nav :label="`মাসিক কার্যকরী পরিকল্পনা`" :icon="`fa fa-list`">
+                    <!-- <dropdown-nav :label="`মাসিক কার্যকরী পরিকল্পনা`" :icon="`fa fa-list`">
                         <dropdown-single-item
                             :to="{name:`Allmashik_karjokori_porikolpona`}"
                             :label="`all`" />
                         <dropdown-single-item
                             :to="{name:`Createmashik_karjokori_porikolpona`}"
                             :label="`create`" />
-                    </dropdown-nav>
+                    </dropdown-nav> -->
 
-                    <dropdown-nav :label="`পরিকল্পনা বাস্তবায়নের মাসিক রিপোর্ট`" :icon="`fa fa-list`">
+                    <!-- <dropdown-nav :label="`পরিকল্পনা বাস্তবায়নের মাসিক রিপোর্ট`" :icon="`fa fa-list`">
                         <dropdown-single-item
                             :to="{name:`Allporikolpona_bastobayoner_mashik_report`}"
                             :label="`all`" />
                         <dropdown-single-item
                             :to="{name:`Createporikolpona_bastobayoner_mashik_report`}"
                             :label="`create`" />
-                    </dropdown-nav>
+                    </dropdown-nav> -->
 
-                    <dropdown-nav :label="`কার্যকরী পরিকল্পনা বাস্তবায়নের মাসিক রিপোর্ট`" :icon="`fa fa-list`">
+                    <!-- <dropdown-nav :label="`কার্যকরী পরিকল্পনা বাস্তবায়নের মাসিক রিপোর্ট`" :icon="`fa fa-list`">
                         <dropdown-single-item
                             :to="{name:`Allkarjokori_porikolpona_bastobayoner_mashik_report`}"
                             :label="`all`" />
                         <dropdown-single-item
                             :to="{name:`Createkarjokori_porikolpona_bastobayoner_mashik_report`}"
                             :label="`create`" />
-                    </dropdown-nav>
+                    </dropdown-nav> -->
 
-                    <dropdown-nav :label="`পরিকল্পনা বাস্তবায়নের ত্রৈমাসিক/ষাণ্মাসিক/বার্ষিক রিপোর্ট`" :icon="`fa fa-list`">
+                    <!-- <dropdown-nav :label="`পরিকল্পনা বাস্তবায়নের ত্রৈমাসিক/ষাণ্মাসিক/বার্ষিক রিপোর্ট`" :icon="`fa fa-list`">
                         <dropdown-single-item
                             :to="{name:`Allporikolpona_bastobayoner_troimashik_shanmashik_barshik_report`}"
                             :label="`all`" />
                         <dropdown-single-item
                             :to="{name:`Createporikolpona_bastobayoner_troimashik_shanmashik_barshik_report`}"
                             :label="`create`" />
-                    </dropdown-nav>
+                    </dropdown-nav> -->
 
-                    <dropdown-nav :label="`কেন্দ্রিও পরিকল্পনা বাস্তবায়নের রিপোর্ট`" :icon="`fa fa-list`">
+                    <!-- <dropdown-nav :label="`কেন্দ্রিও পরিকল্পনা বাস্তবায়নের রিপোর্ট`" :icon="`fa fa-list`">
                         <dropdown-single-item
                             :to="{name:`Allkendrer_porikolpona_bastobayoner_report`}"
                             :label="`all`" />
                         <dropdown-single-item
                             :to="{name:`Createkendrer_porikolpona_bastobayoner_report`}"
                             :label="`create`" />
-                    </dropdown-nav>
+                    </dropdown-nav> -->
 
-                    <dropdown-nav :label="`বিভাগের পরিকল্পনা বাস্তবায়নের রিপোর্ট`" :icon="`fa fa-list`">
+                    <!-- <dropdown-nav :label="`বিভাগের পরিকল্পনা বাস্তবায়নের রিপোর্ট`" :icon="`fa fa-list`">
                         <dropdown-single-item
                             :to="{name:`Allbivager_porikolpona_bastobayoner_report`}"
                             :label="`all`" />
                         <dropdown-single-item
                             :to="{name:`Createbivager_porikolpona_bastobayoner_report`}"
                             :label="`create`" />
-                    </dropdown-nav>
+                    </dropdown-nav> -->
 
-                    <dropdown-nav :label="`আর্কাইভ (পর্যালোচনা)`" :icon="`fa fa-list`">
+                    <!-- <dropdown-nav :label="`আর্কাইভ (পর্যালোচনা)`" :icon="`fa fa-list`">
                         <dropdown-single-item
                             :to="{name:`Allarchive`}"
                             :label="`all`" />
                         <dropdown-single-item
                             :to="{name:`Createarchive`}"
                             :label="`create`" />
-                    </dropdown-nav>
+                    </dropdown-nav> -->
 
-                    <dropdown-nav :label="`বার্ষিক বাজেট`" :icon="`fa fa-list`">
+                    <!-- <dropdown-nav :label="`বার্ষিক বাজেট`" :icon="`fa fa-list`">
                         <dropdown-single-item
                             :to="{name:`AllTask`}"
                             :label="`all`" />
                         <dropdown-single-item
                             :to="{name:`CreateTask`}"
                             :label="`create`" />
-                    </dropdown-nav>
+                    </dropdown-nav> -->
 
-                    <dropdown-nav :label="`শাখা থেকে প্রাপ্ত/সংগৃহীত রিপোর্ট`" :icon="`fa fa-list`">
+                    <!-- <dropdown-nav :label="`শাখা থেকে প্রাপ্ত/সংগৃহীত রিপোর্ট`" :icon="`fa fa-list`">
                         <dropdown-single-item
                             :to="{name:`AllTask`}"
                             :label="`all`" />
                         <dropdown-single-item
                             :to="{name:`CreateTask`}"
                             :label="`create`" />
-                    </dropdown-nav>
+                    </dropdown-nav> -->
 
-                    <dropdown-nav :label="`ব্যবহারবিধি`" :icon="`fa fa-list`">
+                    <!-- <dropdown-nav :label="`ব্যবহারবিধি`" :icon="`fa fa-list`">
                         <dropdown-single-item
                             :to="{name:`AllTask`}"
                             :label="`all`" />
                         <dropdown-single-item
                             :to="{name:`CreateTask`}"
                             :label="`create`" />
-                    </dropdown-nav>
+                    </dropdown-nav> -->
 
-                    <dropdown-nav :label="`বিবিধ`" :icon="`fa fa-list`">
+                    <!-- <dropdown-nav :label="`বিবিধ`" :icon="`fa fa-list`">
                         <dropdown-single-item
                             :to="{name:`AllTask`}"
                             :label="`all`" />
                         <dropdown-single-item
                             :to="{name:`CreateTask`}"
                             :label="`create`" />
-                    </dropdown-nav>
+                    </dropdown-nav> -->
                 </ul>
 
                 <div class="line_divider"></div>

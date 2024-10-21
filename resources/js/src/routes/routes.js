@@ -19,6 +19,11 @@ import porikolpona_bastobayoner_troimashik_shanmashik_barshik_report from '../pa
 import kendrer_porikolpona_bastobayoner_report from '../pages/kendrer_porikolpona_bastobayoner_report/setup/routes';
 import bivager_porikolpona_bastobayoner_report from '../pages/bivager_porikolpona_bastobayoner_report/setup/routes';
 import archive from '../pages/archive/setup/routes';
+import bivag_section from '../pages/bivag_section/setup/routes';
+import bivag_sub_section from '../pages/bivag_sub_section/setup/routes';
+import porikolponar_dhoron from '../pages/porikolponar_dhoron/setup/routes';
+import budget_management from '../pages/budget_management/setup/routes';
+import karjokori_porikolpona from '../pages/karjokori_porikolpona/setup/routes';
 
 // console.log(barsik_porikolpona);
 const routes = createRouter({
@@ -47,6 +52,11 @@ const routes = createRouter({
                 kendrer_porikolpona_bastobayoner_report,
                 bivager_porikolpona_bastobayoner_report,
                 archive,
+                bivag_section,
+                bivag_sub_section,
+                porikolponar_dhoron,
+                budget_management,
+                karjokori_porikolpona,
             ]
         },
     ]

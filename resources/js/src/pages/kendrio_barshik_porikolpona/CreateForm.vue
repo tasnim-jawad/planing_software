@@ -56,6 +56,23 @@
             </div>
 
             <div class="mb-3 form-group">
+                <label for="implementing_departments">
+                    বাস্তবায়নের মাস
+                </label>
+                <div class="custom_select">
+                    <div class="select_selected form-control input_padding" @click="toggle_month_dropdown">{{ selected_months_data.length ? "" : '--- select ---' }}
+                        <template v-if="selected_months_data.length > 0">
+                            <span class="selected_text" v-for="(item,index) in selected_months_data" :key="index">{{ item.title }}</span>
+                        </template>
+                    </div>
+                    <div class="select_items" v-show="is_month_dropdown_open">
+                        <label class="px-2" v-for="month in months" :key="month.id">
+                            <input type="checkbox" :value="month.title" v-model="selected_months" /> {{ month.title }}
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="mb-3 form-group">
                 <label for="unimplemented_plan" class="form-label  text-dark">
                     পরিকল্পনার অবাস্তবায়িত অংশ
                 </label>
@@ -88,6 +105,20 @@ export default {
             { id: '4', title: 'দপ্তর' },
             { id: '5', title: 'প্রকাশনা' },
         ],
+        months: [
+            { id: '1', title: 'জানুয়ারি' },
+            { id: '2', title: 'ফেব্রুয়ারি' },
+            { id: '3', title: 'মার্চ' },
+            { id: '4', title: 'এপ্রিল' },
+            { id: '5', title: 'মে' },
+            { id: '6', title: 'জুন' },
+            { id: '7', title: 'জুলাই' },
+            { id: '8', title: 'আগস্ট' },
+            { id: '9', title: 'সেপ্টেম্বর' },
+            { id: '10', title: 'অক্টোবর' },
+            { id: '11', title: 'নভেম্বর' },
+            { id: '12', title: 'ডিসেম্বর' }
+        ],
         ratings: [1,2,3,4,5,6,7,8,9,10],
         schemes: [
             {id: 1, title: 'ছক ১'},
@@ -98,6 +129,9 @@ export default {
         selectedDepartments: [],
         selectedDepartmentsData: [],
         isDropdownOpen: false,
+        selected_months: [],
+        selected_months_data: [],
+        is_month_dropdown_open: false,
         submitted: false,
 
     }),
@@ -127,17 +161,34 @@ export default {
             await this.submit_form_store({
                 form_data:formData,
                 department:this.selectedDepartments,
+                month:this.selected_months,
             })
             event.target.reset();
             this.$router.push(`/kendrio-barshik-porikolponas/create`);
         },
         toggleDropdown() {
             this.isDropdownOpen = !this.isDropdownOpen;
+            if(this.isDropdownOpen == true){
+                this.is_month_dropdown_open = false
+            }
+        },
+        toggle_month_dropdown() {
+            this.is_month_dropdown_open = !this.is_month_dropdown_open;
+            if(this.is_month_dropdown_open == true){
+                this.isDropdownOpen = false
+            }
         },
 
         updateSelectedDepartmentsData() {
             this.selectedDepartmentsData = this.selectedDepartments.map((selectedId) => {
                 const option = this.departments.find((dep) => dep.title === selectedId);
+                return option ? { id: option.id, title: option.title } : null;
+            }).filter(item => item !== null);
+        },
+
+        update_selected_months_data() {
+            this.selected_months_data = this.selected_months.map((selectedId) => {
+                const option = this.months.find((month) => month.title === selectedId);
                 return option ? { id: option.id, title: option.title } : null;
             }).filter(item => item !== null);
         },
@@ -150,6 +201,12 @@ export default {
                 this.isDropdownOpen = false;
             }
             this.updateSelectedDepartmentsData();
+        },
+        selected_months(newValue) {
+            if (newValue.length === 0) {
+                this.is_month_dropdown_open = false;
+            }
+            this.update_selected_months_data();
         },
 
     }

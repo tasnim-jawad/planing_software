@@ -2,32 +2,9 @@
     <div class="vue_main_container pb-5 mt-3">
         <div class="table_topbar">
             <h2 class="pages_title">{{ setup.create_page_title }}</h2>
-            <router-link :to="{ name: 'CreateBarshikPorikolpona' }"  class="btn btn-outline-warning btn-sm">Go Back</router-link>
+            <router-link :to="{ name:`Create${setup.route_prefix}` }"  class="btn btn-outline-warning btn-sm">Go Back</router-link>
         </div>
         <form @submit.prevent="submit_form" class="form_border">
-            <div class="mb-3 form-group">
-                <label for="clause">দফা</label>
-                <select name="clause" id="clause" class="form-control input_padding">
-                    <option value="">--- select clause ---</option>
-                    <option value="দফা ১ঃ দাওয়াত">দফা ১ঃ দাওয়াত</option>
-                    <option value="দফা ২ঃ সংগঠন">দফা ২ঃ সংগঠন</option>
-                    <option value="দফা ৩ঃ প্রশিক্ষণ">দফা ৩ঃ প্রশিক্ষণ</option>
-                    <option value="দফা ৪ঃ ইসলামী শিক্ষা আন্দোলন ও ছাত্র সমস্যার সমাধান">দফা ৪ঃ ইসলামী শিক্ষা আন্দোলন ও ছাত্র সমস্যার সমাধান</option>
-                    <option value="দফা ৫ঃ ইসলামী সমাজ বিনির্মাণ">দফা ৫ঃ ইসলামী সমাজ বিনির্মাণ</option>
-                </select>
-            </div>
-            <!-- <div class="mb-3 form-group">
-                <label for="target_expectation">
-                    সেকশন
-                </label>
-                <input type="text" name="target_expectation" class="form-control input_padding" id="target_expectation" >
-            </div> -->
-            <!-- <div class="mb-3 form-group">
-                <label for="action_plan" class="form-label  text-dark">
-                    কর্ম পরিকল্পনা
-                </label>
-                <input type="text" name="action_plan" class="form-control input_padding" id="action_plan" >
-            </div> -->
             <div class="mb-3 form-group">
                 <label for="section">
                     সেকশন
@@ -43,7 +20,7 @@
                 <label for="scheme">
                     সাব সেকশন
                 </label>
-                <select name="scheme" id="scheme" class="form-control input_padding">
+                <select name="sub_section" id="sub_section" class="form-control input_padding">
                     <option value="">--- সাব সেকশন বাছাই করুন ---</option>
                     <option v-for="sub_section in sub_sections" :value="sub_section.id" :key="sub_section">
                         {{ sub_section.title }}
@@ -51,15 +28,19 @@
                 </select>
             </div>
             <div class="mb-3 form-group">
-                <label for="porikolponar_biboron" class="form-label  text-dark">
-                    পরিকল্পনার বিবরন
-                </label>
-                <!-- <input type="text" name="action_plan" class="form-control input_padding" id="action_plan" > -->
-                 <textarea class="form-control " name="porikolponar_biboron" id="porikolponar_biboron" rows="2"></textarea>
+                <label for="clause">দফা</label>
+                <select name="clause" id="clause" class="form-control input_padding">
+                    <option value="">--- select clause ---</option>
+                    <option value="দফা ১ঃ দাওয়াত">দফা ১ঃ দাওয়াত</option>
+                    <option value="দফা ২ঃ সংগঠন">দফা ২ঃ সংগঠন</option>
+                    <option value="দফা ৩ঃ প্রশিক্ষণ">দফা ৩ঃ প্রশিক্ষণ</option>
+                    <option value="দফা ৪ঃ ইসলামী শিক্ষা আন্দোলন ও ছাত্র সমস্যার সমাধান">দফা ৪ঃ ইসলামী শিক্ষা আন্দোলন ও ছাত্র সমস্যার সমাধান</option>
+                    <option value="দফা ৫ঃ ইসলামী সমাজ বিনির্মাণ">দফা ৫ঃ ইসলামী সমাজ বিনির্মাণ</option>
+                </select>
             </div>
             <div class="mb-3 form-group">
                 <label for="scheme">
-                    প্ল্যানের ক্যাটাগরি
+                    পরিকল্পনার ধরন
                 </label>
                 <select name="scheme" id="scheme" class="form-control input_padding">
                     <option value="">--- প্ল্যানের ক্যাটাগরি বাছাই করুন ---</option>
@@ -68,6 +49,27 @@
                     </option>
                 </select>
             </div>
+            <!-- <div class="mb-3 form-group">
+                <label for="target_expectation">
+                    সেকশন
+                </label>
+                <input type="text" name="target_expectation" class="form-control input_padding" id="target_expectation" >
+            </div> -->
+            <!-- <div class="mb-3 form-group">
+                <label for="action_plan" class="form-label  text-dark">
+                    কর্ম পরিকল্পনা
+                </label>
+                <input type="text" name="action_plan" class="form-control input_padding" id="action_plan" >
+            </div> -->
+
+            <div class="mb-3 form-group">
+                <label for="porikolponar_biboron" class="form-label  text-dark">
+                    পরিকল্পনার বিবরন
+                </label>
+                <!-- <input type="text" name="action_plan" class="form-control input_padding" id="action_plan" > -->
+                 <textarea class="form-control " name="porikolponar_biboron" id="porikolponar_biboron" rows="2"></textarea>
+            </div>
+
             <div class="mb-3 form-group">
                 <label for="scheme">
                     সংখ্যাতাত্ত্বিক তথ্য

@@ -14,31 +14,106 @@
                         </router-link>
                     </div>
                 </div>
-                <div class="card-body card_body_fixed_height">
-                    <div class="row">
-                        <template v-for="(form_field, index) in form_fields" v-bind:key="index">
-                            <div :class="form_field.row_col_class ? form_field.row_col_class :`col-md-12 mb-2`" >
-                                <div class="form-group">
-                                    <label :for="form_field.name">{{ form_field.label }}</label>
-                                    <input  :type="form_field.type" class="form-control"
-                                            :name="form_field.name" :id="form_field.name"
-                                            :placeholder="`Enter ` + form_field.label"
-                                            :value="param_id ? user[form_field.name] : ''"
-                                            required="">
-                                </div>
-                            </div>
-                        </template>
+                <div class="card-body ">
+                    <div class="mb-3 form-group">
+                        <label for="bivag">
+                            বিভাগ
+                        </label>
+                        <input type="text" name="bivag" class="form-control input_padding" id="bivag" >
                     </div>
-                    <div class="row">
-                        <div class="form-group mb-2">
-                            <label for="role">Role</label>
-                            <select name="role" id="role" class="form-control">
-                                <option value="">--- select role ---</option>
-                                <option value="1">Super Admin</option>
-                                <option value="2">Admin</option>
-                                <option value="3">Department</option>
-                            </select>
-                            <!-- <select type="password" class="form-control" name="password" id="password"> -->
+                    <multi-select
+                        :items="months"
+                        label="বাস্তবায়নের মাস"
+                        labelFor="implementing_month"
+                        placeholder="--- select month ---"
+                    />
+                    <!-- <div class="mb-3 form-group">
+                        <label for="section">
+                            সেকশন
+                        </label>
+                        <select name="section" id="section" class="form-control input_padding" v-model="section">
+                            <option value="">--- সেকশন বাছাই করুন ---</option>
+                            <option v-for="section in sections" :value="section.id" :key="section">
+                                {{ section.title }}
+                            </option>
+                        </select>
+                    </div> -->
+                    <div class="card mb-3">
+                        <div class="card-header">
+                            কার্যকরী পরুকল্পনা যুক্ত করুন
+                        </div>
+                        <div class="card-body overflow-x-auto">
+                            <table class="table table-responsive karjokori_porikolpona_input_table">
+                                <thead>
+                                    <tr >
+                                        <th>Action</th>
+                                        <th>ক্রম</th>
+                                        <th>কার্যকরী পরুকল্পনার বিবরণ</th>
+                                        <th>সময়সীমার ধরন</th>
+                                        <th>সময়কাল</th>
+                                        <th>বাস্তবায়নকারী</th>
+                                        <th>বাস্তবায়নের সহযোগী</th>
+                                        <th>রেটিং</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr v-for="(row,index) in row_data" :key="index">
+                                        <td>
+                                            <a class="btn btn-sm btn-outline-danger" @click.prevent="deleteRow(index)">
+                                                <i class="fa-solid fa-trash"></i>
+                                            </a>
+                                        </td>
+                                        <td scope="row">{{ index + 1 }}</td>
+                                        <td>
+                                            <textarea class="form-control " name="porikolponar_biboron" id="porikolponar_biboron" rows="2" v-model="row.porikolponar_biboron"></textarea>
+                                        </td>
+                                        <td>
+                                            <select name="time_limit_type[]" id="time_limit_type" class="form-control input_padding" v-model="row.time_limit_type">
+                                                <option value="">-- select --</option>
+                                                <option value="">-- select --</option>
+                                                <option v-for="time_limit_type in time_limit_types" :value="time_limit_type.id" :key="time_limit_type">
+                                                    {{ time_limit_type.title }}
+                                                </option>
+                                            </select>
+                                        </td>
+                                        <td>
+                                            <select name="time_limit[]" id="time_limit" class="form-control input_padding" v-model="row.time_limit">
+                                                <option value="">-- select --</option>
+                                                <option v-for="time_limit in time_limits" :value="time_limit.id" :key="time_limit">
+                                                    {{ time_limit.title }}
+                                                </option>
+                                            </select>
+                                        </td>
+                                        <td>
+                                            <select name="bastobayonkari[]" id="bastobayonkari" class="form-control input_padding" v-model="row.bastobayonkari">
+                                                <option value="">-- select --</option>
+                                                <option v-for="user in users" :value="user.id" :key="user">
+                                                    {{ user.title }}
+                                                </option>
+                                            </select>
+                                        </td>
+                                        <td>
+                                            <select name="bastobayoner_shohojogi[]" id="bastobayoner_shohojogi" class="form-control input_padding" v-model="row.bastobayoner_shohojogi">
+                                                <option value="">-- select --</option>
+                                                <option v-for="user in users" :value="user.id" :key="user">
+                                                    {{ user.title }}
+                                                </option>
+                                            </select>
+                                        </td>
+                                        <td>
+                                            <select name="rating[]" id="rating" class="form-control input_padding" v-model="row.rating">
+                                                <option value="">-- select --</option>
+                                                <option v-for="item in 365" :value="item.id" :key="item">
+                                                    {{ item }}
+                                                </option>
+                                            </select>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="card-footer text-end">
+                            <a class="btn btn-sm btn-outline-primary" @click.prevent="add_row"> Add New Row</a>
                         </div>
                     </div>
                 </div>
@@ -58,58 +133,77 @@ import { mapActions, mapState } from 'pinia'
 import { store as user_store } from './setup/store';
 import setup from "./setup";
 import form_fields from "./setup/form_fields";
+import MultiSelect from "../../components/MultiSelect.vue";
 
 export default {
-    // data: () => ({
-    //     route_prefix: '',
-    //     form_fields,
-    //     param_id: null,
-    // }),
-    // created: async function () {
-    //     let id = this.param_id = this.$route.params.id;
-    //     this.route_prefix = setup.route_prefix;
-    //     // console.log(this.form_fields);
-    //     // this.reset_fields();
-
-    //     // if (id) {
-    //     //     this.set_fields(id);
-    //     // }
-
-    //     if (id) {
-    //         this.details(id);
-    //     }
-    // },
-    // methods: {
-    //     ...mapActions(user_store, {
-    //         details: 'show_user_details',
-    //         create: 'submit_create_form',
-    //         update: 'update_user',
-    //     }),
-
-    //     submitHandler: async function ($event) {
-    //         console.log("submitted");
-    //         if(this.param_id){
-
-    //         }else{
-    //             let formData = new FormData($event.target);
-    //             await this.create({
-    //                 form_data:formData,
-    //             })
-    //             $event.target.reset();
-    //         }
-
-    //     },
-    // },
-
-    // computed: {
-    //     ...mapState(user_store, {
-    //         user:'user_details',
-    //     }),
-    // },
+    components: {
+        MultiSelect,
+    },
     data: () => ({
         route_prefix: '',
         form_fields,
         param_id: null,
+
+        is_umbrella:'',
+        section:'',
+        months: [
+            { id: '1', title: 'জানুয়ারি' },
+            { id: '2', title: 'ফেব্রুয়ারি' },
+            { id: '3', title: 'মার্চ' },
+            { id: '4', title: 'এপ্রিল' },
+            { id: '5', title: 'মে' },
+            { id: '6', title: 'জুন' },
+            { id: '7', title: 'জুলাই' },
+            { id: '8', title: 'আগস্ট' },
+            { id: '9', title: 'সেপ্টেম্বর' },
+            { id: '10', title: 'অক্টোবর' },
+            { id: '11', title: 'নভেম্বর' },
+            { id: '12', title: 'ডিসেম্বর' },
+        ],
+        sections: [
+            {id: 1, title: 'Infrastructure Management'},
+            {id: 2, title: 'Software Development'},
+            {id: 3, title: 'Cybersecurity'},
+        ],
+        time_limit_types: [
+            { id: 1, title: 'দৈনিক' },
+            { id: 2, title: 'সাপ্তাহিক' },
+            { id: 3, title: 'দশক' },
+            { id: 4, title: 'পাক্ষিক' },
+            { id: 5, title: 'মাসিক' },
+            { id: 6, title: 'দ্বিমাসিক' },
+            { id: 7, title: 'ত্রৈমাসিক' },
+            { id: 8, title: 'ষাণ্মাসিক' },
+            { id: 9, title: 'বার্ষিক' },
+        ],
+        time_limits: [
+            { id: 1, title: '১ দিন' },
+            { id: 2, title: '২ দিন' },
+            { id: 3, title: '৩ দিন' },
+            { id: 4, title: '৪ দিন' },
+            { id: 5, title: '৫ দিন' },
+            { id: 6, title: '৬ দিন' },
+        ],
+        users: [
+            { id: 1, title: 'আহমেদ' },
+            { id: 2, title: 'মাহমুদ' },
+            { id: 3, title: 'রহমান' },
+            { id: 4, title: 'করিম' },
+            { id: 5, title: 'হোসেন' },
+            { id: 6, title: 'উদ্দিন' },
+        ],
+        ratings: [1,2,3,4,5,6,7,8,9,10],
+        submitted: false,
+        row_data_object:{
+            'porikolponar_biboron': '',
+            'time_limit_type': '',
+            'time_limit': '',
+            'bastobayonkari': '',
+            'bastobayoner_shohojogi': '',
+            'rating': '',
+        },
+        row_data:[]
+
     }),
     created: async function () {
         let id = this.param_id = this.$route.params.id;
@@ -161,6 +255,13 @@ export default {
                 }
             }
         },
+
+        add_row:function(){
+            this.row_data.push({...this.row_data_object})
+        },
+        deleteRow(index) {
+            this.row_data.splice(index, 1);
+        }
     },
 
     computed: {

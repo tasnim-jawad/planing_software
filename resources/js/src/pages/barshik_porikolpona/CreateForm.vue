@@ -2,7 +2,7 @@
     <div class="vue_main_container pb-5 mt-3">
         <div class="table_topbar">
             <h2 class="pages_title">{{ setup.create_page_title }}</h2>
-            <router-link :to="{ name: 'CreateBarshikPorikolpona' }"  class="btn btn-outline-warning btn-sm">Go Back</router-link>
+            <router-link :to="{ name: 'CreateKendrioBarshikPorikolpona' }"  class="btn btn-outline-warning btn-sm">Go Back</router-link>
         </div>
         <form @submit.prevent="submit_form" class="form_border">
             <div class="mb-3 form-group">
@@ -15,12 +15,6 @@
                     <option value="দফা ৪ঃ ইসলামী শিক্ষা আন্দোলন ও ছাত্র সমস্যার সমাধান">দফা ৪ঃ ইসলামী শিক্ষা আন্দোলন ও ছাত্র সমস্যার সমাধান</option>
                     <option value="দফা ৫ঃ ইসলামী সমাজ বিনির্মাণ">দফা ৫ঃ ইসলামী সমাজ বিনির্মাণ</option>
                 </select>
-            </div>
-            <div class="mb-3 form-group">
-                <label for="target_expectation">
-                    অর্জিতব্য টার্গেট
-                </label>
-                <input type="text" name="target_expectation" class="form-control input_padding" id="target_expectation" >
             </div>
             <div class="mb-3 form-group">
                 <label for="action_plan" class="form-label  text-dark">
@@ -56,7 +50,28 @@
                     </div>
                 </div>
             </div>
+            <div class="mb-3 form-group" v-for="(department,index) in selectedDepartmentsData" :key="index">
+                <label for="">{{ department.title }} বিভাগের রেটিং</label>
+                <input type="text" :name="'rating_' + department.id" :id="'rating_' + department.id" class="form-control input_padding" >
+            </div>
 
+            <div class="mb-3 form-group">
+                <label for="implementing_departments">
+                    বাস্তবায়নের মাস
+                </label>
+                <div class="custom_select">
+                    <div class="select_selected form-control input_padding" @click="toggle_month_dropdown">{{ selected_months_data.length ? "" : '--- select ---' }}
+                        <template v-if="selected_months_data.length > 0">
+                            <span class="selected_text" v-for="(item,index) in selected_months_data" :key="index">{{ item.title }}</span>
+                        </template>
+                    </div>
+                    <div class="select_items" v-show="is_month_dropdown_open">
+                        <label class="px-2" v-for="month in months" :key="month.id">
+                            <input type="checkbox" :value="month.title" v-model="selected_months" /> {{ month.title }}
+                        </label>
+                    </div>
+                </div>
+            </div>
             <div class="mb-3 form-group">
                 <label for="unimplemented_plan" class="form-label  text-dark">
                     পরিকল্পনার অবাস্তবায়িত অংশ
@@ -66,15 +81,12 @@
                     <span class="input-group-text" id="percentage-addon">%</span>
                 </div>
             </div>
-            <!-- <template v-if="selectedDepartmentsData.length > 0">
-                <div v-for="(data,index) in selectedDepartmentsData" class="mb-3 form-group" :key="index">
-                    <label :for="`rating_dep_${data.id}`">Rating of {{ data.title }}</label>
-                    <select :name="`rating_dep_${data.id}`" :id="`rating_dep_${data.id}`" class="form-control input_padding">
-                        <option value="">--- select rating ---</option>
-                        <option v-for="rating in ratings" :value="rating" :key="rating">{{ rating }}</option>
-                    </select>
-                </div>
-            </template> -->
+            <div class="mb-3 form-group">
+                <label for="action_plan" class="form-label  text-dark">
+                    Suggestion
+                </label>
+                <textarea name="suggestion" class="form-control input_padding" id="suggestion" placeholder="Write your suggestion here..."></textarea>
+            </div>
             <button type="submit" class="btn btn-primary submit_button">Submit</button>
         </form>
     </div>
@@ -82,21 +94,9 @@
 <script>
 // import setup from '../config/setup';
 import { mapActions, mapState, storeToRefs } from "pinia";
-import { barshik_porikolpona_store } from "./custom_store/store";
+import { store } from "./custom_store/store";
 export default {
-    // setup:function(){
-    //     const createStore = barshik_porikolpona_store();
-    //     // console.log("setup" , createStore.setup,createStore.setup.create_page_title);
-    //     console.log("createStore",createStore);
-    //     const {setup} = storeToRefs(createStore)
 
-    //     const submitForm = async (event) => {
-    //             let formData = new FormData(event.target);
-    //             await createStore.submit_create_form(formData);
-    //             event.target.reset();
-    //         };
-    //     return {createStore ,setup,submitForm}
-    // },
     data:() => ({
         departments: [
             { id: '1', title: 'বিজ্ঞান' },
@@ -104,6 +104,20 @@ export default {
             { id: '3', title: 'ছাত্র কল্যাণ' },
             { id: '4', title: 'দপ্তর' },
             { id: '5', title: 'প্রকাশনা' },
+        ],
+        months: [
+            { id: '1', title: 'জানুয়ারি' },
+            { id: '2', title: 'ফেব্রুয়ারি' },
+            { id: '3', title: 'মার্চ' },
+            { id: '4', title: 'এপ্রিল' },
+            { id: '5', title: 'মে' },
+            { id: '6', title: 'জুন' },
+            { id: '7', title: 'জুলাই' },
+            { id: '8', title: 'আগস্ট' },
+            { id: '9', title: 'সেপ্টেম্বর' },
+            { id: '10', title: 'অক্টোবর' },
+            { id: '11', title: 'নভেম্বর' },
+            { id: '12', title: 'ডিসেম্বর' }
         ],
         ratings: [1,2,3,4,5,6,7,8,9,10],
         schemes: [
@@ -115,10 +129,14 @@ export default {
         selectedDepartments: [],
         selectedDepartmentsData: [],
         isDropdownOpen: false,
+        selected_months: [],
+        selected_months_data: [],
+        is_month_dropdown_open: false,
         submitted: false,
+
     }),
     computed:{
-        ...mapState(barshik_porikolpona_store,{
+        ...mapState(store,{
             setup: 'setup',
         }),
 
@@ -130,7 +148,7 @@ export default {
         // },
     },
     methods:{
-        ...mapActions(barshik_porikolpona_store, {
+        ...mapActions(store, {
             submit_form_store: 'submit_create_form'
         }),
         submit_form:async function(event){
@@ -143,12 +161,22 @@ export default {
             await this.submit_form_store({
                 form_data:formData,
                 department:this.selectedDepartments,
+                month:this.selected_months,
             })
             event.target.reset();
-            this.$router.push(`/barshik-porikolponas/create`);
+            this.$router.push(`/kendrio-barshik-porikolponas/create`);
         },
         toggleDropdown() {
             this.isDropdownOpen = !this.isDropdownOpen;
+            if(this.isDropdownOpen == true){
+                this.is_month_dropdown_open = false
+            }
+        },
+        toggle_month_dropdown() {
+            this.is_month_dropdown_open = !this.is_month_dropdown_open;
+            if(this.is_month_dropdown_open == true){
+                this.isDropdownOpen = false
+            }
         },
 
         updateSelectedDepartmentsData() {
@@ -156,7 +184,15 @@ export default {
                 const option = this.departments.find((dep) => dep.title === selectedId);
                 return option ? { id: option.id, title: option.title } : null;
             }).filter(item => item !== null);
-        }
+        },
+
+        update_selected_months_data() {
+            this.selected_months_data = this.selected_months.map((selectedId) => {
+                const option = this.months.find((month) => month.title === selectedId);
+                return option ? { id: option.id, title: option.title } : null;
+            }).filter(item => item !== null);
+        },
+
     },
     watch: {
         // Close dropdown if the user clicks outside
@@ -165,13 +201,15 @@ export default {
                 this.isDropdownOpen = false;
             }
             this.updateSelectedDepartmentsData();
-
+        },
+        selected_months(newValue) {
+            if (newValue.length === 0) {
+                this.is_month_dropdown_open = false;
+            }
+            this.update_selected_months_data();
         },
 
-
     }
-
-
 }
 </script>
 <style>

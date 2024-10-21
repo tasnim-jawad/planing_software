@@ -17,6 +17,7 @@ export const store = defineStore(`custom_${setup.store_prefix}`, {
                 formDataObj[key] = value;
             }
             formDataObj['department'] = payload.department;
+            formDataObj['month'] = payload.month;
             this.createdData.push(formDataObj);
             console.log("createdData",this.createdData);
             console.log("formDataObj",formDataObj);

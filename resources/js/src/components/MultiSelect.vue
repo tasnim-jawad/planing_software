@@ -85,8 +85,10 @@
         scrollbar-width: none;
         box-shadow: 0px 2px 5px 0px rgb(49 49 71 / 65%);
         padding: 5px;
-        z-index: 999;
+        z-index: 9999;
         background-color: white;
+        padding-bottom: 30px;
+        min-width: 300px;
     }
     .selected_text {
         font-size: 12px;

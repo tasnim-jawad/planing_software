@@ -2,10 +2,10 @@
     <div class="vue_main_container pb-5 mt-3">
         <div class="table_topbar">
             <h2 class="pages_title">{{ setup.create_page_title }}</h2>
-            <router-link :to="{ name: `Create${setup.route_prefix}` }"  class="btn btn-outline-warning btn-sm">Go Back</router-link>
+            <router-link :to="{ name: `All${setup.route_prefix}` }"  class="btn btn-outline-warning btn-sm">Go Back</router-link>
         </div>
         <form @submit.prevent="submit_form" class="form_border">
-            <!-- <div class="mb-3 form-group">
+            <div class="mb-3 form-group">
                 <label for="clause">দফা</label>
                 <select name="clause" id="clause" class="form-control input_padding">
                     <option value="">--- select clause ---</option>
@@ -15,7 +15,18 @@
                     <option value="দফা ৪ঃ ইসলামী শিক্ষা আন্দোলন ও ছাত্র সমস্যার সমাধান">দফা ৪ঃ ইসলামী শিক্ষা আন্দোলন ও ছাত্র সমস্যার সমাধান</option>
                     <option value="দফা ৫ঃ ইসলামী সমাজ বিনির্মাণ">দফা ৫ঃ ইসলামী সমাজ বিনির্মাণ</option>
                 </select>
-            </div> -->
+            </div>
+            <div class="mb-3 form-group">
+                <label for="target_expectation" class="text-nowrap">
+                    অর্জিতব্য টার্গেট
+                </label>
+                <select name="orgitobbo_target" id="orgitobbo_target" class="form-control input_padding">
+                    <option value="">--- টার্গেট বাছাই করুন ---</option>
+                    <option v-for="orgitobbo_target in orgitobbo_targets" :value="orgitobbo_target.id" :key="orgitobbo_target">
+                        {{ orgitobbo_target.title }}
+                    </option>
+                </select>
+            </div>
             <div class="mb-3 form-group">
                 <label for="bivag">
                     বিভাগ
@@ -43,7 +54,7 @@
                 <div class="card-header">
                     কার্যকরী পরুকল্পনা যুক্ত করুন
                 </div>
-                <div class="card-body">
+                <div class="card-body overflow-x-auto">
                     <table class="table table-responsive karjokori_porikolpona_input_table">
                         <thead>
                             <tr >
@@ -134,6 +145,13 @@ export default {
     data:() => ({
         is_umbrella:'',
         section:'',
+        orgitobbo_targets: [
+            { id: '1', title: 'জনে জনে দাওয়াত' },
+            { id: '2', title: 'চলো গ্রামে যাই কর্মসূচী' },
+            { id: '3', title: 'বৃক্ষ রোপণ কর্মসূচী' },
+            { id: '4', title: 'দাওয়াতি দশক কর্মসূচী' },
+            { id: '5', title: 'প্রকাশনা সপ্তাহ' },
+        ],
         months: [
             { id: '1', title: 'জানুয়ারি' },
             { id: '2', title: 'ফেব্রুয়ারি' },
@@ -190,7 +208,9 @@ export default {
             'bastobayoner_shohojogi': '',
             'rating': '',
         },
-        row_data:[]
+        row_data:[],
+
+
     }),
     computed:{
         ...mapState(data_store,{
@@ -213,7 +233,7 @@ export default {
                 department:this.selectedDepartments,
             })
             event.target.reset();
-            this.$router.push(`/bivagio-barshik-porikolpona/create`);
+            this.$router.push(`/bivagio-barshik-porikolpona/all`);
         },
 
         add_row:function(){

@@ -49,6 +49,7 @@
                                     <th>ছক</th>
                                     <th>বাস্তবায়নকারী বিভাগ</th>
                                     <th>বিভাগের রেটিং</th>
+                                    <th>বাস্তবায়নের মাস</th>
                                     <th>পরিকল্পনার অবাস্তবায়িত অংশ</th>
                                     <th>Suggestion</th>
                                 </tr>
@@ -80,6 +81,9 @@
                                     </td>
                                     <td>
                                         {{ item.department.join(', ') }}
+                                    </td>
+                                    <td>
+                                        {{ item.month.join(', ') }}
                                     </td>
                                     <td>
                                         {{ item.unimplemented_plan }}
