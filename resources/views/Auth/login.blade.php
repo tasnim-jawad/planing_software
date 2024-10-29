@@ -91,7 +91,7 @@
                                                 window.location.href = '/';
                                             }else if(data.user.role == 2){
                                                 console.log('admin');
-                                                window.location.href = '/';
+                                                window.location.href = '/department';
                                             }else if(data.user.role == 3){
                                                 console.log('user');
                                                 window.location.href = '/';

@@ -31,7 +31,7 @@
 
 main porikolpona    // বার্ষিক পরিকল্পনা 
     sub porikolpona   // বার্ষিক কার্যকরী পরিকল্পনা 
-        masikporikolpona  // কার্যকরী পরিকল্পনা 
+        masikporikolpona  // কার্যকরী পরিকল্পনা ( মাস ভিত্তিক পরিকল্পনা, প্রতি মাসের কার্যকরী পরিকল্পনা থেকে মাসিক পরিকল্পনা যুক্ত হবে, আগের মাসের অবাস্তবায়িত, নতুন যুক্ত করা যাব্রে)
             auto subporikolpona
             prev not completed
             new create

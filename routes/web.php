@@ -6,6 +6,9 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('app');
 });
+Route::get('/department', function () {
+    return view('department.app');
+});
 
 Route::get('/login', function () {
     return view('Auth.login');
