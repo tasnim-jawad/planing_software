@@ -17,6 +17,12 @@
                 </select>
             </div>
             <div class="mb-3 form-group">
+                <label for="bivag">
+                    বিভাগ
+                </label>
+                <input type="text" name="bivag" class="form-control input_padding" id="bivag" >
+            </div>
+            <div class="mb-3 form-group">
                 <label for="target_expectation" class="text-nowrap">
                     অর্জিতব্য টার্গেট
                 </label>
@@ -27,18 +33,7 @@
                     </option>
                 </select>
             </div>
-            <div class="mb-3 form-group">
-                <label for="bivag">
-                    বিভাগ
-                </label>
-                <input type="text" name="bivag" class="form-control input_padding" id="bivag" >
-            </div>
-            <multi-select
-                :items="months"
-                label="বাস্তবায়নের মাস"
-                labelFor="implementing_month"
-                placeholder="--- select month ---"
-            />
+
             <!-- <div class="mb-3 form-group">
                 <label for="section">
                     সেকশন
@@ -61,6 +56,7 @@
                                 <th>Action</th>
                                 <th>ক্রম</th>
                                 <th>কার্যকরী পরুকল্পনার বিবরণ</th>
+                                <th>বাস্তবায়নের মাস</th>
                                 <th>সময়সীমার ধরন</th>
                                 <th>সময়কাল</th>
                                 <th>বাস্তবায়নকারী</th>
@@ -78,6 +74,20 @@
                                 <td scope="row">{{ index + 1 }}</td>
                                 <td>
                                     <textarea class="form-control " name="porikolponar_biboron" id="porikolponar_biboron" rows="2" v-model="row.porikolponar_biboron"></textarea>
+                                </td>
+                                <td>
+                                    <!-- <multi-select
+                                        :items="months"
+                                        label="বাস্তবায়নের মাস"
+                                        labelFor="implementing_month"
+                                        placeholder="--- select month ---"
+                                    /> -->
+                                    <select name="implementing_month[]" id="implementing_month" class="form-control input_padding" v-model="row.implementing_month">
+                                        <option value="">-- select --</option>
+                                        <option v-for="month in months" :value="month.id" :key="month">
+                                            {{ month.title }}
+                                        </option>
+                                    </select>
                                 </td>
                                 <td>
                                     <select name="time_limit_type[]" id="time_limit_type" class="form-control input_padding" v-model="row.time_limit_type">
@@ -113,12 +123,13 @@
                                     </select>
                                 </td>
                                 <td>
-                                    <select name="rating[]" id="rating" class="form-control input_padding" v-model="row.rating">
+                                    <input type="number" name="rating[]" id="rating" class="form-control input_padding" v-model="row.rating">
+                                    <!-- <select name="rating[]" id="rating" class="form-control input_padding" v-model="row.rating">
                                         <option value="">-- select --</option>
                                         <option v-for="item in 365" :value="item.id" :key="item">
                                             {{ item }}
                                         </option>
-                                    </select>
+                                    </select> -->
                                 </td>
                             </tr>
                         </tbody>
@@ -202,6 +213,7 @@ export default {
         submitted: false,
         row_data_object:{
             'porikolponar_biboron': '',
+            'implementing_month': '',
             'time_limit_type': '',
             'time_limit': '',
             'bastobayonkari': '',

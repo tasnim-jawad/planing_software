@@ -42,6 +42,28 @@
                             :label="`create`" />
                     </dropdown-nav>
 
+                    <div class="nav_option">
+                        কেন্দ্রিও
+                    </div>
+
+                    <dropdown-nav :label="`বার্ষিক পরিকল্পনা`" :icon="`fa fa-list`">
+                        <dropdown-single-item
+                            :to="{name:`AllBarshikPorikolpona`}"
+                            :label="`all`" />
+                        <dropdown-single-item
+                            :to="{name:`CreateBarshikPorikolpona`}"
+                            :label="`create`" />
+                    </dropdown-nav>
+
+                    <dropdown-nav :label="`বার্ষিক কার্যকরী পরিকল্পনা`" :icon="`fa fa-list`">
+                        <dropdown-single-item
+                            :to="{name:`Allbarshik_karjokori_porikolpona`}"
+                            :label="`all`" />
+                        <dropdown-single-item
+                            :to="{name:`Createbarshik_karjokori_porikolpona`}"
+                            :label="`create`" />
+                    </dropdown-nav>
+
                     <!-- <dropdown-nav :label="`Barsik Porikolpona`" :icon="`fa fa-list`">
                         <dropdown-single-item
                             :to="{name:`AllBarshikPorikolpona`}"
@@ -68,6 +90,64 @@
                             :to="{name:`CreateKendrioBarshikPorikolpona`}"
                             :label="`create`" />
                     </dropdown-nav> -->
+
+
+                    <div class="nav_option">
+                        বিভাগীয়
+                    </div>
+
+                    <dropdown-nav :label="`বার্ষিক পরিকল্পনা`" :icon="`fa fa-list`">
+                        <dropdown-single-item
+                            :to="{name:`Allbivagio_barshik_porikolpona`}"
+                            :label="`all`" />
+                        <dropdown-single-item
+                            :to="{name:`Createbivagio_barshik_porikolpona`}"
+                            :label="`create`" />
+                    </dropdown-nav>
+
+
+                    <dropdown-nav :label="`বার্ষিক কার্যকরী পরিকল্পনা`" :icon="`fa fa-list`">
+                        <dropdown-single-item
+                            :to="{name:`Allkarjokori_porikolpona`}"
+                            :label="`all`" />
+                        <dropdown-single-item
+                            :to="{name:`Createkarjokori_porikolpona`}"
+                            :label="`create`" />
+                    </dropdown-nav>
+
+                    <dropdown-nav :label="`মাসিক পরিকল্পনা`" :icon="`fa fa-list`">
+                        <dropdown-single-item
+                            :to="{name:`Allmashik_porikolpona`}"
+                            :label="`all`" />
+                        <dropdown-single-item
+                            :to="{name:`Createmashik_porikolpona`}"
+                            :label="`create`" />
+                    </dropdown-nav>
+                    <div class="nav_option">
+                        বিভাগীয় বাজেট
+                    </div>
+                    <dropdown-nav :label="`বাজেট আয়`" :icon="`fa fa-list`">
+                        <dropdown-single-item
+                            :to="{name:`Allbudget`}"
+                            :label="`all`" />
+                        <dropdown-single-item
+                            :to="{name:`Createbudget`}"
+                            :label="`create`" />
+                    </dropdown-nav>
+
+                    <dropdown-nav :label="`বাজেট ব্যয়`" :icon="`fa fa-list`">
+                        <dropdown-single-item
+                            :to="{name:`Allbudget`}"
+                            :label="`all`" />
+                        <dropdown-single-item
+                            :to="{name:`Createbudget`}"
+                            :label="`create`" />
+                    </dropdown-nav>
+
+
+                    <div class="nav_option">
+                        settings
+                    </div>
 
                     <dropdown-nav :label="`বিভাগীয় সেকশন `" :icon="`fa fa-list`">
                         <dropdown-single-item
@@ -96,52 +176,6 @@
                             :label="`create`" />
                     </dropdown-nav>
 
-                    <dropdown-nav :label="`বাজেট`" :icon="`fa fa-list`">
-                        <dropdown-single-item
-                            :to="{name:`Allbudget`}"
-                            :label="`all`" />
-                        <dropdown-single-item
-                            :to="{name:`Createbudget`}"
-                            :label="`create`" />
-                    </dropdown-nav>
-
-                    <div class="border"></div>
-
-                    <dropdown-nav :label="`বিভাগীয় বার্ষিক পরিকল্পনা`" :icon="`fa fa-list`">
-                        <dropdown-single-item
-                            :to="{name:`Allbivagio_barshik_porikolpona`}"
-                            :label="`all`" />
-                        <dropdown-single-item
-                            :to="{name:`Createbivagio_barshik_porikolpona`}"
-                            :label="`create`" />
-                    </dropdown-nav>
-
-                    <dropdown-nav :label="`বার্ষিক পরিকল্পনা`" :icon="`fa fa-list`">
-                        <dropdown-single-item
-                            :to="{name:`AllBarshikPorikolpona`}"
-                            :label="`all`" />
-                        <dropdown-single-item
-                            :to="{name:`CreateBarshikPorikolpona`}"
-                            :label="`create`" />
-                    </dropdown-nav>
-
-                    <dropdown-nav :label="`বার্ষিক কার্যকরী পরিকল্পনা`" :icon="`fa fa-list`">
-                        <dropdown-single-item
-                            :to="{name:`Allbarshik_karjokori_porikolpona`}"
-                            :label="`all`" />
-                        <dropdown-single-item
-                            :to="{name:`Createbarshik_karjokori_porikolpona`}"
-                            :label="`create`" />
-                    </dropdown-nav>
-
-                    <dropdown-nav :label="`কার্যকরী পরিকল্পনা`" :icon="`fa fa-list`">
-                        <dropdown-single-item
-                            :to="{name:`Allkarjokori_porikolpona`}"
-                            :label="`all`" />
-                        <dropdown-single-item
-                            :to="{name:`Createkarjokori_porikolpona`}"
-                            :label="`create`" />
-                    </dropdown-nav>
 
                     <!-- <dropdown-nav :label="`মাসিক পরিকল্পনা`" :icon="`fa fa-list`">
                         <dropdown-single-item

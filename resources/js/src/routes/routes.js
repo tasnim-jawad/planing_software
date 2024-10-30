@@ -21,7 +21,7 @@ import bivager_porikolpona_bastobayoner_report from '../pages/bivager_porikolpon
 import archive from '../pages/archive/setup/routes';
 import bivag_section from '../pages/bivag_section/setup/routes';
 import bivag_sub_section from '../pages/bivag_sub_section/setup/routes';
-import porikolponar_dhoron from '../pages/porikolponar_dhoron/setup/routes';
+import porikolponar_dhoron from '../pages/settings/porikolponar_dhoron/setup/routes';
 import budget_management from '../pages/budget_management/setup/routes';
 import karjokori_porikolpona from '../pages/karjokori_porikolpona/setup/routes';
 

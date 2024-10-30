@@ -15,14 +15,14 @@
                     </div>
                 </div>
                 <div class="card-body ">
-                    <div class="mb-3 form-group">
+                    <!-- <div class="mb-3 form-group">
                         <label for="clause">বাজেটের ধরন</label>
                         <select name="bufget_type" id="bufget_type" class="form-control input_padding">
                             <option value="">--- select clause ---</option>
                             <option value="income">আয়</option>
                             <option value="expense">ব্যয়</option>
                         </select>
-                    </div>
+                    </div> -->
                     <div class="mb-3 form-group">
                         <label for="section">
                             সেকশন
@@ -70,7 +70,7 @@
                     </div>
                     <div class="mb-3 form-group">
                         <label for="porikolponar_biboron" class="form-label  text-dark">
-                            ইউনিট প্রতি আয়/ব্যয়
+                            ইউনিট প্রতি টাকার পরিমাণ
                         </label>
                         <input type="number" name="per_unit" class="form-control input_padding" id="per_unit" >
                     </div>

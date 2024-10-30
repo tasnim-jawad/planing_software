@@ -1,18 +1,18 @@
-import app_config from '../../../app_config';
+import app_config from '../../../../app_config';
 import setup_type from './setup_type';
 
-const prefix: string = 'Porikolponar Dhoron';
+const prefix: string = 'Orjitobbo Target';
 const setup: setup_type = {
     prefix,
     permission: [`admin`,`super_admin`],
 
     api_host: app_config.api_host,
     api_version: app_config.api_version,
-    api_end_point: 'porikolponar-dhorons',
+    api_end_point: 'orjitobbo-target',
 
-    module_name: 'porikolponar_dhoron',
-    route_prefix: `porikolponar_dhoron`,
-    store_prefix: 'porikolponar_dhoron',
+    module_name: 'orjitobbo_target',
+    route_prefix: `orjitobbo_target`,
+    store_prefix: 'orjitobbo_target',
 
     select_fields: ['id','title', 'description','slug','created_at', 'status'],
     sort_by_cols: ['id','title', 'slug','created_at', 'status'],

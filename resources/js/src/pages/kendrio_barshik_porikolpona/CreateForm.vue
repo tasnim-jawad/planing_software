@@ -22,7 +22,7 @@
                 </label>
                 <input type="text" name="action_plan" class="form-control input_padding" id="action_plan" >
             </div>
-            <div class="mb-3 form-group">
+            <!-- <div class="mb-3 form-group">
                 <label for="scheme">
                     ছক
                 </label>
@@ -32,7 +32,7 @@
                         {{ scheme.title }}
                     </option>
                 </select>
-            </div>
+            </div> -->
             <div class="mb-3 form-group">
                 <label for="implementing_departments">
                     বাস্তবায়নকারী বিভাগ

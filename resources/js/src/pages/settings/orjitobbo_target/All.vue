@@ -16,8 +16,8 @@
                                             <select-all />
                                         </th>
                                         <th class="w-10"> ID </th>
-                                        <th> Name </th>
-                                        <th> Email </th>
+                                        <th> Title </th>
+                                        <th> description </th>
                                     </tr>
                                 </thead>
                                 <tbody v-if="all?.data?.length">
@@ -33,10 +33,10 @@
                                             {{ item.id }}
                                         </td>
                                         <td>
-                                            {{ item.full_name }}
+                                            {{ item.title }}
                                         </td>
                                         <td>
-                                            {{ item.email }}
+                                            {{ item.description }}
                                         </td>
                                     </tr>
                                 </tbody>
@@ -82,7 +82,7 @@ import QuickView from './components/canvas/QuickView.vue';
 import QuickViewColumn from './components/all_data_page/QuickViewColumn.vue';
 import FilterData from './components/canvas/FilterData.vue';
 import DropDownEl from './components/dropdown/DropDownEl.vue';
-import Pagination from '../../components/Pagination.vue';
+import Pagination from '../../../components/Pagination.vue';
 
 export default {
     data: () => ({
@@ -105,7 +105,7 @@ export default {
             paginate: 'paginate',
         })
 
-        
+
     },
     components: {
         TableRowAction,
